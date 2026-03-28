@@ -2482,9 +2482,13 @@
 </div>
 
 <script>
-  const PAGES = ['home','about','events','projects','resources','contact'];
+  var PAGES = ['home','about','events','projects','resources','contact'];
 
   function showPage(name) {
+    // Close any open mobile menu first
+    closeMenu();
+
+    // Swap visible page
     PAGES.forEach(function(p) {
       var el = document.getElementById('page-' + p);
       if (el) el.classList.remove('active');
@@ -2501,27 +2505,44 @@
     history.pushState({ page: name }, '', url);
   }
 
-  // Hamburger via event delegation
+  function getActiveMenu() {
+    // Find the mobile-menu inside whichever spa-page is currently active
+    var activePage = document.querySelector('.spa-page.active');
+    return activePage ? activePage.querySelector('.mobile-menu') : null;
+  }
+
+  function getActiveHamburger() {
+    var activePage = document.querySelector('.spa-page.active');
+    return activePage ? activePage.querySelector('.hamburger') : null;
+  }
+
+  function closeMenu() {
+    var menu = getActiveMenu();
+    var btn  = getActiveHamburger();
+    if (menu) menu.classList.remove('open');
+    if (btn)  btn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Single delegated click handler on document
   document.addEventListener('click', function(e) {
-    var btn = e.target.closest('.hamburger');
-    var link = e.target.closest('.mobile-link');
-    if (btn) {
-      var page = btn.closest('.spa-page');
-      var menu = page ? page.querySelector('.mobile-menu') : null;
-      btn.classList.toggle('open');
-      if (menu) {
-        menu.classList.toggle('open');
-        document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
-      }
+    // Hamburger toggle
+    if (e.target.closest('.hamburger')) {
+      var menu = getActiveMenu();
+      var btn  = getActiveHamburger();
+      if (menu) menu.classList.toggle('open');
+      if (btn)  btn.classList.toggle('open');
+      document.body.style.overflow = (menu && menu.classList.contains('open')) ? 'hidden' : '';
+      return;
     }
-    if (link) {
-      document.querySelectorAll('.hamburger').forEach(function(h) { h.classList.remove('open'); });
-      document.querySelectorAll('.mobile-menu').forEach(function(m) { m.classList.remove('open'); });
-      document.body.style.overflow = '';
+    // Mobile nav link — showPage is called by the onclick on the <a>, we just close the menu
+    if (e.target.closest('.mobile-link')) {
+      closeMenu();
+      return;
     }
   });
 
-  // Handle browser back/forward
+  // Browser back/forward
   window.addEventListener('popstate', function(e) {
     var name = (e.state && e.state.page) ? e.state.page : 'home';
     PAGES.forEach(function(p) {
@@ -2538,7 +2559,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // On initial load — read hash to decide which page to show
+  // Initial load — read hash
   (function() {
     var hash = window.location.hash.replace('#', '');
     var name = (hash && PAGES.indexOf(hash) !== -1) ? hash : 'home';
