@@ -1497,6 +1497,421 @@
     vertical-align: middle;
   }
 
+  
+
+  
+  /* ── SPONSORS SECTION — REBUILT ──────────────────────── */
+  .sponsors {
+    background: var(--navy-dark);
+    padding: 5rem 0;
+    border-top: 3px solid var(--gold);
+  }
+  .sponsors-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3rem;
+  }
+  .sponsors-header .section-label {
+    color: var(--gold);
+    justify-content: center;
+  }
+  .sponsors-header h2 {
+    color: #fff;
+    margin: 0.5rem 0 0.8rem;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+  }
+  .sponsors-header h2 em { color: var(--gold); }
+  .sponsors-header p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* 5-card grid */
+  .sponsors-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Individual sponsor card */
+  .sponsor-card-full {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.4rem;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .sponsor-card-full::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+  .sponsor-card-full:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(240,180,41,0.35);
+    transform: translateY(-4px);
+  }
+  .sponsor-card-full:hover::before { transform: scaleX(1); }
+
+  /* Logo */
+
+  /* Body text */
+  .scf-body { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+  .scf-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .scf-body p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    flex: 1;
+    margin: 0;
+  }
+  .scf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 0.8rem;
+    transition: gap 0.2s;
+  }
+  .sponsor-card-full:hover .scf-link { gap: 0.5rem; }
+
+  /* Offer badge */
+  .scf-offer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .scf-offer-label {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(240,180,41,0.6);
+  }
+  .scf-offer-value {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+  }
+  .scf-offer-code {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+  }
+
+  /* Bottom CTA */
+  .sponsors-cta {
+    text-align: center;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .sponsors-cta p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .sponsors-cta .btn-outline {
+    color: rgba(255,255,255,0.7);
+    border-color: rgba(255,255,255,0.2);
+    font-size: 0.85rem;
+    padding: 0.65rem 1.4rem;
+  }
+  .sponsors-cta .btn-outline:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .sponsors-cards { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .sponsors-cards { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .sponsors-cards { grid-template-columns: 1fr; }
+    .sponsors-cta { flex-direction: column; gap: 1rem; }
+  }
+
+  
+  /* ════════════════════════════════════════════════════
+     MOBILE REVIEW FIXES
+  ════════════════════════════════════════════════════ */
+
+  /* ── Safe area insets for iPhone notch / Dynamic Island ── */
+  nav {
+    padding-left: max(2.5rem, env(safe-area-inset-left));
+    padding-right: max(2.5rem, env(safe-area-inset-right));
+  }
+  @media (max-width: 900px) {
+    nav {
+      padding-left: max(1.5rem, env(safe-area-inset-left));
+      padding-right: max(1.5rem, env(safe-area-inset-right));
+    }
+    .mobile-menu {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+  footer {
+    padding-bottom: max(2rem, calc(1rem + env(safe-area-inset-bottom)));
+  }
+
+  /* ── Hero h1 max-width on large phones ─────────────────── */
+  .hero h1 { max-width: 820px; margin-left: auto; margin-right: auto; }
+
+  /* ── Image heights — reduce on small screens ────────────── */
+  @media (max-width: 600px) {
+    .welcome-img { height: 220px; }
+    .about-strategy-img { height: 180px !important; }
+    .about-img-wrap { height: 200px !important; }
+    .proj-img-frame img { height: 200px !important; }
+  }
+  @media (max-width: 400px) {
+    .welcome-img { height: 180px; }
+    .hero { padding: 5.5rem 1rem 4rem; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero-sub { font-size: 0.9rem; }
+  }
+
+  /* ── Sponsors cards — single col on very small ──────────── */
+  @media (max-width: 400px) {
+    .sponsors-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ── Barriers layout — single col on small phones ────────── */
+  @media (max-width: 500px) {
+    .barriers-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .welcome-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .why-layout { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* ── Events cards — single col on small ─────────────────── */
+  @media (max-width: 500px) {
+    .ev-types-grid { grid-template-columns: 1fr; }
+    .ev-cards-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .proj-pillars-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Contact form — better small screen layout ───────────── */
+  @media (max-width: 480px) {
+    .ct-hero { padding: 4rem 1rem 2.5rem; }
+    .ct-form-left { padding: 1.2rem; }
+    .ct-form-section { padding: 2.5rem 0; }
+    .ct-involve-block { padding: 1.2rem; }
+    .ct-newsletter-block { padding: 1.2rem; }
+    .ct-subject-pills { gap: 0.3rem; }
+    .ct-pill-btn { font-size: 0.72rem; padding: 0.28rem 0.6rem; }
+  }
+
+  /* ── Resources pcard — mobile ────────────────────────────── */
+  @media (max-width: 480px) {
+    .pcard { padding: 1rem; }
+    .pcard-top { gap: 0.8rem; }
+    .hub-price { font-size: 1.5rem; }
+    .app-stats { flex-direction: column; gap: 0.5rem; }
+    .app-btns { flex-direction: column; }
+    .app-store-btn { justify-content: center; }
+    .sponsor-cards { grid-template-columns: 1fr 1fr; }
+    .bic-deals { grid-template-columns: 1fr; }
+    .roam-cols { grid-template-columns: 1fr; }
+  }
+
+  /* ── Modal — better small screen ─────────────────────────── */
+  @media (max-width: 480px) {
+    .nl-modal { padding: 1.4rem 1rem; border-radius: 12px; }
+    .nl-modal-header h2 { font-size: 1.2rem; }
+    .nl-modal-row { grid-template-columns: 1fr; }
+    .nl-modal-submit { font-size: 0.9rem; }
+  }
+
+  /* ── Footer — better small screen ────────────────────────── */
+  @media (max-width: 480px) {
+    .footer-inner { grid-template-columns: 1fr; padding: 0 1rem; gap: 1.5rem; }
+    .footer-bottom-wrap { padding: 1.5rem 1rem 0; }
+    .footer-bottom { flex-direction: column; gap: 0.3rem; text-align: center; font-size: 0.75rem; }
+    .sponsors-cta { flex-direction: column; gap: 0.8rem; }
+  }
+
+  /* ── Tap target sizes — all interactive elements ─────────── */
+  @media (max-width: 900px) {
+    .ct-quick-card { min-height: 60px; }
+    .ct-involve-item { min-height: 56px; }
+    .barrier-card { min-height: 0; }
+    .nav-cta { min-height: 44px; }
+    .mob-cta { min-height: 52px; }
+  }
+
+  /* ── Prevent text overflow on mobile ─────────────────────── */
+  h1, h2, h3 { overflow-wrap: break-word; word-break: break-word; }
+  .scf-body h3 { overflow-wrap: break-word; }
+
+  /* ── Smooth scrolling off for reduced-motion preference ──── */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .page-fade { animation: none; }
+    .sponsor-card-full, .card, .barrier-card, .why-card { transition: none; }
+  }
+
+  
+  /* ════════════════════════════════════════════════════
+     ICON COLOUR — context-aware fixes
+     Dark bg  → white icons (with gold accent where needed)
+     Light bg → navy icons
+  ════════════════════════════════════════════════════ */
+
+  /* ── Global default — navy on light ───────────────── */
+  .icon svg { stroke: var(--navy); }
+
+  /* ── Dark section overrides — white icons ──────────── */
+  .social .icon svg,
+  .social-card .icon svg,
+  .mission .icon svg,
+  .pillar .icon svg,
+  .pillar-icon .icon svg,
+  .newsletter .icon svg,
+  .sponsors .icon svg,
+  .sponsor-card-full .icon svg,
+  .ct-hero .icon svg,
+  .ct-hero-text .icon svg,
+  .ct-hero-cards .icon svg,
+  .ct-quick-card .icon svg,
+  .ct-newsletter-block .icon svg,
+  .ev-hero .icon svg,
+  .ev-nl-stripe .icon svg,
+  .page-hero .icon svg,
+  .pcard .icon svg,
+  .app-stats .icon svg,
+  section.dark .icon svg,
+  section.navy .icon svg,
+  .barriers-left .icon svg { stroke: rgba(255,255,255,0.85); }
+
+  /* ── Gold icons on dark for emphasis ───────────────── */
+  .pillar-status .icon svg,
+  .ev-status-live .icon svg,
+  .ev-status-soon .icon svg,
+  .status-live .icon svg,
+  .nev-free-badge .icon svg,
+  .ct-email-link .icon svg { stroke: var(--gold); }
+
+  /* ── Specific container overrides ─────────────────── */
+
+  /* Barrier cards — light bg, navy icons */
+  .barrier-card .icon svg,
+  .barrier-icon .icon svg { stroke: var(--navy); }
+
+  /* Why cards — light bg */
+  .why-card .icon svg,
+  .why-icon .icon svg { stroke: var(--navy); }
+
+  /* About values cards — white bg */
+  .card .icon svg { stroke: var(--navy); }
+
+  /* Event type cards — white bg */
+  .ev-type-card .icon svg { stroke: var(--navy); }
+
+  /* Event date cards — light bg */
+  .ev-card .icon svg { stroke: var(--navy); }
+  .ev-live-badge .icon svg { stroke: var(--green); }
+  .ev-free-badge .icon svg { stroke: var(--navy); }
+
+  /* Project pillar intro cards — white bg */
+  .proj-pillar-card .icon svg { stroke: var(--navy); }
+
+  /* Contact form — white card */
+  .ct-form-left .icon svg,
+  .ct-involve-icon .icon svg { stroke: var(--navy); }
+
+  /* Contact involve items */
+  .ct-involve-item .icon svg,
+  .ct-involve-arrow .icon svg { stroke: var(--muted); }
+  .ct-involve-item:hover .icon svg { stroke: var(--navy); }
+
+  /* Resources hub features — light bg */
+  .hub-feature .icon svg { stroke: var(--navy); }
+
+  /* BIC deals — light bg */
+  .bic-deal .icon svg { stroke: var(--navy); }
+
+  /* App cards — white bg */
+  .app-card .icon svg { stroke: var(--navy); }
+
+  /* App tags */
+  .app-tag .icon svg { stroke: var(--muted); }
+
+  /* App store buttons — navy bg */
+  .app-store-btn .icon svg { stroke: #fff; }
+
+  /* Pcard links — navy text */
+  .pcard-link .icon svg { stroke: var(--navy); }
+
+  /* Newsletter modal — white bg */
+  .nl-modal .icon svg { stroke: var(--navy); }
+  .nl-modal-submit .icon svg { stroke: #fff; }
+
+  /* Welcome badges */
+  .badge-green .icon svg { stroke: var(--green); }
+  .badge-navy .icon svg  { stroke: var(--navy); }
+  .badge-gold .icon svg  { stroke: #b8860b; }
+
+  /* Info boxes — light bg */
+  .info-box .icon svg,
+  .coffee-note .icon svg { stroke: var(--muted); }
+
+  /* Buttons */
+  .btn-gold .icon svg   { stroke: var(--navy); }
+  .btn-navy .icon svg   { stroke: #fff; }
+  .btn-outline .icon svg { stroke: var(--navy); }
+  .btn-outline-white .icon svg { stroke: rgba(255,255,255,0.85); }
+
+  /* Sponsor cards section — arrow icons */
+  .scf-link .icon svg { stroke: var(--gold); }
+
+  /* Footer links */
+  footer .icon svg { stroke: rgba(255,255,255,0.6); }
+
+  /* Nav CTA */
+  .nav-cta .icon svg { stroke: var(--navy); }
+
+  /* Mobile link */
+  .mobile-link .icon svg { stroke: rgba(255,255,255,0.75); }
+
+  /* Section label accent line — not an icon, skip */
+
+  /* Clock / meta items in dark sections */
+  .nev-meta-item .icon svg { stroke: var(--gold); }
+
   </style>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
@@ -1540,6 +1955,7 @@
   </div>
   <div class="hero-scroll">Scroll</div>
 </section>
+
 
 <!-- WELCOME -->
 <section class="welcome" id="welcome">
@@ -1721,25 +2137,80 @@
 <!-- SPONSORS -->
 <section class="sponsors" id="sponsors">
   <div class="container">
-    <p class="sponsors-label">Proudly Sponsored By</p>
-    <div class="sponsors-grid">
-      <a class="sponsor-logo-link" href="https://www.theironingman.co.uk" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ironing-man.png" alt="The Ironing Man" class="sponsor-logo" />
-      </a>
-      <a class="sponsor-logo-link" href="https://www.roam-everywhere.com/get-the-app" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/roam.png" alt="Roam" class="sponsor-logo" />
-      </a>
-      <a class="sponsor-logo-link" href="https://www.ne-bic.co.uk" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ne-bic.png" alt="NE BIC" class="sponsor-logo" />
-      </a>
-      <a class="sponsor-logo-link" href="https://www.nehotelsassociation.co.uk" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ne-hotels.png" alt="North East Hotels Association" class="sponsor-logo" />
-      </a>
-    
-      <a class="sponsor-logo-link" href="https://www.surgotechsolutions.com" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/surgotech.png" alt="Surgotech Solutions" class="sponsor-logo" /></a>
+
+    <div class="sponsors-header">
+      <span class="section-label">Proudly Sponsored By</span>
+      <h2>The businesses that make <em>Newcastle First</em> possible</h2>
+      <p>Our sponsors believe in what we're building. Without their support, Newcastle First wouldn't exist. Please support the businesses that support us.</p>
     </div>
+
+    <div class="sponsors-cards">
+
+      <a class="sponsor-card-full" href="https://www.theironingman.co.uk" target="_blank" rel="noopener">
+        <div class="scf-body">
+          <h3>The Ironing Man</h3>
+          <p>Fast, friendly ironing &amp; laundry with collection and delivery across Newcastle.</p>
+          <span class="scf-link">Visit Website <span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+        </div>
+        <div class="scf-offer">
+          <span class="scf-offer-label">Exclusive Offer</span>
+          <span class="scf-offer-value">10% Off</span>
+          <span class="scf-offer-code">Code: NCL10</span>
+        </div>
+      </a>
+
+      <a class="sponsor-card-full" href="https://www.roam-everywhere.com/get-the-app" target="_blank" rel="noopener">
+        <div class="scf-body">
+          <h3>Roam</h3>
+          <p>Your gateway to everything local — connecting residents, businesses and communities across the North East.</p>
+          <span class="scf-link">Visit Website <span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+        </div>
+      </a>
+
+      <a class="sponsor-card-full" href="https://www.ne-bic.co.uk" target="_blank" rel="noopener">
+        <div class="scf-body">
+          <h3>NE BIC</h3>
+          <p>The space to build a better business — co-working, offices and business support in Newcastle.</p>
+          <span class="scf-link">Visit Website <span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+        </div>
+        <div class="scf-offer">
+          <span class="scf-offer-label">Member Offer</span>
+          <span class="scf-offer-value">Free Day Pass</span>
+          <span class="scf-offer-code">+ 10% Off Rooms</span>
+        </div>
+      </a>
+
+      <a class="sponsor-card-full" href="https://www.nehotelsassociation.co.uk" target="_blank" rel="noopener">
+        <div class="scf-body">
+          <h3>NE Hotels Association</h3>
+          <p>Representing and supporting the hospitality sector across the entire North East region.</p>
+          <span class="scf-link">Visit Website <span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+        </div>
+      </a>
+
+      <a class="sponsor-card-full" href="https://www.surgotechsolutions.com" target="_blank" rel="noopener">
+        <div class="scf-body">
+          <h3>Surgotech Solutions</h3>
+          <p>Helping businesses unlock potential through smart technology and proven process improvement.</p>
+          <span class="scf-link">Visit Website <span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+        </div>
+        <div class="scf-offer">
+          <span class="scf-offer-label">Member Offer</span>
+          <span class="scf-offer-value">40% Off Audit</span>
+          <span class="scf-offer-code">Code: NCL-SURGE</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="sponsors-cta">
+      <p>Interested in sponsoring Newcastle First?</p>
+      <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
+    </div>
+
   </div>
 </section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -1857,7 +2328,7 @@
 <section class="alt">
   <div class="wrap">
     <div style="border-radius:20px;overflow:hidden;margin-bottom:3rem;position:relative;height:320px;">
-      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Angel_of_the_North-1.png" alt="Angel of the North" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" />
+      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Angel%20of%20the%20North-1.png" alt="Angel of the North" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" />
       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(17,26,58,0.55) 0%,transparent 60%);"></div>
       <div style="position:absolute;bottom:2rem;left:2rem;">
         <span style="display:block;font-size:0.68rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Why Newcastle?</span>
@@ -3100,6 +3571,9 @@
 <!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <!-- NEWSLETTER SUBSCRIPTION MODAL -->
+<!-- NEWSLETTER SUBSCRIPTION MODAL -->
+<!-- NEWSLETTER SUBSCRIPTION MODAL -->
+<!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <div id="nl-modal-overlay" class="nl-modal-overlay" onclick="closeSubscribeModal(event)">
   <div class="nl-modal" role="dialog" aria-modal="true" aria-labelledby="nl-modal-title">
     <button class="nl-modal-close" onclick="closeSubscribeModal()" aria-label="Close">&times;</button>
@@ -3147,7 +3621,6 @@
   </div>
 </div>
 
-<!-- Init Lucide icons -->
 <script>
   if (typeof lucide !== 'undefined') lucide.createIcons();
 </script>
