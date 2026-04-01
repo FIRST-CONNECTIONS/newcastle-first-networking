@@ -1252,7 +1252,6 @@
   /* ── PRINT ───────────────────────────────────────────── */
   @media print {
     nav, .mobile-menu, .hero-scroll, footer { display: none; }
-    .spa-page { display: block !important; }
   }
 
   
@@ -1912,6 +1911,12 @@
   /* Clock / meta items in dark sections */
   .nev-meta-item .icon svg { stroke: var(--gold); }
 
+  
+  @keyframes pageFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   </style>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
@@ -1930,7 +1935,7 @@
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
   </ul>
-  <button class="hamburger" aria-label="Open menu">
+  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -2263,7 +2268,7 @@
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
   </ul>
-  <button class="hamburger" aria-label="Open menu">
+  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -2441,7 +2446,7 @@
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
   </ul>
-  <button class="hamburger" aria-label="Open menu">
+  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -2624,7 +2629,7 @@
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
   </ul>
-  <button class="hamburger" aria-label="Open menu">
+  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -2821,7 +2826,7 @@
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
   </ul>
-  <button class="hamburger" aria-label="Open menu">
+  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -2856,8 +2861,7 @@
     <div class="pcard">
       <div class="pcard-top">
         <div class="pcard-logo-wrap">
-          <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ironing-man.png" alt="The Ironing Man" class="pcard-logo" />
-        </div>
+          </div>
         <div class="pcard-title-group">
           <h3>The Ironing Man</h3>
           <p class="pcard-subtitle">Ironing &amp; Laundry Service · Newcastle</p>
@@ -2938,8 +2942,7 @@
       <div class="pcard-bic-header">
         <div class="pcard-top" style="flex:1;">
           <div class="pcard-logo-wrap">
-            <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ne-bic.png" alt="NE BIC" class="pcard-logo" />
-          </div>
+            </div>
           <div class="pcard-title-group">
             <h3>NE BIC — Newcastle Workspace</h3>
             <p class="pcard-subtitle">Sponsor</p>
@@ -2981,8 +2984,7 @@
     <div class="pcard roam-card">
       <div class="pcard-top">
         <div class="pcard-logo-wrap">
-          <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/roam.png" alt="Roam" class="pcard-logo" />
-        </div>
+          </div>
         <div class="pcard-title-group">
           <h3>Roam</h3>
           <p class="pcard-subtitle">Your gateway to everything local</p>
@@ -3089,8 +3091,7 @@
     <div class="pcard">
       <div class="pcard-top">
         <div class="pcard-logo-wrap">
-          <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/surgotech.png" alt="Surgotech Solutions" class="pcard-logo" />
-        </div>
+          </div>
         <div class="pcard-title-group">
           <h3>Surgotech Solutions</h3>
           <p class="pcard-subtitle">Technology &amp; Business Improvement · Newcastle</p>
@@ -3135,31 +3136,26 @@
     </div>
     <div class="sponsor-cards">
       <a class="sponsor-card" href="https://www.roam-everywhere.com/get-the-app" target="_blank">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/roam.png" alt="Roam" />
         <h4>Roam</h4>
         <p>Your gateway to everything local — connecting residents, businesses and communities.</p>
         <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.theironingman.co.uk" target="_blank">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ironing-man.png" alt="The Ironing Man" />
         <h4>The Ironing Man</h4>
         <p>Professional ironing and laundry with collection and delivery across Newcastle.</p>
         <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.ne-bic.co.uk" target="_blank">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ne-bic.png" alt="NE BIC" />
         <h4>NE BIC</h4>
         <p>The space to build a better business — co-working, offices and support in Newcastle.</p>
         <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.nehotelsassociation.co.uk" target="_blank">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ne-hotels.png" alt="NE Hotels Association" />
         <h4>NE Hotels Association</h4>
         <p>Representing and supporting the hospitality sector across the North East region.</p>
         <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.surgotechsolutions.com" target="_blank">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/surgotech.png" alt="Surgotech Solutions" />
         <h4>Surgotech Solutions</h4>
         <p>Technology solutions helping businesses grow smarter and faster.</p>
         <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
@@ -3216,6 +3212,7 @@
 </div>
 
 <div id="page-contact" class="spa-page">
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#" onclick="showPage('home');return false;"><span>Newcastle</span> First</a>
@@ -3228,7 +3225,7 @@
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
   </ul>
-  <button class="hamburger" aria-label="Open menu">
+  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -3242,14 +3239,17 @@
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
 </div>
 
-<!-- CONTACT HERO — keep the city image + translucent navy overlay -->
+<!-- CONTACT HERO -->
 <section class="ct-hero" style="background:linear-gradient(135deg,rgba(17,26,58,0.88) 0%,rgba(30,46,98,0.82) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/newcastle-building.png') center center/cover no-repeat;">
   <div class="ct-hero-inner wrap-wide">
     <div class="ct-hero-text">
       <span class="section-label">Get In Touch</span>
       <h1>Let's start a <em>conversation</em></h1>
       <p>Whether you want to attend an event, become a sponsor, host a venue, or just say hello — we'd love to hear from you.</p>
-      <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
+      <a href="mailto:hello@first-connections.co.uk" class="ct-email-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        hello@first-connections.co.uk
+      </a>
     </div>
     <div class="ct-hero-cards">
       <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="ct-quick-card">
@@ -3258,24 +3258,44 @@
           <div class="ct-quick-title">Book an Event</div>
           <div class="ct-quick-desc">All events are free to attend</div>
         </div>
-        <span class="ct-quick-arrow"><span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+        <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
-      <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
-      <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
-      <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
+      <a href="mailto:hello@first-connections.co.uk?subject=Sponsorship%20Enquiry" class="ct-quick-card">
+        <div class="ct-quick-card-icon"><span class="icon icon-lg"><i data-lucide="handshake"></i></span></div>
+        <div class="ct-quick-card-body">
+          <div class="ct-quick-title">Become a Sponsor</div>
+          <div class="ct-quick-desc">Support and grow with Newcastle First</div>
+        </div>
+        <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+      </a>
+      <a href="mailto:hello@first-connections.co.uk?subject=Venue%20Hosting%20Enquiry" class="ct-quick-card">
+        <div class="ct-quick-card-icon"><span class="icon icon-lg"><i data-lucide="building-2"></i></span></div>
+        <div class="ct-quick-card-body">
+          <div class="ct-quick-title">Host a Venue</div>
+          <div class="ct-quick-desc">Rotate your space into our events calendar</div>
+        </div>
+        <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+      </a>
+      <a href="mailto:hello@first-connections.co.uk?subject=Podcast%20Guest%20Enquiry" class="ct-quick-card">
+        <div class="ct-quick-card-icon"><span class="icon icon-lg"><i data-lucide="mic"></i></span></div>
+        <div class="ct-quick-card-body">
+          <div class="ct-quick-title">Podcast Guest</div>
+          <div class="ct-quick-desc">Share your story on our podcast</div>
+        </div>
+        <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT FORM + RIGHT PANEL -->
+<!-- CONTACT FORM SECTION -->
 <section class="ct-form-section">
   <div class="ct-form-wrap wrap-wide">
 
-    <!-- LEFT: Contact Form -->
     <div class="ct-form-left">
       <span class="section-label">Send Us a Message</span>
       <h2>We'd love to <em>hear from you</em></h2>
-      <p style="margin-bottom:1.8rem;font-size:0.92rem;color:var(--muted);">Fill in the form and we'll get back to you as soon as we can — whether it's a quick question or a big idea.</p>
+      <p style="margin-bottom:1.8rem;font-size:0.92rem;color:var(--muted);">Fill in the form and we'll get back to you as soon as we can.</p>
       <div class="ct-form">
         <div class="ct-form-row">
           <div class="ct-field">
@@ -3288,7 +3308,7 @@
           </div>
         </div>
         <div class="ct-field">
-          <label class="ct-label" for="contact-subject">What's it about?</label>
+          <label class="ct-label">What's it about?</label>
           <div class="ct-subject-pills">
             <button type="button" class="ct-pill-btn" onclick="setSubject(this,'General Enquiry')">General Enquiry</button>
             <button type="button" class="ct-pill-btn" onclick="setSubject(this,'Sponsorship')">Sponsorship</button>
@@ -3310,17 +3330,43 @@
       </div>
     </div>
 
-    <!-- RIGHT: Get Involved + Newsletter -->
     <div class="ct-form-right">
-
       <div class="ct-involve-block">
         <span class="section-label">Get Involved</span>
         <h2>Ways to <em>work with us</em></h2>
         <div class="ct-involve-list">
-          <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
-          <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
-          <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
-          <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
+          <a href="mailto:hello@first-connections.co.uk?subject=Sponsorship%20Enquiry" class="ct-involve-item">
+            <div class="ct-involve-icon"><span class="icon icon-md"><i data-lucide="handshake"></i></span></div>
+            <div class="ct-involve-body">
+              <div class="ct-involve-title">Become a Sponsor</div>
+              <div class="ct-involve-desc">Get your brand in front of local business leaders</div>
+            </div>
+            <span class="ct-involve-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+          </a>
+          <a href="mailto:hello@first-connections.co.uk?subject=Venue%20Hosting%20Enquiry" class="ct-involve-item">
+            <div class="ct-involve-icon"><span class="icon icon-md"><i data-lucide="store"></i></span></div>
+            <div class="ct-involve-body">
+              <div class="ct-involve-title">Host a Venue</div>
+              <div class="ct-involve-desc">Rotate your space into our monthly events calendar</div>
+            </div>
+            <span class="ct-involve-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+          </a>
+          <a href="mailto:hello@first-connections.co.uk?subject=Podcast%20Guest%20Enquiry" class="ct-involve-item">
+            <div class="ct-involve-icon"><span class="icon icon-md"><i data-lucide="mic"></i></span></div>
+            <div class="ct-involve-body">
+              <div class="ct-involve-title">Podcast Guest</div>
+              <div class="ct-involve-desc">Share your business story on the Newcastle First podcast</div>
+            </div>
+            <span class="ct-involve-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+          </a>
+          <a href="mailto:hello@first-connections.co.uk?subject=High%20Street%20Heroes%20Nomination" class="ct-involve-item">
+            <div class="ct-involve-icon"><span class="icon icon-md"><i data-lucide="trophy"></i></span></div>
+            <div class="ct-involve-body">
+              <div class="ct-involve-title">High Street Heroes</div>
+              <div class="ct-involve-desc">Nominate a business that deserves recognition</div>
+            </div>
+            <span class="ct-involve-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+          </a>
         </div>
       </div>
 
@@ -3334,8 +3380,8 @@
         </div>
         <p class="ct-nl-note">No spam, ever. Unsubscribe any time.</p>
       </div>
-
     </div>
+
   </div>
 </section>
 
@@ -3374,7 +3420,9 @@
     </div>
   </div>
 </footer>
+<
 </div>
+
 <script>
   var PAGES=['home','about','events','projects','resources','contact'];
 
@@ -3385,194 +3433,116 @@
       if (el) el.classList.remove('active');
     });
     var target = document.getElementById('page-' + name);
-    if (target) {
-      target.classList.add('active');
-      target.classList.remove('page-fade');
-      void target.offsetWidth;
-      target.classList.add('page-fade');
-    }
-    // Highlight active nav link across all pages
+    if (target) { target.classList.add('active'); }
     document.querySelectorAll('.nav-links li a').forEach(function(a) {
       a.classList.remove('nav-active');
-    });
-    document.querySelectorAll('[onclick*="showPage(\''+name+'\'"]').forEach(function(a) {
-      if (a.classList.contains('nav-active') === false && a.closest('.nav-links')) {
-        a.classList.add('nav-active');
-      }
+      var oc = a.getAttribute('onclick') || '';
+      if (oc.indexOf("showPage('" + name + "')") !== -1) a.classList.add('nav-active');
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
     var url = name === 'home' ? window.location.pathname : window.location.pathname + '#' + name;
-    history.pushState({ page: name }, '', url);
+    try { history.pushState({ page: name }, '', url); } catch(e) {}
   }
-
-  function getActiveMenu() {
-    var a = document.querySelector('.spa-page.active');
-    return a ? a.querySelector('.mobile-menu') : null;
-  }
-  function getActiveHamburger() {
-    var a = document.querySelector('.spa-page.active');
-    return a ? a.querySelector('.hamburger') : null;
-  }
-  function closeMenu() {
-    var m = getActiveMenu(), b = getActiveHamburger();
-    if (m) m.classList.remove('open');
-    if (b) b.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('click', function(e) {
-    if (e.target.closest('.hamburger')) {
-      var m = getActiveMenu(), b = getActiveHamburger();
-      if (m) m.classList.toggle('open');
-      if (b) b.classList.toggle('open');
-      document.body.style.overflow = (m && m.classList.contains('open')) ? 'hidden' : '';
-      return;
-    }
-    if (e.target.closest('.mobile-link')) { closeMenu(); return; }
-  });
 
   window.addEventListener('popstate', function(e) {
-    var name = (e.state && e.state.page) ? e.state.page : 'home';
-    PAGES.forEach(function(p) {
-      var el = document.getElementById('page-' + p);
-      if (el) el.classList.remove('active');
-    });
-    var target = document.getElementById('page-' + name);
-    if (target) {
-      target.classList.add('active');
-      target.classList.remove('page-fade');
-      void target.offsetWidth;
-      target.classList.add('page-fade');
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (e.state && e.state.page) showPage(e.state.page);
   });
 
-  (function() {
-    var hash = window.location.hash.replace('#', '');
-    var name = (hash && PAGES.indexOf(hash) !== -1) ? hash : 'home';
-    if (name !== 'home') showPage(name);
-    history.replaceState({ page: name }, '', window.location.href);
-  })();
+  function closeMenu() {
+    document.querySelector('.mobile-menu') && (document.querySelector('.mobile-menu').style.display = 'none');
+    document.querySelector('.hamburger') && document.querySelector('.hamburger').classList.remove('open');
+  }
 
-  function setSubject(btn, value) {
-    document.getElementById('contact-subject').value = value;
+  function toggleMenu() {
+    var m = document.querySelector('.mobile-menu');
+    var h = document.querySelector('.hamburger');
+    if (!m) return;
+    var open = m.style.display === 'flex';
+    m.style.display = open ? 'none' : 'flex';
+    h && h.classList.toggle('open', !open);
+  }
+
+  function setSubject(btn, val) {
     document.querySelectorAll('.ct-pill-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
+    var inp = document.getElementById('contact-subject');
+    if (inp) inp.value = val;
   }
 
   function sendContactForm() {
-    var n = (document.getElementById('contact-name') || {}).value || '';
-    var e = (document.getElementById('contact-email') || {}).value || '';
-    var s = (document.getElementById('contact-subject') || {}).value || 'Newcastle First Enquiry';
-    var m = (document.getElementById('contact-message') || {}).value || '';
-    var body = 'Name: ' + n + '\nEmail: ' + e + '\n\n' + m;
-    window.location.href = 'mailto:hello@first-connections.co.uk?subject=' + encodeURIComponent(s) + '&body=' + encodeURIComponent(body);
+    var name = (document.getElementById('contact-name') || {}).value || '';
+    var email = (document.getElementById('contact-email') || {}).value || '';
+    var subject = (document.getElementById('contact-subject') || {}).value || 'General Enquiry';
+    var msg = (document.getElementById('contact-message') || {}).value || '';
+    if (!name || !email) { alert('Please fill in your name and email.'); return; }
+    var mailto = 'mailto:hello@first-connections.co.uk?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent('Name: ' + name + '\n\n' + msg);
+    window.location.href = mailto;
   }
 
-  // Brevo CRM integration
-  // ── Brevo subscriptions are proxied through a Cloudflare Worker ──
-  // The API key lives in the Worker environment — never in this file.
   var SUBSCRIBE_WORKER = 'https://nf-brevo-proxy.andrew-853.workers.dev';
 
-  function getBrevoListId(callback) {
-    // List ID is resolved server-side in the Worker — pass null here
-    callback(null);
-  }
-
   function openSubscribeModal(btn) {
-    // Pre-fill email if they typed one
-    var emailInput = btn.parentElement.querySelector('.nl-email-input');
+    var emailInput = btn && btn.parentElement ? btn.parentElement.querySelector('.nl-email-input') : null;
     var email = emailInput ? emailInput.value.trim() : '';
-    if (email) document.getElementById('nl-email').value = email;
-    // Reset form
-    document.getElementById('nl-modal-overlay').classList.add('open');
+    var overlay = document.getElementById('nl-modal-overlay');
+    if (!overlay) return;
+    if (email) { var e = document.getElementById('nl-email'); if (e) e.value = email; }
+    overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
-    // Focus first empty required field
     var first = document.querySelector('#nl-fname, #nl-lname, #nl-email');
     if (first && !first.value) setTimeout(function() { first.focus(); }, 100);
   }
 
   function closeSubscribeModal(e) {
     if (e && e.target !== document.getElementById('nl-modal-overlay') && e.type === 'click') return;
-    document.getElementById('nl-modal-overlay').classList.remove('open');
+    var overlay = document.getElementById('nl-modal-overlay');
+    if (overlay) overlay.classList.remove('open');
     document.body.style.overflow = '';
-    // Reset success state
-    document.getElementById('nl-success').style.display = 'none';
-    document.querySelector('.nl-modal-form').style.display = '';
-    document.getElementById('nl-submit-btn').disabled = false;
-    document.getElementById('nl-submit-text').textContent = 'Subscribe';
+    var succ = document.getElementById('nl-success');
+    var form = document.querySelector('.nl-modal-form');
+    var btn  = document.getElementById('nl-submit-btn');
+    var txt  = document.getElementById('nl-submit-text');
+    if (succ) succ.style.display = 'none';
+    if (form) form.style.display = '';
+    if (btn)  btn.disabled = false;
+    if (txt)  txt.textContent = 'Subscribe';
   }
 
-  // Close modal on Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeSubscribeModal();
-  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSubscribeModal(); });
+
+  function showSubscribeSuccess() {
+    var succ = document.getElementById('nl-success');
+    var form = document.querySelector('.nl-modal-form');
+    if (form) form.style.display = 'none';
+    if (succ) succ.style.display = 'block';
+    setTimeout(function() { closeSubscribeModal(); }, 4000);
+  }
 
   function submitSubscribeModal(e) {
     e.preventDefault();
-    var firstName  = document.getElementById('nl-fname').value.trim();
-    var lastName   = document.getElementById('nl-lname').value.trim();
-    var email      = document.getElementById('nl-email').value.trim();
-    var company    = document.getElementById('nl-company').value.trim();
-    var jobTitle   = document.getElementById('nl-jobtitle').value.trim();
-
+    var firstName = document.getElementById('nl-fname').value.trim();
+    var lastName  = document.getElementById('nl-lname').value.trim();
+    var email     = document.getElementById('nl-email').value.trim();
+    var company   = document.getElementById('nl-company').value.trim();
+    var jobTitle  = document.getElementById('nl-jobtitle').value.trim();
     if (!firstName || !lastName || !email) return;
-
     var btn = document.getElementById('nl-submit-btn');
     var txt = document.getElementById('nl-submit-text');
     btn.disabled = true;
     txt.textContent = 'Subscribing...';
-
     fetch(SUBSCRIBE_WORKER + '/subscribe', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        company: company,
-        jobTitle: jobTitle
-      })
-    })
-    .then(function(r) {
-      if (r.ok) {
-        showSubscribeSuccess();
-      } else {
-        btn.disabled = false;
-        txt.textContent = 'Subscribe';
-        alert('Something went wrong — please try again.');
-      }
-    })
-    .catch(function() {
-      btn.disabled = false;
-      txt.textContent = 'Subscribe';
-      alert('Connection error — please try again.');
+      body: JSON.stringify({ email: email, firstName: firstName, lastName: lastName, company: company, jobTitle: jobTitle })
+    }).then(function(r) {
+      if (r.ok) { showSubscribeSuccess(); }
+      else { btn.disabled = false; txt.textContent = 'Subscribe'; alert('Something went wrong. Please try again.'); }
+    }).catch(function() {
+      btn.disabled = false; txt.textContent = 'Subscribe'; alert('Connection error. Please try again.');
     });
   }
-
-  function showSubscribeSuccess() {
-    document.querySelector('.nl-modal-form').style.display = 'none';
-    document.getElementById('nl-success').style.display = 'block';
-    // Auto-close after 4 seconds
-    setTimeout(function() {
-      closeSubscribeModal();
-      // Clear the form inputs
-      ['nl-fname','nl-lname','nl-email','nl-company','nl-jobtitle'].forEach(function(id) {
-        document.getElementById(id).value = '';
-      });
-    }, 4000);
-  }
-
-
 </script>
 
-<!-- NEWSLETTER SUBSCRIPTION MODAL -->
-
-<!-- NEWSLETTER SUBSCRIPTION MODAL -->
-<!-- NEWSLETTER SUBSCRIPTION MODAL -->
-<!-- NEWSLETTER SUBSCRIPTION MODAL -->
-<!-- NEWSLETTER SUBSCRIPTION MODAL -->
-<!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <div id="nl-modal-overlay" class="nl-modal-overlay" onclick="closeSubscribeModal(event)">
   <div class="nl-modal" role="dialog" aria-modal="true" aria-labelledby="nl-modal-title">
@@ -3580,7 +3550,7 @@
     <div class="nl-modal-header">
       <span class="nl-modal-pill">Stay in the Loop</span>
       <h2 id="nl-modal-title">Join the <em>Newcastle First</em> community</h2>
-      <p>Get event dates, venue announcements and community news — straight to your inbox. No spam, ever.</p>
+      <p>Get event dates, venue announcements and community news straight to your inbox.</p>
     </div>
     <form class="nl-modal-form" onsubmit="submitSubscribeModal(event)">
       <div class="nl-modal-row">
@@ -3615,8 +3585,8 @@
     </form>
     <div class="nl-modal-success" id="nl-success" style="display:none;">
       <div class="nl-success-icon">&#10003;</div>
-      <h3>You&#39;re in!</h3>
-      <p>Welcome to the Newcastle First community. We&#39;ll be in touch with upcoming events and news.</p>
+      <h3>You are in!</h3>
+      <p>Welcome to Newcastle First. We will be in touch with upcoming events and news.</p>
     </div>
   </div>
 </div>
