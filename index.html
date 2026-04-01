@@ -1452,7 +1452,53 @@
     footer { padding: 2.5rem 0 1rem; }
   }
 
+  
+  /* ── LUCIDE ICONS ──────────────────────────────────────── */
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  .icon svg {
+    width: 1em;
+    height: 1em;
+    stroke-width: 2;
+    stroke: currentColor;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  /* Sized variants */
+  .icon-sm svg { width: 16px; height: 16px; }
+  .icon-md svg { width: 20px; height: 20px; }
+  .icon-lg svg { width: 24px; height: 24px; }
+  .icon-xl svg { width: 32px; height: 32px; }
+  .icon-2xl svg { width: 40px; height: 40px; }
+  /* Card icon containers */
+  .barrier-icon .icon svg,
+  .social-card-icon .icon svg { width: 28px; height: 28px; }
+  .pillar-icon .icon svg { width: 32px; height: 32px; }
+  .stat-icon .icon svg { width: 32px; height: 32px; }
+  .ev-type-icon .icon svg { width: 28px; height: 28px; }
+  .hub-feature-icon .icon svg { width: 22px; height: 22px; }
+  .bic-deal-icon .icon svg { width: 22px; height: 22px; }
+  .ct-quick-card-icon .icon svg { width: 22px; height: 22px; }
+  .ct-involve-icon .icon svg { width: 20px; height: 20px; }
+  .why-icon .icon svg { width: 28px; height: 28px; }
+  /* Status dot */
+  .status-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
   </style>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -1504,9 +1550,9 @@
         <h2>Welcome to <em>Newcastle First</em></h2>
         <p class="lead">A relaxed, informal gathering for local business leaders who want to put Newcastle first, share ideas, and explore new opportunities for collaboration. All business sectors welcome.</p>
         <div class="welcome-badges">
-          <span class="badge-item badge-green">✓ 100% Free to Attend</span>
-          <span class="badge-item badge-navy">☕ No Membership Fees</span>
-          <span class="badge-item badge-gold">🤝 All Sectors Welcome</span>
+          <span class="badge-item badge-green"><span class="icon icon-sm"><i data-lucide="check"></i></span> 100% Free to Attend</span>
+          <span class="badge-item badge-navy"><span class="icon icon-sm"><i data-lucide="coffee"></i></span> No Membership Fees</span>
+          <span class="badge-item badge-gold"><span class="icon icon-sm"><i data-lucide="handshake"></i></span> All Sectors Welcome</span>
         </div>
         <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="btn-gold" style="margin-top:1.5rem;">Book Your Free Ticket →</a>
       </div>
@@ -1530,21 +1576,21 @@
         <h2>Just <em>Community.</em></h2>
         <p class="lead">Newcastle First events are completely free — one of the only free networking events across the entire North East.</p>
         <p>We're opening the door for young entrepreneurs just getting started and experienced business leaders alike. Everyone deserves a seat at the table.</p>
-        <div class="coffee-note">☕ <strong>Heads-up:</strong> Events are free but we ask everyone to pay for their own coffee — our way of supporting the venues who host us.</div>
+        <div class="coffee-note"><span class="icon icon-sm"><i data-lucide="coffee"></i></span> <strong>Heads-up:</strong> Events are free but we ask everyone to pay for their own coffee — our way of supporting the venues who host us.</div>
       </div>
       <div class="barriers-cards">
         <div class="barrier-card">
-          <div class="barrier-icon">🤝</div>
+          <div class="barrier-icon"><span class="icon icon-xl"><i data-lucide="handshake"></i></span></div>
           <h3>Traditional Networking</h3>
           <p>Classic meet-and-greet sessions to build genuine connections across all business sectors.</p>
         </div>
         <div class="barrier-card">
-          <div class="barrier-icon">⚽</div>
+          <div class="barrier-icon"><span class="icon icon-xl"><i data-lucide="goal"></i></span></div>
           <h3>Social Events</h3>
           <p>Football, rugby, padel, bowling and more — the best connections happen naturally.</p>
         </div>
         <div class="barrier-card">
-          <div class="barrier-icon">☕</div>
+          <div class="barrier-icon"><span class="icon icon-xl"><i data-lucide="coffee"></i></span></div>
           <h3>Monthly Coffee Mornings</h3>
           <p>Free monthly gatherings in rotating Newcastle venues, supporting local businesses.</p>
         </div>
@@ -1564,25 +1610,25 @@
     <div class="social-grid">
       <div class="social-card">
         <span class="social-card-num">01</span>
-        <span class="social-card-icon">💡</span>
+        <span class="social-card-icon"><span class="icon icon-xl"><i data-lucide="lightbulb"></i></span></span>
         <h3>Inspiring Stories</h3>
         <p>We'll be introducing guests with inspiring stories — real people doing great work in our region, sharing their journeys to motivate and energise the room.</p>
       </div>
       <div class="social-card">
         <span class="social-card-num">02</span>
-        <span class="social-card-icon">🌱</span>
+        <span class="social-card-icon"><span class="icon icon-xl"><i data-lucide="sprout"></i></span></span>
         <h3>Great Ideas Deserve Support</h3>
         <p>You don't need a business degree to have a brilliant idea. We're here to help those with passion and vision prosper — even if they're just getting started.</p>
       </div>
       <div class="social-card">
         <span class="social-card-num">03</span>
-        <span class="social-card-icon">🏆</span>
+        <span class="social-card-icon"><span class="icon icon-xl"><i data-lucide="trophy"></i></span></span>
         <h3>Celebrating Community Heroes</h3>
         <p>Through our High Street Heroes Awards, we'll be shining a spotlight on the unsung heroes making a real difference on our high streets and in our communities.</p>
       </div>
       <div class="social-card">
         <span class="social-card-num">04</span>
-        <span class="social-card-icon">🤝</span>
+        <span class="social-card-icon"><span class="icon icon-xl"><i data-lucide="handshake"></i></span></span>
         <h3>Coaches &amp; Connections</h3>
         <p>We'll be making introductions to business coaches and likeminded individuals — connecting you with the right people to take your ideas to the next level.</p>
       </div>
@@ -1634,22 +1680,22 @@
     </div>
     <div class="pillars">
       <div class="pillar">
-        <span class="pillar-icon">🤝</span>
+        <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="handshake"></i></span></span>
         <h3>Networking</h3>
         <p>Free monthly coffee mornings and varied events in rotating Newcastle venues — building community, one connection at a time.</p>
-        <span class="pillar-status status-live">● Live Now</span>
+        <span class="pillar-status status-live"><span class="status-dot"></span> Live Now</span>
       </div>
       <div class="pillar">
-        <span class="pillar-icon">🏆</span>
+        <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="trophy"></i></span></span>
         <h3>Awards</h3>
         <p>The North East High Street Heroes Awards — recognising and celebrating the businesses that make our high streets thrive.</p>
-        <span class="pillar-status status-soon">● Coming Soon</span>
+        <span class="pillar-status status-soon"><span class="status-dot"></span> Coming Soon</span>
       </div>
       <div class="pillar">
-        <span class="pillar-icon">🎙️</span>
+        <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="mic"></i></span></span>
         <h3>Podcast</h3>
         <p>A regional podcast spotlighting the stories, insights, and voices driving business forward across the North East.</p>
-        <span class="pillar-status status-prod">● In Production</span>
+        <span class="pillar-status status-prod"><span class="status-dot"></span> In Production</span>
       </div>
     </div>
     <div class="explore-cta">
@@ -1777,7 +1823,7 @@
         <p class="body">Whether you're looking to grow your network, spark partnerships, or simply stay in the loop with fellow innovators — this is the place to be. All business sectors welcome. Just bring your curiosity and community spirit.</p>
         <p class="body">We are one of very few completely free networking events across the entire North East region. By removing the barriers to entry, we open the door to young entrepreneurs just getting started and experienced business leaders alike.</p>
         <div class="info-box">
-          <p>✓ &nbsp;<strong>100% Free to Attend</strong> — no membership fees, no hidden costs, no long-term commitments.</p>
+          <p><span class="icon icon-sm"><i data-lucide="check-circle"></i></span> <strong>100% Free to Attend</strong> — no membership fees, no hidden costs, no long-term commitments.</p>
         </div>
       </div>
       <div>
@@ -1786,19 +1832,19 @@
         <h2>What drives us</h2>
         <div style="display:flex;flex-direction:column;gap:1rem;">
           <div class="card">
-            <h3 class="card-title">🤝 Community First</h3>
+            <h3 class="card-title"><span class="icon icon-md"><i data-lucide="handshake"></i></span> Community First</h3>
             <p class="body">We put the people of Newcastle and the North East at the heart of everything we do. Real relationships over transactions.</p>
           </div>
           <div class="card">
-            <h3 class="card-title">🚪 No Barriers</h3>
+            <h3 class="card-title"><span class="icon icon-md"><i data-lucide="door-open"></i></span> No Barriers</h3>
             <p class="body">Everyone deserves a seat at the table. We remove financial and social barriers so anyone can connect and grow.</p>
           </div>
           <div class="card">
-            <h3 class="card-title">💡 Real Social Value</h3>
+            <h3 class="card-title"><span class="icon icon-md"><i data-lucide="lightbulb"></i></span> Real Social Value</h3>
             <p class="body">We're not just about business cards. We generate genuine social value — inspiring stories, practical support, and lasting impact.</p>
           </div>
           <div class="card">
-            <h3 class="card-title">🌱 Growth for All</h3>
+            <h3 class="card-title"><span class="icon icon-md"><i data-lucide="trending-up"></i></span> Growth for All</h3>
             <p class="body">From first-time founders to seasoned CEOs — we bridge the gap between ambition and experience so everyone grows together.</p>
           </div>
         </div>
@@ -1823,17 +1869,17 @@
     </div>
     <div class="three-col">
       <div class="card" style="text-align:center;">
-        <div class="stat-icon">🎓</div>
+        <div class="stat-icon"><span class="icon icon-xl"><i data-lucide="graduation-cap"></i></span></div>
         <h3>World-Class Universities</h3>
         <p class="body" style="margin:0; font-size:0.88rem;">Newcastle and Northumbria Universities produce thousands of graduates and research breakthroughs annually.</p>
       </div>
       <div class="card" style="text-align:center;">
-        <div class="stat-icon">💻</div>
+        <div class="stat-icon"><span class="icon icon-xl"><i data-lucide="monitor"></i></span></div>
         <h3>Thriving Tech & Creative Sector</h3>
         <p class="body" style="margin:0; font-size:0.88rem;">A growing hub for digital, creative, and tech businesses — attracting investment from across the UK and beyond.</p>
       </div>
       <div class="card" style="text-align:center;">
-        <div class="stat-icon">🏗️</div>
+        <div class="stat-icon"><span class="icon icon-xl"><i data-lucide="building-2"></i></span></div>
         <h3>Major City Investment</h3>
         <p class="body" style="margin:0; font-size:0.88rem;">Quayside regeneration, transport upgrades, and major commercial developments are transforming Newcastle's business landscape.</p>
       </div>
@@ -1858,7 +1904,7 @@
         <p class="body">Newcastle First is run by local people who care deeply about this city and its business community. We're not a faceless corporation — we're your neighbours, your collaborators, your fellow North Easterners.</p>
         <p class="body">We believe Darlington First, Newcastle First and the wider First Connections network can help the North East punch above its weight on the national stage — starting with the grassroots, one coffee morning at a time.</p>
         <div class="info-box">
-          <p>☕ <strong>Just a heads-up:</strong> While our events are free, we ask everyone to pay for their own coffee. It's our way of supporting the brilliant local venues who host us.</p>
+          <p><span class="icon icon-sm"><i data-lucide="coffee"></i></span> <strong>Just a heads-up:</strong> While our events are free, we ask everyone to pay for their own coffee. It's our way of supporting the brilliant local venues who host us.</p>
         </div>
       </div>
     </div>
@@ -1959,22 +2005,22 @@
       </div>
       <div class="ev-types-grid">
         <div class="ev-type-card">
-          <div class="ev-type-icon">☕</div>
+          <div class="ev-type-icon"><span class="icon icon-xl"><i data-lucide="coffee"></i></span></div>
           <h3>Monthly Coffee Mornings</h3>
           <p>Our flagship free event. Relaxed, informal, and rotating around brilliant Newcastle venues each month.</p>
-          <span class="ev-status-live">● Live Now</span>
+          <span class="ev-status-live"><span class="status-dot"></span> Live Now</span>
         </div>
         <div class="ev-type-card">
-          <div class="ev-type-icon">🤝</div>
+          <div class="ev-type-icon"><span class="icon icon-xl"><i data-lucide="handshake"></i></span></div>
           <h3>Community Member Events</h3>
           <p>Members can host their own events under the First Connections banner — from workshops to socials — improving connections across the North East.</p>
-          <span class="ev-status-live">● Live Now</span>
+          <span class="ev-status-live"><span class="status-dot"></span> Live Now</span>
         </div>
         <div class="ev-type-card">
-          <div class="ev-type-icon">🎤</div>
+          <div class="ev-type-icon"><span class="icon icon-xl"><i data-lucide="mic-2"></i></span></div>
           <h3>Speaker Sessions</h3>
           <p>Inspiring guests from across the region sharing real stories, real journeys, and real lessons learned.</p>
-          <span class="ev-status-soon">● Coming Soon</span>
+          <span class="ev-status-soon"><span class="status-dot"></span> Coming Soon</span>
         </div>
       </div>
     </div>
@@ -1995,7 +2041,7 @@
         <div class="ev-card">
           <div class="ev-card-month">April</div>
           <div class="ev-card-date">20 April 2026</div>
-          <div class="ev-card-time">🕤 9:30 AM – 11:00 AM</div>
+          <div class="ev-card-time"><span class="icon icon-sm"><i data-lucide="clock"></i></span> 9:30 AM – 11:00 AM</div>
           <span class="ev-live-badge"><span class="ev-live-dot"></span> Live on Eventbrite</span>
           <p class="ev-card-desc">Monthly Newcastle First business networking event. Free, relaxed, and genuinely useful — come along and grow your network.</p>
           <span class="ev-free-badge">Free</span>
@@ -2006,7 +2052,7 @@
         <div class="ev-card">
           <div class="ev-card-month">May</div>
           <div class="ev-card-date">19 May 2026</div>
-          <div class="ev-card-time">🕤 9:30 AM – 11:00 AM</div>
+          <div class="ev-card-time"><span class="icon icon-sm"><i data-lucide="clock"></i></span> 9:30 AM – 11:00 AM</div>
           <span class="ev-live-badge"><span class="ev-live-dot"></span> Live on Eventbrite</span>
           <p class="ev-card-desc">Monthly Newcastle First business networking event. Free, relaxed, and genuinely useful — come along and grow your network.</p>
           <span class="ev-free-badge">Free</span>
@@ -2017,7 +2063,7 @@
         <div class="ev-card">
           <div class="ev-card-month">June</div>
           <div class="ev-card-date">18 June 2026</div>
-          <div class="ev-card-time">🕤 9:30 AM – 11:00 AM</div>
+          <div class="ev-card-time"><span class="icon icon-sm"><i data-lucide="clock"></i></span> 9:30 AM – 11:00 AM</div>
           <span class="ev-live-badge"><span class="ev-live-dot"></span> Live on Eventbrite</span>
           <p class="ev-card-desc">Monthly Newcastle First business networking event. Free, relaxed, and genuinely useful — come along and grow your network.</p>
           <span class="ev-free-badge">Free</span>
@@ -2136,22 +2182,22 @@
     </div>
     <div class="three-col">
       <div class="pillar">
-        <span class="pillar-icon">🤝</span>
+        <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="handshake"></i></span></span>
         <h3>Networking</h3>
         <p class="body">Free monthly coffee mornings and varied events in rotating Newcastle venues — building community, one connection at a time.</p>
-        <span class="pillar-status status-live">● Live Now</span>
+        <span class="pillar-status status-live"><span class="status-dot"></span> Live Now</span>
       </div>
       <div class="pillar">
-        <span class="pillar-icon">🏆</span>
+        <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="trophy"></i></span></span>
         <h3>Awards</h3>
         <p class="body">The North East High Street Heroes Awards — recognising and celebrating the businesses that make our high streets thrive.</p>
-        <span class="pillar-status status-soon">● Coming Soon</span>
+        <span class="pillar-status status-soon"><span class="status-dot"></span> Coming Soon</span>
       </div>
       <div class="pillar">
-        <span class="pillar-icon">🎙️</span>
+        <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="mic"></i></span></span>
         <h3>Podcast</h3>
         <p class="body">A regional podcast spotlighting the stories, insights, and voices driving business forward across the North East.</p>
-        <span class="pillar-status status-prod">● In Production</span>
+        <span class="pillar-status status-prod"><span class="status-dot"></span> In Production</span>
       </div>
     </div>
   </div>
@@ -2162,7 +2208,7 @@
     <div class="two-col">
       <div>
         <span class="section-label">Project 1 — Live Now</span>
-        <h2>🤝 Networking <em>Events</em></h2>
+        <h2><span class="icon icon-md"><i data-lucide="handshake"></i></span> Networking <em>Events</em></h2>
         <p class="lead">Our core offering — free, relaxed, and genuinely useful business networking for everyone in the Newcastle area.</p>
         <p class="body">We host monthly coffee mornings at rotating venues across Newcastle, supporting local independent businesses as we go. We also run social events — football, bowling, padel, and more — because the best connections happen naturally.</p>
         <p class="body">Every business sector is welcome. Whether you're a sole trader or running a team of 50, there's a seat at the table for you.</p>
@@ -2191,7 +2237,7 @@
       <div>
         <div class="proj-img-frame" style="height:320px;"><img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/hsh-darlo-photo.jpg" alt="NE High Street Heroes Awards" /></div>
         <span class="section-label">Project 2 — Coming Soon</span>
-        <h2>🏆 North East High Street <em>Heroes Awards</em></h2>
+        <h2><span class="icon icon-md"><i data-lucide="trophy"></i></span> North East High Street <em>Heroes Awards</em></h2>
         <p class="lead">Shining a spotlight on the unsung heroes — the people and businesses making a real difference on our high streets and in our communities.</p>
         <p class="body">The High Street Heroes Awards will celebrate the independent businesses, community champions, and local legends who make Newcastle's streets vibrant, welcoming, and economically vital.</p>
         <p class="body">Nominations, categories, and dates to be announced. Register your interest below to be first to hear when entries open.</p>
@@ -2201,15 +2247,15 @@
         <div class="info-box" style="margin-top:0;">
           <p><strong>What we're celebrating:</strong></p>
           <ul style="list-style:none; margin-top:0.8rem;">
-            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;">🏪 &nbsp;Best Independent Retailer</li>
-            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;">☕ &nbsp;Best Local Hospitality Business</li>
-            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;">🌟 &nbsp;Community Champion of the Year</li>
-            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;">🚀 &nbsp;Best New Business</li>
-            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;">💡 &nbsp;Most Innovative Business</li>
+            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;"><span class="icon icon-sm"><i data-lucide="store"></i></span> Best Independent Retailer</li>
+            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;"><span class="icon icon-sm"><i data-lucide="coffee"></i></span> Best Local Hospitality Business</li>
+            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;"><span class="icon icon-sm"><i data-lucide="star"></i></span> Community Champion of the Year</li>
+            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;"><span class="icon icon-sm"><i data-lucide="rocket"></i></span> Best New Business</li>
+            <li style="font-size:0.88rem; color:var(--muted); padding:0.3rem 0;"><span class="icon icon-sm"><i data-lucide="lightbulb"></i></span> Most Innovative Business</li>
           </ul>
         </div>
         <div class="card" style="margin-top:1rem; background:var(--light);">
-          <p style="font-size:0.85rem; color:var(--muted); margin:0;">🔔 <strong>Launching later this year.</strong> <a href="#" onclick="event.preventDefault();openSubscribeModal(this);" style="color:var(--navy);font-weight:700;text-decoration:underline;">Subscribe to our newsletter</a> to be notified the moment nominations open.</p>
+          <p style="font-size:0.85rem; color:var(--muted); margin:0;"><span class="icon icon-sm"><i data-lucide="bell"></i></span> <strong>Launching later this year.</strong> <a href="#" onclick="event.preventDefault();openSubscribeModal(this);" style="color:var(--navy);font-weight:700;text-decoration:underline;">Subscribe to our newsletter</a> to be notified the moment nominations open.</p>
         </div>
       </div>
     </div>
@@ -2221,7 +2267,7 @@
     <div class="two-col">
       <div>
         <span class="section-label">Project 3 — In Production</span>
-        <h2>🎙️ The Newcastle First <em>Podcast</em></h2>
+        <h2><span class="icon icon-md"><i data-lucide="mic"></i></span> The Newcastle First <em>Podcast</em></h2>
         <p class="lead">A regional podcast spotlighting the stories, insights, and voices driving business forward across the North East.</p>
         <p class="body">We're producing a podcast that goes beyond the boardroom — real conversations with real business owners about the highs, the lows, and the lessons that shaped them.</p>
         <p class="body">Each episode will feature a guest from Newcastle's business community, exploring what it means to build something meaningful in the North East.</p>
@@ -2232,13 +2278,13 @@
         <div class="card">
           <h3>What to expect</h3>
           <ul style="list-style:none; margin-top:0.8rem;">
-            <li style="padding:0.5rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--muted);">🎤 &nbsp;Long-form conversations with business leaders</li>
-            <li style="padding:0.5rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--muted);">📖 &nbsp;Real stories — the wins and the setbacks</li>
-            <li style="padding:0.5rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--muted);">🌍 &nbsp;North East-focused, nationally relevant</li>
-            <li style="padding:0.5rem 0; font-size:0.88rem; color:var(--muted);">📱 &nbsp;Available on all major podcast platforms</li>
+            <li style="padding:0.5rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--muted);"><span class="icon icon-sm"><i data-lucide="mic-2"></i></span> Long-form conversations with business leaders</li>
+            <li style="padding:0.5rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--muted);"><span class="icon icon-sm"><i data-lucide="book-open"></i></span> Real stories — the wins and the setbacks</li>
+            <li style="padding:0.5rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--muted);"><span class="icon icon-sm"><i data-lucide="globe"></i></span> North East-focused, nationally relevant</li>
+            <li style="padding:0.5rem 0; font-size:0.88rem; color:var(--muted);"><span class="icon icon-sm"><i data-lucide="smartphone"></i></span> Available on all major podcast platforms</li>
           </ul>
           <div class="info-box" style="margin-bottom:0;">
-            <p>🎙️ <strong>Currently in production.</strong> Follow us on social media for launch announcements.</p>
+            <p><span class="icon icon-sm"><i data-lucide="mic"></i></span> <strong>Currently in production.</strong> Follow us on social media for launch announcements.</p>
           </div>
         </div>
       </div>
@@ -2359,7 +2405,7 @@
     <!-- BUSINESS SERVICE HUB (Roam) -->
     <div class="pcard pcard-hub">
       <div class="pcard-top">
-        <div class="pcard-logo-emoji">📊</div>
+        <div class="pcard-logo-emoji"><span class="icon icon-2xl"><i data-lucide="bar-chart-2"></i></span></div>
         <div class="pcard-title-group">
           <h3>Business Service Hub</h3>
           <p class="pcard-subtitle">Premium Business Tools Bundle</p>
@@ -2374,28 +2420,28 @@
       <p><strong>What's Included:</strong></p>
       <div class="hub-features-grid">
         <div class="hub-feature">
-          <span class="hub-feature-icon">📈</span>
+          <span class="hub-feature-icon"><span class="icon icon-md"><i data-lucide="trending-up"></i></span></span>
           <div>
             <strong>Bookkeeping Software</strong>
             <p>Access to QuickBooks, Xero, and Sage — choose the platform that works best for you.</p>
           </div>
         </div>
         <div class="hub-feature">
-          <span class="hub-feature-icon">💼</span>
+          <span class="hub-feature-icon"><span class="icon icon-md"><i data-lucide="briefcase"></i></span></span>
           <div>
             <strong>Office 365 &amp; All Apps</strong>
             <p>Full Microsoft 365 membership — Word, Excel, PowerPoint, Outlook, Teams, and more.</p>
           </div>
         </div>
         <div class="hub-feature">
-          <span class="hub-feature-icon">🔒</span>
+          <span class="hub-feature-icon"><span class="icon icon-md"><i data-lucide="shield"></i></span></span>
           <div>
             <strong>Acronis Cyber Security</strong>
             <p>Enterprise-grade data backup, disaster recovery, and cyber protection.</p>
           </div>
         </div>
         <div class="hub-feature">
-          <span class="hub-feature-icon">☁️</span>
+          <span class="hub-feature-icon"><span class="icon icon-md"><i data-lucide="cloud"></i></span></span>
           <div>
             <strong>Dropbox &amp; E-Signatures</strong>
             <p>Cloud storage plus Dropbox eSignatures — create, share, and sign documents seamlessly.</p>
@@ -2438,14 +2484,14 @@
       <p>As a proud sponsor of Newcastle First, NE BIC are offering our community two exclusive deals:</p>
       <div class="bic-deals">
         <div class="bic-deal">
-          <span class="bic-deal-icon">🏢</span>
+          <span class="bic-deal-icon"><span class="icon icon-md"><i data-lucide="building-2"></i></span></span>
           <div>
             <strong>Free Co-Working Day Pass</strong>
             <p>Enjoy a full free day in the co-working area — experience the space, the community, and the facilities.</p>
           </div>
         </div>
         <div class="bic-deal">
-          <span class="bic-deal-icon">📅</span>
+          <span class="bic-deal-icon"><span class="icon icon-md"><i data-lucide="calendar"></i></span></span>
           <div>
             <strong>10% Off First Meeting Room Booking</strong>
             <p>Professional spaces for presentations, workshops, and team sessions.</p>
@@ -2455,7 +2501,7 @@
       <div class="bic-contact">
         <strong>How to book:</strong> To arrange either offer, simply get in touch with the team:<br/>
         <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>&nbsp;&nbsp;
-        <span>📞 0191 516 6000</span>
+        <span><span class="icon icon-sm"><i data-lucide="phone"></i></span> 0191 516 6000</span>
       </div>
       <a href="https://www.ne-bic.co.uk" target="_blank" class="pcard-link">Visit Website →</a>
     </div>
@@ -2473,7 +2519,7 @@
       </div>
       <div class="roam-cols">
         <div class="roam-col">
-          <h4>📱 For Residents &amp; Consumers</h4>
+          <h4><span class="icon icon-md"><i data-lucide="smartphone"></i></span> For Residents &amp; Consumers</h4>
           <p>Download the Roam app and stay connected to your local community. Discover:</p>
           <ul class="roam-list">
             <li>Regional local community news</li>
@@ -2484,7 +2530,7 @@
           <a href="https://www.roam-everywhere.com/get-the-app" target="_blank" class="btn-navy" style="font-size:0.85rem;padding:0.6rem 1.2rem;text-decoration:none;display:inline-flex;margin-top:1rem;">Download the App</a>
         </div>
         <div class="roam-col">
-          <h4>🏪 For Local Businesses</h4>
+          <h4><span class="icon icon-md"><i data-lucide="store"></i></span> For Local Businesses</h4>
           <p>Get your business listed on Roam and reach local customers. The Business Service Hub includes:</p>
           <ul class="roam-list">
             <li>QuickBooks, Xero, Sage — your choice</li>
@@ -2513,7 +2559,7 @@
     <!-- EMOTIONAL WELLBEING INDICATOR -->
     <div class="pcard app-card">
       <div class="pcard-top">
-        <div class="pcard-logo-emoji">🧠</div>
+        <div class="pcard-logo-emoji"><span class="icon icon-2xl"><i data-lucide="brain"></i></span></div>
         <div class="pcard-title-group">
           <h3>Emotional Wellbeing Indicator</h3>
           <p class="pcard-subtitle">Free App</p>
@@ -2527,14 +2573,14 @@
         <div class="app-stat"><span class="app-stat-num">iOS &amp; Android</span><span class="app-stat-label">Available On</span></div>
       </div>
       <div class="app-tags">
-        <span class="app-tag">😊 Emotional Health</span>
-        <span class="app-tag">🎯 Marginal Gains</span>
-        <span class="app-tag">📈 Progress Tracking</span>
-        <span class="app-tag">🤝 Mentoring Tool</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="heart"></i></span> Emotional Health</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="target"></i></span> Marginal Gains</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="trending-up"></i></span> Progress Tracking</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="users"></i></span> Mentoring Tool</span>
       </div>
       <div class="app-btns">
-        <a href="https://apps.apple.com/gb/app/emotional-wellbeing-indicator/id6480443963" target="_blank" class="app-store-btn">🍎 App Store</a>
-        <a href="https://play.google.com/store/apps/details?id=com.emotionalwellbeingindicator" target="_blank" class="app-store-btn">▶ Google Play</a>
+        <a href="https://apps.apple.com/gb/app/emotional-wellbeing-indicator/id6480443963" target="_blank" class="app-store-btn"><span class="icon icon-sm"><i data-lucide="apple"></i></span> App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.emotionalwellbeingindicator" target="_blank" class="app-store-btn"><span class="icon icon-sm"><i data-lucide="play"></i></span> Google Play</a>
       </div>
       <a href="https://www.emotionalwellbeingindicator.com" target="_blank" class="pcard-link">Visit Website →</a>
     </div>
@@ -2542,7 +2588,7 @@
     <!-- PREPARATION FOR EMPLOYMENT -->
     <div class="pcard app-card">
       <div class="pcard-top">
-        <div class="pcard-logo-emoji">💼</div>
+        <div class="pcard-logo-emoji"><span class="icon icon-2xl"><i data-lucide="briefcase"></i></span></div>
         <div class="pcard-title-group">
           <h3>Preparation For Employment</h3>
           <p class="pcard-subtitle">Free App</p>
@@ -2556,14 +2602,14 @@
         <div class="app-stat"><span class="app-stat-num">iOS &amp; Android</span><span class="app-stat-label">Available On</span></div>
       </div>
       <div class="app-tags">
-        <span class="app-tag">🎓 Job Readiness</span>
-        <span class="app-tag">🎯 Marginal Gains</span>
-        <span class="app-tag">📜 Certificate</span>
-        <span class="app-tag">💪 Strengths Profile</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="graduation-cap"></i></span> Job Readiness</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="target"></i></span> Marginal Gains</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="award"></i></span> Certificate</span>
+        <span class="app-tag"><span class="icon icon-sm"><i data-lucide="zap"></i></span> Strengths Profile</span>
       </div>
       <div class="app-btns">
-        <a href="https://apps.apple.com/gb/app/preparation-for-employment/id6480444035" target="_blank" class="app-store-btn">🍎 App Store</a>
-        <a href="https://play.google.com/store/apps/details?id=com.preparationforemployment" target="_blank" class="app-store-btn">▶ Google Play</a>
+        <a href="https://apps.apple.com/gb/app/preparation-for-employment/id6480444035" target="_blank" class="app-store-btn"><span class="icon icon-sm"><i data-lucide="apple"></i></span> App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.preparationforemployment" target="_blank" class="app-store-btn"><span class="icon icon-sm"><i data-lucide="play"></i></span> Google Play</a>
       </div>
       <a href="https://www.preparationforemployment.com" target="_blank" class="pcard-link">Visit Website →</a>
     </div>
@@ -2585,14 +2631,14 @@
       <p>Surgotech Solutions helps businesses unlock their potential through smart technology and proven process improvement strategies. As a Newcastle First member, you get access to two exclusive deals.</p>
       <div class="bic-deals">
         <div class="bic-deal">
-          <span class="bic-deal-icon">📞</span>
+          <span class="bic-deal-icon"><span class="icon icon-md"><i data-lucide="phone"></i></span></span>
           <div>
             <strong>Option 1 — Free: 1-Hour Discovery Call</strong>
             <p>A free, no-obligation consultation to explore how Surgotech can streamline your business operations.</p>
           </div>
         </div>
         <div class="bic-deal">
-          <span class="bic-deal-icon">📋</span>
+          <span class="bic-deal-icon"><span class="icon icon-md"><i data-lucide="clipboard-list"></i></span></span>
           <div>
             <strong>Option 2 — 40% Off: Business Process Audit</strong>
             <p>An 8-hour audit identifying inefficiencies and delivering a clear improvement roadmap. <span style="text-decoration:line-through;color:var(--muted);">£895</span> → <strong style="color:var(--navy);">£537</strong></p>
@@ -2621,31 +2667,31 @@
         <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/roam.png" alt="Roam" />
         <h4>Roam</h4>
         <p>Your gateway to everything local — connecting residents, businesses and communities.</p>
-        <span class="sponsor-card-link">Visit Website →</span>
+        <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.theironingman.co.uk" target="_blank">
         <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ironing-man.png" alt="The Ironing Man" />
         <h4>The Ironing Man</h4>
         <p>Professional ironing and laundry with collection and delivery across Newcastle.</p>
-        <span class="sponsor-card-link">Visit Website →</span>
+        <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.ne-bic.co.uk" target="_blank">
         <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ne-bic.png" alt="NE BIC" />
         <h4>NE BIC</h4>
         <p>The space to build a better business — co-working, offices and support in Newcastle.</p>
-        <span class="sponsor-card-link">Visit Website →</span>
+        <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.nehotelsassociation.co.uk" target="_blank">
         <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/ne-hotels.png" alt="NE Hotels Association" />
         <h4>NE Hotels Association</h4>
         <p>Representing and supporting the hospitality sector across the North East region.</p>
-        <span class="sponsor-card-link">Visit Website →</span>
+        <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a class="sponsor-card" href="https://www.surgotechsolutions.com" target="_blank">
         <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/surgotech.png" alt="Surgotech Solutions" />
         <h4>Surgotech Solutions</h4>
         <p>Technology solutions helping businesses grow smarter and faster.</p>
-        <span class="sponsor-card-link">Visit Website →</span>
+        <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
     </div>
   </div>
@@ -2736,12 +2782,12 @@
     </div>
     <div class="ct-hero-cards">
       <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="ct-quick-card">
-        <div class="ct-quick-card-icon">📅</div>
+        <div class="ct-quick-card-icon"><span class="icon icon-lg"><i data-lucide="calendar"></i></span></div>
         <div class="ct-quick-card-body">
           <div class="ct-quick-title">Book an Event</div>
           <div class="ct-quick-desc">All events are free to attend</div>
         </div>
-        <span class="ct-quick-arrow">→</span>
+        <span class="ct-quick-arrow"><span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
       <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
       <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
@@ -3053,6 +3099,7 @@
 
 <!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <!-- NEWSLETTER SUBSCRIPTION MODAL -->
+<!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <div id="nl-modal-overlay" class="nl-modal-overlay" onclick="closeSubscribeModal(event)">
   <div class="nl-modal" role="dialog" aria-modal="true" aria-labelledby="nl-modal-title">
     <button class="nl-modal-close" onclick="closeSubscribeModal()" aria-label="Close">&times;</button>
@@ -3099,6 +3146,11 @@
     </div>
   </div>
 </div>
+
+<!-- Init Lucide icons -->
+<script>
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+</script>
 
 </body>
 </html>
