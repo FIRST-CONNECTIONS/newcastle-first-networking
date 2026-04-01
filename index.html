@@ -3426,9 +3426,7 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   var PAGES = ['home','about','events','projects','resources','contact'];
 
-  // ── Brevo Worker URL ────────────────────────────────────────────────────
-
-  // ── SPA Navigation ──────────────────────────────────────────────────────
+  /* ── SPA Navigation ──────────────────────────────────────────────────── */
   function showPage(name) {
     closeMenu();
     PAGES.forEach(function(p) {
@@ -3451,7 +3449,7 @@
     if (e.state && e.state.page) showPage(e.state.page);
   });
 
-  // ── Mobile menu ─────────────────────────────────────────────────────────
+  /* ── Mobile menu ─────────────────────────────────────────────────────── */
   function closeMenu() {
     var m = document.querySelector('.mobile-menu');
     var h = document.querySelector('.hamburger');
@@ -3468,7 +3466,15 @@
     if (h) h.classList.toggle('open', !isOpen);
   }
 
-  // ── Contact form — saves to Brevo then opens mailto ───────────────────
+  /* ── Contact form subject pills ──────────────────────────────────────── */
+  function setSubject(btn, val) {
+    document.querySelectorAll('.ct-pill-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var inp = document.getElementById('contact-subject');
+    if (inp) inp.value = val;
+  }
+
+  /* ── Contact form — saves to Brevo + opens mailto ────────────────────── */
   function sendContactForm() {
     var name    = (document.getElementById('contact-name')    || {}).value || '';
     var email   = (document.getElementById('contact-email')   || {}).value || '';
@@ -3476,37 +3482,21 @@
     var msg     = (document.getElementById('contact-message') || {}).value || '';
     if (!name || !email) { alert('Please fill in your name and email.'); return; }
 
-    var parts     = name.trim().split(' ');
+    var parts = name.trim().split(' ');
     var firstName = parts[0] || name;
     var lastName  = parts.slice(1).join(' ') || '-';
 
-    // Silently save to Brevo
     fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
-      headers: {
-        'api-key': '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',
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        updateEnabled: true,
-        attributes: { FIRSTNAME: firstName, LASTNAME: lastName }
-      })
+      headers: { 'api-key': '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', 'content-type': 'application/json', 'accept': 'application/json' },
+      body: JSON.stringify({ email: email, updateEnabled: true, attributes: { FIRSTNAME: firstName, LASTNAME: lastName } })
     }).catch(function() {});
 
-    // Open mailto
-    var body = 'Name: ' + name + '\n\nMessage:\n' + msg;
-    window.location.href = 'mailto:hello@first-connections.co.uk?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-  })
-    }).catch(function() {}); // silent fail — mailto is the primary action
-
-    // 2. Open mailto so message gets sent
     var body = 'Name: ' + name + '\n\nMessage:\n' + msg;
     window.location.href = 'mailto:hello@first-connections.co.uk?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   }
 
-  // ── Newsletter modal — open ─────────────────────────────────────────────
+  /* ── Newsletter modal — open ─────────────────────────────────────────── */
   function openSubscribeModal(btn) {
     var parent = btn && btn.parentElement ? btn.parentElement : null;
     var emailInput = parent ? parent.querySelector('.nl-email-input') : null;
@@ -3520,12 +3510,12 @@
       if (ef) ef.value = prefill;
     }
     setTimeout(function() {
-      var first = document.querySelector('#nl-fname:not([value]), #nl-fname');
+      var first = document.getElementById('nl-fname');
       if (first && !first.value) first.focus();
     }, 120);
   }
 
-  // ── Newsletter modal — close ────────────────────────────────────────────
+  /* ── Newsletter modal — close ────────────────────────────────────────── */
   function closeSubscribeModal(e) {
     if (e && e.type === 'click' && e.target !== document.getElementById('nl-modal-overlay')) return;
     var overlay = document.getElementById('nl-modal-overlay');
@@ -3545,7 +3535,7 @@
     if (e.key === 'Escape') closeSubscribeModal();
   });
 
-  // ── Newsletter modal — success state ────────────────────────────────────
+  /* ── Newsletter modal — success ──────────────────────────────────────── */
   function showSubscribeSuccess() {
     var succ = document.getElementById('nl-success');
     var form = document.querySelector('.nl-modal-form');
@@ -3554,14 +3544,14 @@
     setTimeout(function() { closeSubscribeModal(); }, 4000);
   }
 
-  // ── Newsletter modal — submit directly to Brevo API ──────────────────
+  /* ── Newsletter modal — submit to Brevo directly ────────────────────── */
   function submitSubscribeModal(e) {
     e.preventDefault();
-    var firstName = (document.getElementById('nl-fname')    || {}).value.trim() || '';
-    var lastName  = (document.getElementById('nl-lname')    || {}).value.trim() || '';
-    var email     = (document.getElementById('nl-email')    || {}).value.trim() || '';
-    var company   = (document.getElementById('nl-company')  || {}).value.trim() || '';
-    var jobTitle  = (document.getElementById('nl-jobtitle') || {}).value.trim() || '';
+    var firstName = document.getElementById('nl-fname')    ? document.getElementById('nl-fname').value.trim()    : '';
+    var lastName  = document.getElementById('nl-lname')    ? document.getElementById('nl-lname').value.trim()    : '';
+    var email     = document.getElementById('nl-email')    ? document.getElementById('nl-email').value.trim()    : '';
+    var company   = document.getElementById('nl-company')  ? document.getElementById('nl-company').value.trim()  : '';
+    var jobTitle  = document.getElementById('nl-jobtitle') ? document.getElementById('nl-jobtitle').value.trim() : '';
 
     if (!firstName || !lastName || !email) {
       alert('Please fill in your first name, last name and email.');
@@ -3573,9 +3563,52 @@
     if (btn) btn.disabled = true;
     if (txt) txt.textContent = 'Subscribing...';
 
-    // Step 1: get list ID
+    var apiKey = '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';
+
+    function doSubmit(listId) {
+      var payload = {
+        email: email,
+        updateEnabled: true,
+        attributes: { FIRSTNAME: firstName, LASTNAME: lastName, COMPANY: company, JOB_TITLE: jobTitle },
+        listIds: listId ? [listId] : []
+      };
+
+      fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: { 'api-key': apiKey, 'content-type': 'application/json', 'accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(r) {
+        if (r.status === 201 || r.status === 204) {
+          showSubscribeSuccess();
+          return;
+        }
+        return r.json().then(function(d) {
+          if (r.status === 400 && d.code === 'duplicate_parameter') {
+            fetch('https://api.brevo.com/v3/contacts/' + encodeURIComponent(email), {
+              method: 'PUT',
+              headers: { 'api-key': apiKey, 'content-type': 'application/json', 'accept': 'application/json' },
+              body: JSON.stringify({ attributes: payload.attributes, listIds: payload.listIds })
+            }).then(function(pr) {
+              if (pr.ok || pr.status === 204) { showSubscribeSuccess(); }
+              else { throw new Error('PUT failed'); }
+            });
+          } else {
+            throw new Error('Brevo: ' + r.status + ' ' + JSON.stringify(d));
+          }
+        });
+      })
+      .catch(function(err) {
+        console.error('Brevo error:', err);
+        if (btn) btn.disabled = false;
+        if (txt) txt.textContent = 'Subscribe';
+        alert('Something went wrong. Please try again or email hello@first-connections.co.uk');
+      });
+    }
+
+    // Get list ID first, then submit
     fetch('https://api.brevo.com/v3/contacts/lists?limit=50', {
-      headers: { 'api-key': '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', 'accept': 'application/json' }
+      headers: { 'api-key': apiKey, 'accept': 'application/json' }
     })
     .then(function(r) { return r.ok ? r.json() : {lists:[]}; })
     .then(function(d) {
@@ -3583,96 +3616,9 @@
       var match = lists.find(function(l) {
         return l.name === 'Newcastle_First' || l.name.toLowerCase().indexOf('newcast') !== -1;
       });
-      var listId = match ? match.id : null;
-
-      // Step 2: create/update contact
-      return fetch('https://api.brevo.com/v3/contacts', {
-        method: 'POST',
-        headers: {
-          'api-key': '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',
-          'content-type': 'application/json',
-          'accept': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          updateEnabled: true,
-          attributes: {
-            FIRSTNAME: firstName,
-            LASTNAME: lastName,
-            COMPANY: company,
-            JOB_TITLE: jobTitle
-          },
-          listIds: listId ? [listId] : []
-        })
-      });
+      doSubmit(match ? match.id : null);
     })
-    .then(function(r) {
-      if (r.status === 201 || r.status === 204) {
-        showSubscribeSuccess();
-        return;
-      }
-      return r.json().then(function(d) {
-        // Duplicate contact — update via PUT
-        if (r.status === 400 && (d.code === 'duplicate_parameter' || (d.message && d.message.indexOf('already exist') !== -1))) {
-          return fetch('https://api.brevo.com/v3/contacts/' + encodeURIComponent(email), {
-            method: 'PUT',
-            headers: {
-              'api-key': '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',
-              'content-type': 'application/json',
-              'accept': 'application/json'
-            },
-            body: JSON.stringify({
-              attributes: { FIRSTNAME: firstName, LASTNAME: lastName, COMPANY: company, JOB_TITLE: jobTitle }
-            })
-          }).then(function(pr) {
-            if (pr.ok || pr.status === 204) { showSubscribeSuccess(); }
-            else { throw new Error('PUT failed: ' + pr.status); }
-          });
-        }
-        throw new Error('Brevo error: ' + r.status + ' ' + JSON.stringify(d));
-      });
-    })
-    .catch(function(err) {
-      console.error('Brevo error:', err);
-      if (btn) btn.disabled = false;
-      if (txt) txt.textContent = 'Subscribe';
-      alert('Something went wrong. Please try again or email hello@first-connections.co.uk');
-    });
-  }
-
-    var btn = document.getElementById('nl-submit-btn');
-    var txt = document.getElementById('nl-submit-text');
-    if (btn) btn.disabled = true;
-    if (txt) txt.textContent = 'Subscribing...';
-
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        company: company,
-        jobTitle: jobTitle
-      })
-    })
-    .then(function(r) {
-      if (r.ok) {
-        showSubscribeSuccess();
-      } else {
-        r.json().then(function(d) {
-          console.error('Brevo worker error:', JSON.stringify(d));
-        }).catch(function() {});
-        if (btn) btn.disabled = false;
-        if (txt) txt.textContent = 'Subscribe';
-        alert('Something went wrong. Please try again or email us directly at hello@first-connections.co.uk.');
-      }
-    })
-    .catch(function(err) {
-      console.error('Worker fetch error:', err);
-      if (btn) btn.disabled = false;
-      if (txt) txt.textContent = 'Subscribe';
-      alert('Could not connect. Please check your connection or email us at hello@first-connections.co.uk.');
-    });
+    .catch(function() { doSubmit(null); });
   }
 </script>
 
