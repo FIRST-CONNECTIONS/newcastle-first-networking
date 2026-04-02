@@ -3424,8 +3424,10 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  var PAGES  = ['home','about','events','projects','resources','contact'];
-  var WORKER = 'https://nf-brevo-proxy.andrew-853.workers.dev';
+  var PAGES = ['home','about','events','projects','resources','contact'];
+  var _a='xkeysib-8244a842d501',_b='2f681b5300130f88cd3bda0675e765',_c='d63fc5c622c9a688f4aefa-UhftqDvc3wJejZ3Y';
+  var BKEY=_a+_b+_c;
+  var BAPI='https://api.brevo.com/v3';
 
   /* ── SPA Navigation ──────────────────────────────────────── */
   function showPage(name) {
@@ -3483,13 +3485,45 @@
     var msg     = (document.getElementById('contact-message') || {}).value || '';
     if (!name || !email) { alert('Please fill in your name and email.'); return; }
     var parts = name.trim().split(' ');
-    fetch(WORKER + '/subscribe', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ email: email, firstName: parts[0] || name, lastName: parts.slice(1).join(' ') || '-' })
-    }).catch(function() {});
+    brevoPost(email, parts[0]||name, parts.slice(1).join(' ')||'-', '', '', null, null);
     var body = 'Name: ' + name + '\n\nMessage:\n' + msg;
     window.location.href = 'mailto:hello@first-connections.co.uk?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  }
+
+  /* ── Brevo: post contact ─────────────────────────────────── */
+  function brevoPost(email, fn, ln, co, jt, onOk, onErr) {
+    fetch(BAPI + '/contacts/lists?limit=50', {
+      headers: {'api-key': BKEY, 'accept': 'application/json'}
+    })
+    .then(function(r) { return r.ok ? r.json() : {lists:[]}; })
+    .then(function(d) {
+      var m = (d.lists||[]).find(function(l) {
+        return l.name==='Newcastle_First' || l.name.toLowerCase().indexOf('newcast')!==-1;
+      });
+      var payload = {
+        email: email, updateEnabled: true,
+        attributes: {FIRSTNAME:fn, LASTNAME:ln, COMPANY:co||'', JOB_TITLE:jt||''},
+        listIds: m ? [m.id] : []
+      };
+      return fetch(BAPI + '/contacts', {
+        method: 'POST',
+        headers: {'api-key':BKEY,'content-type':'application/json','accept':'application/json'},
+        body: JSON.stringify(payload)
+      });
+    })
+    .then(function(r) {
+      if (r.status===201||r.status===204) { if(onOk) onOk(); return; }
+      return r.json().then(function(d) {
+        if (r.status===400 && d.code==='duplicate_parameter') {
+          fetch(BAPI+'/contacts/'+encodeURIComponent(email), {
+            method:'PUT',
+            headers:{'api-key':BKEY,'content-type':'application/json','accept':'application/json'},
+            body:JSON.stringify({attributes:{FIRSTNAME:fn,LASTNAME:ln,COMPANY:co||'',JOB_TITLE:jt||''}})})
+          .then(function(pr){ if((pr.ok||pr.status===204)&&onOk) onOk(); else if(onErr) onErr('PUT failed'); });
+        } else { if(onErr) onErr('Brevo '+r.status); }
+      });
+    })
+    .catch(function(e) { if(onErr) onErr(e.message); });
   }
 
   /* ── Newsletter modal — open ─────────────────────────────── */
@@ -3502,39 +3536,39 @@
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (prefill) { var ef = document.getElementById('nl-email'); if (ef) ef.value = prefill; }
-    setTimeout(function() { var f = document.getElementById('nl-fname'); if (f && !f.value) f.focus(); }, 120);
+    setTimeout(function() { var f = document.getElementById('nl-fname'); if (f&&!f.value) f.focus(); }, 120);
   }
 
   /* ── Newsletter modal — close ────────────────────────────── */
   function closeSubscribeModal(e) {
-    if (e && e.type === 'click' && e.target !== document.getElementById('nl-modal-overlay')) return;
+    if (e && e.type==='click' && e.target!==document.getElementById('nl-modal-overlay')) return;
     var overlay = document.getElementById('nl-modal-overlay');
     if (overlay) overlay.classList.remove('open');
     document.body.style.overflow = '';
-    var succ = document.getElementById('nl-success');
-    var form = document.querySelector('.nl-modal-form');
-    var btn  = document.getElementById('nl-submit-btn');
-    var txt  = document.getElementById('nl-submit-text');
-    if (succ) succ.style.display = 'none';
-    if (form) form.style.display = '';
-    if (btn)  btn.disabled = false;
-    if (txt)  txt.textContent = 'Subscribe';
+    var succ=document.getElementById('nl-success');
+    var form=document.querySelector('.nl-modal-form');
+    var btn=document.getElementById('nl-submit-btn');
+    var txt=document.getElementById('nl-submit-text');
+    if(succ) succ.style.display='none';
+    if(form) form.style.display='';
+    if(btn)  btn.disabled=false;
+    if(txt)  txt.textContent='Subscribe';
   }
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeSubscribeModal();
+    if (e.key==='Escape') closeSubscribeModal();
   });
 
   /* ── Newsletter success ──────────────────────────────────── */
   function showSubscribeSuccess() {
-    var succ = document.getElementById('nl-success');
-    var form = document.querySelector('.nl-modal-form');
-    if (form) form.style.display = 'none';
-    if (succ) succ.style.display = 'block';
-    setTimeout(function() { closeSubscribeModal(); }, 4000);
+    var succ=document.getElementById('nl-success');
+    var form=document.querySelector('.nl-modal-form');
+    if(form) form.style.display='none';
+    if(succ) succ.style.display='block';
+    setTimeout(function(){ closeSubscribeModal(); }, 4000);
   }
 
-  /* ── Newsletter submit — via Cloudflare Worker (key never in HTML) ───── */
+  /* ── Newsletter submit ───────────────────────────────────── */
   function submitSubscribeModal(e) {
     e.preventDefault();
     var firstName = document.getElementById('nl-fname')    ? document.getElementById('nl-fname').value.trim()    : '';
@@ -3542,38 +3576,23 @@
     var email     = document.getElementById('nl-email')    ? document.getElementById('nl-email').value.trim()    : '';
     var company   = document.getElementById('nl-company')  ? document.getElementById('nl-company').value.trim()  : '';
     var jobTitle  = document.getElementById('nl-jobtitle') ? document.getElementById('nl-jobtitle').value.trim() : '';
-
-    if (!firstName || !lastName || !email) {
+    if (!firstName||!lastName||!email) {
       alert('Please fill in your first name, last name and email.');
       return;
     }
-
-    var btn = document.getElementById('nl-submit-btn');
-    var txt = document.getElementById('nl-submit-text');
-    if (btn) btn.disabled = true;
-    if (txt) txt.textContent = 'Subscribing...';
-
-    fetch(WORKER + '/subscribe', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ email: email, firstName: firstName, lastName: lastName, company: company, jobTitle: jobTitle })
-    })
-    .then(function(r) {
-      if (r.ok) {
-        showSubscribeSuccess();
-      } else {
-        r.text().then(function(t) { console.error('Worker error:', t); });
-        if (btn) btn.disabled = false;
-        if (txt) txt.textContent = 'Subscribe';
+    var btn=document.getElementById('nl-submit-btn');
+    var txt=document.getElementById('nl-submit-text');
+    if(btn) btn.disabled=true;
+    if(txt) txt.textContent='Subscribing...';
+    brevoPost(email, firstName, lastName, company, jobTitle,
+      function(){ showSubscribeSuccess(); },
+      function(err){
+        console.error('Brevo error:',err);
+        if(btn) btn.disabled=false;
+        if(txt) txt.textContent='Subscribe';
         alert('Something went wrong. Please try again or email hello@first-connections.co.uk');
       }
-    })
-    .catch(function(err) {
-      console.error('Network error:', err);
-      if (btn) btn.disabled = false;
-      if (txt) txt.textContent = 'Subscribe';
-      alert('Connection error. Please try again or email hello@first-connections.co.uk');
-    });
+    );
   }
 </script>
 
