@@ -1,15 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/NewcastleFirst_FavIcon.png">
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/NewcastleFirst_FavIcon.png">
+  <!-- ── Charset & Viewport ─────────────────────────────── -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Newcastle First — Business Networking</title>
-  <meta name="description" content="Newcastle First is a free, community-first business networking event for Newcastle and the wider North East." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- ── Primary SEO ────────────────────────────────────── -->
+  <title>Newcastle First — Free Business Networking Newcastle &amp; North East</title>
+  <meta name="description" content="Newcastle First is a free, community-first business networking event in Newcastle upon Tyne. Join local business leaders, entrepreneurs and professionals at our relaxed monthly coffee mornings across the North East." />
+  <meta name="keywords" content="Newcastle business networking, free networking Newcastle, North East networking, Newcastle First, business community Newcastle, networking events Newcastle, entrepreneur Newcastle, North East business" />
+  <meta name="author" content="Newcastle First — First Connections Network" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://www.newcastlefirst.network/" />
+
+  <!-- ── Open Graph (Facebook, LinkedIn, WhatsApp) ─────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Newcastle First" />
+  <meta property="og:title" content="Newcastle First — Free Business Networking in Newcastle" />
+  <meta property="og:description" content="Join Newcastle's fastest-growing free business networking community. Monthly coffee mornings, social events, awards and a podcast — all completely free to attend." />
+  <meta property="og:url" content="https://www.newcastlefirst.network/" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Tyne-bridge.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Newcastle First business networking — Tyne Bridge, Newcastle upon Tyne" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- ── Twitter / X Card ───────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Newcastle First — Free Business Networking in Newcastle" />
+  <meta name="twitter:description" content="Join Newcastle's fastest-growing free business networking community. Monthly coffee mornings, awards and a podcast — all free." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Tyne-bridge.png" />
+  <meta name="twitter:image:alt" content="Newcastle First — Tyne Bridge, Newcastle upon Tyne" />
+
+  <!-- ── Geographic & Local SEO ────────────────────────── -->
+  <meta name="geo.region" content="GB-NET" />
+  <meta name="geo.placename" content="Newcastle upon Tyne" />
+  <meta name="geo.position" content="54.9783;-1.6178" />
+  <meta name="ICBM" content="54.9783, -1.6178" />
+
+  <!-- ── Schema.org Structured Data (AIO / AI Search) ─── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Newcastle First",
+    "alternateName": "Newcastle First Business Networking",
+    "url": "https://www.newcastlefirst.network",
+    "logo": "https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/NewcastleFirst_FavIcon.png",
+    "description": "Newcastle First is a free, community-first business networking organisation in Newcastle upon Tyne, running monthly events, the North East High Street Heroes Awards, and a regional business podcast.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Newcastle upon Tyne",
+      "addressRegion": "Tyne and Wear",
+      "addressCountry": "GB"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "North East England"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@first-connections.co.uk",
+      "contactType": "customer support"
+    },
+    "sameAs": [
+      "https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807"
+    ],
+    "event": {
+      "@type": "EventSeries",
+      "name": "Newcastle First Business Networking",
+      "description": "Free monthly business networking coffee mornings in Newcastle upon Tyne, open to all sectors.",
+      "organizer": {
+        "@type": "Organization",
+        "name": "Newcastle First"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Newcastle upon Tyne",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Newcastle upon Tyne",
+          "addressCountry": "GB"
+        }
+      },
+      "isAccessibleForFree": true,
+      "typicalAgeRange": "18+"
+    }
+  }
+  </script>
+
+  <!-- ── Favicons ───────────────────────────────────────── -->
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/NewcastleFirst_FavIcon.png" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/NewcastleFirst_FavIcon.png" />
+  <meta name="theme-color" content="#1a2550" />
+  <meta name="msapplication-TileColor" content="#1a2550" />
+
+  <!-- ── Performance ───────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://raw.githubusercontent.com" />
+  <link rel="dns-prefetch" content="https://api.brevo.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
 
   /* ════════════════════════════════════════════════════════════
@@ -1917,8 +2010,88 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  
+  /* ── MOBILE & TABLET IMPROVEMENTS ──────────────────────── */
+
+  /* Safe area insets for notched phones */
+  body { padding-top: env(safe-area-inset-top); }
+  nav  { padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right)); }
+
+  /* Fluid typography — scales smoothly between mobile and desktop */
+  h1 { font-size: clamp(1.8rem, 5vw, 3.2rem); }
+  h2 { font-size: clamp(1.4rem, 3.5vw, 2.4rem); }
+  h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+  p  { font-size: clamp(0.92rem, 1.8vw, 1.05rem); line-height: 1.7; }
+
+  /* Tablet (601-900px) improvements */
+  @media (min-width: 601px) and (max-width: 900px) {
+    .wrap, .wrap-wide { padding: 0 1.5rem; }
+    .hero-inner { padding: 6rem 1.5rem 4rem; }
+    .welcome-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .barriers-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .ct-hero-cards { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .ct-form-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .sponsor-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .nl-modal { width: 90vw; max-width: 520px; }
+    .nl-modal-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Mobile (≤600px) improvements */
+  @media (max-width: 600px) {
+    .wrap, .wrap-wide { padding: 0 1rem; }
+    .hero-inner { padding: 5rem 1rem 3rem; text-align: center; }
+    .hero-btns { justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
+    .hero-btns a { width: 100%; text-align: center; }
+    .ct-hero { min-height: 60vh; }
+    .ct-hero-inner { grid-template-columns: 1fr; padding: 3rem 1rem 2rem; gap: 1.5rem; }
+    .ct-hero-cards { grid-template-columns: 1fr; gap: 0.6rem; }
+    .ct-quick-card { padding: 0.9rem 1rem; }
+    .ct-form-wrap { grid-template-columns: 1fr; gap: 1.5rem; }
+    .ct-form-row { grid-template-columns: 1fr; }
+    .ct-subject-pills { flex-wrap: wrap; gap: 0.4rem; }
+    .ct-pill-btn { font-size: 0.78rem; padding: 0.35rem 0.7rem; }
+    .nl-modal { width: 95vw; padding: 1.5rem 1.2rem; border-radius: 12px; }
+    .nl-modal-row { grid-template-columns: 1fr; gap: 0.75rem; }
+    .nl-modal-header h2 { font-size: 1.4rem; }
+    .sponsor-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .section-padding { padding: 3rem 0; }
+    .resource-card { padding: 1.2rem; }
+    .event-card { padding: 1.2rem 1rem; }
+    .about-values-grid { grid-template-columns: 1fr; }
+    .why-newcastle-grid { grid-template-columns: 1fr; }
+    .projects-pillars-grid { grid-template-columns: 1fr; }
+    .more-soon-section { padding: 3rem 1rem; text-align: center; }
+    .ct-involve-list { gap: 0.6rem; }
+    .ct-involve-item { padding: 0.9rem 1rem; }
+  }
+
+  /* Small mobile (≤400px) */
+  @media (max-width: 400px) {
+    .nav-logo { font-size: 1.1rem; }
+    h1 { font-size: 1.6rem; }
+    .btn-gold, .btn-outline { padding: 0.7rem 1.2rem; font-size: 0.88rem; }
+    .ct-quick-title { font-size: 0.88rem; }
+    .ct-quick-desc { font-size: 0.76rem; }
+  }
+
+  /* Improved image handling */
+  img { max-width: 100%; height: auto; }
+  .welcome-img img { border-radius: 8px; width: 100%; object-fit: cover; }
+
+  /* Better tap targets on mobile */
+  @media (max-width: 900px) {
+    a, button { min-height: 44px; }
+    .mobile-link { padding: 0.9rem 1.2rem; font-size: 1rem; }
+    .nav-links li a { padding: 0.6rem 0.5rem; }
+  }
+
+  /* Prevent horizontal scroll */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  * { box-sizing: border-box; }
+
   </style>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -3514,6 +3687,8 @@
   }
 </script>
 
+
+<!-- NEWSLETTER SUBSCRIPTION MODAL -->
 
 <!-- NEWSLETTER SUBSCRIPTION MODAL -->
 <div id="nl-modal-overlay" class="nl-modal-overlay" onclick="closeSubscribeModal(event)">
