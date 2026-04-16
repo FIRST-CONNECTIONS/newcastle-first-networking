@@ -3949,10 +3949,11 @@
     var code=(document.getElementById('of-code')||{}).value.trim();
     var url=(document.getElementById('of-url')||{}).value.trim();
     var logo=(document.getElementById('of-logo')||{}).value.trim();
+    var town=document.getElementById('of-town')?document.getElementById('of-town').value.trim():'';
     var cname=(document.getElementById('of-cname')||{}).value.trim();
     var cemail=(document.getElementById('of-cemail')||{}).value.trim();
 
-    if(!biz||!sector||!desc||!headline||!url||!cname||!cemail){
+    if(!biz||!sector||!desc||!headline||!url||!town||!cname||!cemail){
       alert('Please fill in all required fields.');return;
     }
     var btn=document.getElementById('of-submit-btn');
@@ -3960,7 +3961,7 @@
     if(btn) btn.disabled=true;
     if(txt) txt.textContent='Submitting...';
 
-    var fields={'Business Name':biz,'Sector':sector,'Description':desc,'Offer Headline':headline,'Site':AT_SITE,'Contact Name':cname,'Contact Email':cemail};
+    var fields={'Business Name':biz,'Sector':sector,'Description':desc,'Offer Headline':headline,'Site':AT_SITE,'Town / City':town,'Contact Name':cname,'Contact Email':cemail};
     if(detail) fields['Offer Detail']=detail;
     if(code) fields['Discount Code']=code;
     if(url) fields['Website URL']=url;
@@ -4048,6 +4049,10 @@
       <div class="offer-field">
         <label>Logo URL <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
         <input type="url" id="of-logo" placeholder="https://yourbusiness.co.uk/logo.png" />
+      </div>
+      <div class="offer-field">
+        <label>Town / Area <span class="offer-req">*</span></label>
+        <input type="text" id="of-town" placeholder="e.g. Newcastle, Darlington, Durham..." />
       </div>
 
       <div class="offer-form-row">
