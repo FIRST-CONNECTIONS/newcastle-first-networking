@@ -3745,6 +3745,7 @@
     var url=name==='home'?window.location.pathname:window.location.pathname+'#'+name;
     try{history.pushState({page:name},'',url);}catch(e){}
     if(name==='resources') loadCommunityOffers();
+    if(typeof lucide!=='undefined') lucide.createIcons();
   }
 
   window.addEventListener('popstate',function(e){
