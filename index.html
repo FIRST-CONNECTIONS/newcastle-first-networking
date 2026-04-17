@@ -2093,120 +2093,232 @@
 
   
   /* ── COMMUNITY OFFER CARDS ──────────────────────────────── */
-  .community-offers-section {
-    padding: 4rem 0;
-    background: var(--light);
-  }
-  .community-offers-section .section-header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-  }
+  .community-offers-section { padding: 4rem 0; background: var(--light); }
+  .community-offers-section .section-header { text-align: center; margin-bottom: 2.5rem; }
+
   .community-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
     margin-bottom: 2rem;
   }
+
   .community-offer-card {
     background: #fff;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid var(--border);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .community-offer-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(26,37,80,0.10);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(26,37,80,0.13);
   }
+
+  /* Card header — gradient navy */
   .coc-header {
-    background: var(--navy);
-    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 100%);
+    padding: 1.25rem 1.25rem 1rem;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
   }
+  .coc-header::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(240,180,41,0.06);
+    pointer-events: none;
+  }
+
+  /* Logo */
   .coc-logo {
-    width: 38px; height: 38px;
-    border-radius: 8px;
+    width: 44px; height: 44px;
+    border-radius: 10px;
     background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.15);
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700; color: var(--gold);
+    font-size: 15px; font-weight: 800;
+    color: var(--gold);
     flex-shrink: 0; overflow: hidden;
+    letter-spacing: -0.5px;
   }
   .coc-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
-  .coc-name { color: #fff; font-size: 0.88rem; font-weight: 600; margin: 0; }
-  .coc-sector { color: rgba(255,255,255,0.55); font-size: 0.75rem; margin: 0; }
+
+  .coc-header-text { flex: 1; min-width: 0; }
+  .coc-name {
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin: 0 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .coc-sector {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    margin: 0;
+    font-weight: 500;
+  }
   .coc-badge {
-    margin-left: auto;
-    background: rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.7);
-    font-size: 0.68rem; font-weight: 600;
-    padding: 3px 8px; border-radius: 4px;
-    white-space: nowrap; flex-shrink: 0;
+    background: rgba(240,180,41,0.18);
+    color: var(--gold);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(240,180,41,0.3);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
   }
-  .coc-
-  .coc-offer-badge {
-    background: #eaf3de; border: 1px solid #c0dd97;
-    border-radius: 6px; padding: 8px 10px;
-    margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 8px;
+
+  /* Offer highlight strip */
+  .coc-offer-strip {
+    background: linear-gradient(90deg, #f0f9e8 0%, #e8f5e0 100%);
+    border-bottom: 1px solid #c8e6b0;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
   }
-  .coc-offer-value { font-size: 1.1rem; font-weight: 700; color: #3b6d11; }
-  .coc-offer-detail { font-size: 0.75rem; color: #639922; }
-  .coc-offer-code { font-size: 0.72rem; color: #3b6d11; font-weight: 600; margin-top: 2px; }
+  .coc-offer-value {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #2d6a0f;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+  .coc-offer-meta { text-align: right; }
+  .coc-offer-detail { font-size: 0.75rem; color: #4a8a1f; font-weight: 500; margin: 0; }
+  .coc-offer-code {
+    font-size: 0.68rem;
+    color: #fff;
+    background: #2d6a0f;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Card body */
+  .coc-body { padding: 1.1rem 1.25rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
   .coc-desc {
-    font-size: 0.82rem; color: var(--muted);
-    line-height: 1.55; flex: 1; margin-bottom: 0.75rem;
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .coc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .coc-town {
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
   .coc-link {
-    font-size: 0.78rem; color: var(--navy);
-    font-weight: 600; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 0.8rem;
+    color: var(--navy);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    border: 1.5px solid var(--navy);
+    transition: all 0.2s ease;
   }
-  .coc-link:hover { color: var(--gold); }
+  .coc-link:hover {
+    background: var(--navy);
+    color: #fff;
+  }
 
-  /* Submit card — dashed placeholder */
+  /* Submit card */
   .coc-submit-card {
     background: #fff;
-    border: 2px dashed var(--border);
-    border-radius: 12px;
+    border: 2px dashed #c8d0e8;
+    border-radius: 16px;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 2rem 1.5rem; text-align: center;
-    min-height: 200px; cursor: pointer;
-    transition: border-color 0.2s ease;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    min-height: 220px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
   }
-  .coc-submit-card:hover { border-color: var(--gold); }
+  .coc-submit-card:hover {
+    border-color: var(--gold);
+    background: #fffdf5;
+  }
   .coc-submit-icon {
-    width: 44px; height: 44px; border-radius: 50%;
-    border: 1.5px solid var(--border);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.75rem; font-size: 1.4rem; color: var(--muted);
-    transition: border-color 0.2s ease, color 0.2s ease;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: 300;
+    transition: transform 0.2s ease;
   }
-  .coc-submit-card:hover .coc-submit-icon { border-color: var(--gold); color: var(--gold); }
-  .coc-submit-title { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
-  .coc-submit-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+  .coc-submit-card:hover .coc-submit-icon { transform: scale(1.1); }
+  .coc-submit-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    font-family: 'Playfair Display', serif;
+  }
+  .coc-submit-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.5; }
 
-  /* Loading & empty states */
+  /* Loading & empty */
   .coc-loading, .coc-empty {
-    text-align: center; padding: 2rem;
-    color: var(--muted); font-size: 0.88rem;
+    text-align: center; padding: 3rem;
+    color: var(--muted); font-size: 0.9rem;
     grid-column: 1/-1;
   }
   .coc-spinner {
-    width: 28px; height: 28px;
+    width: 32px; height: 32px;
     border: 3px solid var(--border);
     border-top-color: var(--gold);
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 0.75rem;
+    animation: cocSpin 0.8s linear infinite;
+    margin: 0 auto 1rem;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes cocSpin { to { transform: rotate(360deg); } }
 
-  /* ── OFFER SUBMISSION MODAL ──────────────────────────────── */
+  @media (max-width: 600px) {
+    .community-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .coc-submit-card { min-height: 180px; padding: 2rem 1.25rem; }
+  }
+
+/* ── OFFER SUBMISSION MODAL ──────────────────────────────── */
   .offer-modal-overlay {
     display: none; position: fixed; inset: 0;
     background: rgba(17,26,58,0.7);
@@ -2290,7 +2402,7 @@
     <li><a href="#" onclick="showPage('about');return false;">About</a></li>
     <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
     <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+    <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
@@ -2304,7 +2416,7 @@
   <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
   <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
   <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link">NF Offers</a>
+  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a>
       <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
   <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
@@ -2592,7 +2704,7 @@
         <li><a href="#" onclick="showPage('about');return false;">About</a></li>
         <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
         <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+        <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
         <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
       </ul>
@@ -2626,7 +2738,7 @@
     <li><a href="#" onclick="showPage('about');return false;">About</a></li>
     <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
     <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+    <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
@@ -2640,7 +2752,7 @@
   <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
   <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
   <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link">NF Offers</a>
+  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a>
       <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
   <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
@@ -2773,7 +2885,7 @@
         <li><a href="#" onclick="showPage('about');return false;">About</a></li>
         <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
         <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+        <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
         <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
       </ul>
@@ -2807,7 +2919,7 @@
     <li><a href="#" onclick="showPage('about');return false;">About</a></li>
     <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
     <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+    <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
@@ -2821,7 +2933,7 @@
   <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
   <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
   <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link">NF Offers</a>
+  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a>
       <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
   <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
@@ -2959,7 +3071,7 @@
         <li><a href="#" onclick="showPage('about');return false;">About</a></li>
         <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
         <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+        <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
         <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
       </ul>
@@ -2993,7 +3105,7 @@
     <li><a href="#" onclick="showPage('about');return false;">About</a></li>
     <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
     <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+    <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
@@ -3007,7 +3119,7 @@
   <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
   <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
   <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link">NF Offers</a>
+  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a>
       <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
   <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
@@ -3159,7 +3271,7 @@
         <li><a href="#" onclick="showPage('about');return false;">About</a></li>
         <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
         <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+        <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
         <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
       </ul>
@@ -3193,7 +3305,7 @@
     <li><a href="#" onclick="showPage('about');return false;">About</a></li>
     <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
     <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+    <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
@@ -3207,7 +3319,7 @@
   <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
   <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
   <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link">NF Offers</a>
+  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a>
       <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
   <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
@@ -3569,7 +3681,7 @@
     <li><a href="#" onclick="showPage('about');return false;">About</a></li>
     <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
     <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+    <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
@@ -3583,7 +3695,7 @@
   <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
   <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
   <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link">NF Offers</a>
+  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a>
       <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
   <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
@@ -3676,7 +3788,7 @@
         <li><a href="#" onclick="showPage('about');return false;">About</a></li>
         <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
         <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+        <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
         <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
       </ul>
@@ -3713,7 +3825,7 @@
     <li><a href="#" onclick="showPage('about');return false;">About</a></li>
     <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
     <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+    <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
     <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
     <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
@@ -3727,7 +3839,7 @@
   <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
   <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
   <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link">NF Offers</a>
+  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a>
       <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
   <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
   <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
@@ -3853,7 +3965,7 @@
         <li><a href="#" onclick="showPage('about');return false;">About</a></li>
         <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
         <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;">NF Offers</a></li>
+        <li><a href="#" onclick="showPage('offers');return false;"><span style="color:var(--gold);margin-right:4px;">&#9733;</span>NF Offers</a></li>
       <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
         <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
       </ul>
@@ -4030,6 +4142,42 @@
     });
   }
 
+  function buildOfferCard(rec){
+    var f=rec.fields;
+    var biz=f['Business Name']||'';
+    var initials=biz.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2).toUpperCase();
+    var logo=f['Logo URL']||'';
+    var logoHtml=logo?'<img src="'+logo+'" alt="'+biz+'" style="width:100%;height:100%;object-fit:cover;border-radius:9px;">':initials;
+    var code=f['Discount Code']||'';
+    var detail=f['Offer Detail']||'';
+    var town=f['Town / City']||'';
+    var url=f['Website URL']||'#';
+    return '<div class="community-offer-card">'
+      +'<div class="coc-header">'
+      +'<div class="coc-logo">'+logoHtml+'</div>'
+      +'<div class="coc-header-text">'
+      +'<p class="coc-name">'+biz+'</p>'
+      +'<p class="coc-sector">'+(f['Sector']||'')+'</p>'
+      +'</div>'
+      +'<span class="coc-badge">Community</span>'
+      +'</div>'
+      +'<div class="coc-offer-strip">'
+      +'<p class="coc-offer-value">'+(f['Offer Headline']||'')+'</p>'
+      +'<div class="coc-offer-meta">'
+      +(detail?'<p class="coc-offer-detail">'+detail+'</p>':'')
+      +(code?'<span class="coc-offer-code">'+code+'</span>':'')
+      +'</div>'
+      +'</div>'
+      +'<div class="coc-body">'
+      +'<p class="coc-desc">'+(f['Description']||'')+'</p>'
+      +'<div class="coc-footer">'
+      +(town?'<span class="coc-town"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'+town+'</span>':'<span></span>')
+      +'<a href="'+url+'" target="_blank" rel="noopener" class="coc-link">Visit site</a>'
+      +'</div>'
+      +'</div>'
+      +'</div>';
+  }
+
   /* ── AIRTABLE — LOAD COMMUNITY OFFERS (Resources page) ──── */
   var offersLoaded=false;
   function loadCommunityOffers(){
@@ -4051,29 +4199,7 @@
   function renderOfferCards(records,grid){
     grid.innerHTML='';
     records.forEach(function(rec){
-      var f=rec.fields;
-      var biz=f['Business Name']||'';
-      var initials=biz.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2).toUpperCase();
-      var logo=f['Logo URL']||'';
-      var logoHtml=logo?'<img src="'+logo+'" alt="'+biz+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">':initials;
-      var code=f['Discount Code']||'';
-      var detail=f['Offer Detail']||'';
-      var town=f['Town / City']||'';
-      grid.insertAdjacentHTML('beforeend',
-        '<div class="community-offer-card">'
-        +'<div class="coc-header"><div class="coc-logo">'+logoHtml+'</div>'
-        +'<div><p class="coc-name">'+biz+'</p>'
-        +'<p class="coc-sector">'+(f['Sector']||'')+(town?' &middot; '+town:'')+'</p></div>'
-        +'<span class="coc-badge">Community</span></div>'
-        +'<div class="coc-body">'
-        +'<div class="coc-offer-badge"><div>'
-        +'<p class="coc-offer-value">'+(f['Offer Headline']||'')+'</p>'
-        +(detail?'<p class="coc-offer-detail">'+detail+'</p>':'')
-        +(code?'<p class="coc-offer-code">Code: '+code+'</p>':'')
-        +'</div></div>'
-        +'<p class="coc-desc">'+(f['Description']||'')+'</p>'
-        +'<a href="'+(f['Website URL']||'#')+'" target="_blank" rel="noopener" class="coc-link">Visit website &rarr;</a>'
-        +'</div></div>');
+      grid.insertAdjacentHTML('beforeend', buildOfferCard(rec));
     });
     if(!records.length) grid.insertAdjacentHTML('beforeend','<div class="coc-empty">No community offers yet — be the first to submit one!</div>');
     appendSubmitCard(grid);
