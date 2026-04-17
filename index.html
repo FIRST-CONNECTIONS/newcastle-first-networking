@@ -2116,38 +2116,56 @@
   }
   .community-offer-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 48px rgba(26,37,80,0.14), 0 6px 16px rgba(26,37,80,0.06);
+    box-shadow: 0 24px 56px rgba(26,37,80,0.16), 0 6px 16px rgba(26,37,80,0.06);
   }
+  .community-offer-card:hover .coc-star { transform: rotate(72deg) scale(1.15); }
+  .community-offer-card:hover .coc-header::after { opacity: 1; }
 
-  /* Card header — compact navy bar */
+  /* Card header — slim navy band with pattern */
   .coc-header {
     background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 100%);
-    padding: 1rem 1.1rem;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: start;
+    padding: 0.95rem 1.1rem;
+    display: flex;
+    align-items: center;
     gap: 11px;
     position: relative;
     overflow: hidden;
-    min-height: 72px;
   }
+  /* Soft radial highlight — top-right corner */
   .coc-header::before {
     content: '';
     position: absolute;
-    top: -60px; right: -50px;
-    width: 160px; height: 160px;
+    top: -70px; right: -60px;
+    width: 180px; height: 180px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(240,180,41,0.14) 0%, rgba(240,180,41,0) 70%);
+    background: radial-gradient(circle, rgba(240,180,41,0.18) 0%, rgba(240,180,41,0) 65%);
     pointer-events: none;
+  }
+  /* Fine diagonal line pattern for texture */
+  .coc-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.02) 0px,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
   }
   .coc-header > * { position: relative; z-index: 1; }
 
   /* Logo */
   .coc-logo {
-    width: 40px; height: 40px;
+    width: 42px; height: 42px;
     border-radius: 10px;
-    background: linear-gradient(135deg, rgba(240,180,41,0.22) 0%, rgba(240,180,41,0.08) 100%);
-    border: 1px solid rgba(240,180,41,0.35);
+    background: linear-gradient(135deg, rgba(240,180,41,0.25) 0%, rgba(240,180,41,0.1) 100%);
+    border: 1px solid rgba(240,180,41,0.4);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     display: flex; align-items: center; justify-content: center;
     font-size: 13px; font-weight: 800;
     color: var(--gold);
@@ -2156,12 +2174,12 @@
   }
   .coc-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
 
-  .coc-header-text { min-width: 0; }
+  .coc-header-text { flex: 1; min-width: 0; padding-right: 22px; }
   .coc-name {
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 0.93rem;
     font-weight: 700;
-    margin: 0 0 1px;
+    margin: 0 0 2px;
     line-height: 1.25;
     letter-spacing: -0.01em;
     display: -webkit-box;
@@ -2180,63 +2198,53 @@
     text-overflow: ellipsis;
   }
 
-  /* Community badge — dot indicator, compact */
-  .coc-badge {
-    background: rgba(240,180,41,0.16);
-    color: var(--gold);
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 4px 9px 4px 18px;
-    border-radius: 20px;
-    border: 1px solid rgba(240,180,41,0.28);
-    white-space: nowrap;
-    flex-shrink: 0;
-    position: relative;
-  }
-  .coc-badge::before {
-    content: '';
+  /* Corner star — replaces the truncating "COMMUNITY" badge */
+  .coc-star {
     position: absolute;
-    left: 8px; top: 50%;
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-    transform: translateY(-50%);
-    box-shadow: 0 0 0 2px rgba(240,180,41,0.25);
+    top: 11px; right: 11px;
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1);
+    filter: drop-shadow(0 1px 3px rgba(240,180,41,0.4));
   }
+  .coc-star svg { width: 100%; height: 100%; }
 
-  /* Card body — offer is the hero */
+  /* Card body */
   .coc-body {
-    padding: 1.35rem 1.25rem 1.1rem;
+    padding: 1.4rem 1.3rem 1.2rem;
     flex: 1;
     display: flex;
     flex-direction: column;
-    background:
-      linear-gradient(180deg, #fefdf9 0%, #ffffff 60px),
-      #fff;
+    position: relative;
+    background: #fff;
   }
+  /* Subtle cream wash at the top of the body */
+  .coc-body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 90px;
+    background: linear-gradient(180deg, #fdf9ee 0%, #ffffff 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .coc-body > * { position: relative; z-index: 1; }
 
-  /* Offer headline — big, centered focus */
+  /* Offer headline — the hero */
   .coc-offer-headline {
     font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--navy);
     line-height: 1.15;
-    margin: 0 0 0.55rem;
-    letter-spacing: -0.01em;
-    position: relative;
-    padding-bottom: 0.55rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.015em;
+    padding-left: 12px;
+    border-left: 3px solid var(--gold);
   }
-  .coc-offer-headline::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: 0;
-    width: 32px; height: 3px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--gold) 0%, #f8d06a 100%);
-  }
+
   .coc-offer-detail {
     font-size: 0.78rem;
     color: #2d6a0f;
@@ -2245,6 +2253,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    padding-left: 15px;
   }
   .coc-offer-detail::before {
     content: '';
@@ -2253,22 +2262,23 @@
     background: #4a8a1f;
     flex-shrink: 0;
   }
+
   .coc-offer-code {
     font-size: 0.68rem;
     color: var(--navy);
     background: #fff8e3;
-    border: 1px dashed rgba(240,180,41,0.6);
+    border: 1px dashed rgba(240,180,41,0.7);
     font-weight: 700;
-    padding: 3px 9px;
+    padding: 3px 10px;
     border-radius: 5px;
-    margin: 0 0 0.85rem;
+    margin: 0 0 0.9rem 15px;
     letter-spacing: 0.08em;
     font-family: ui-monospace, 'SF Mono', Menlo, monospace;
     align-self: flex-start;
   }
 
   .coc-desc {
-    font-size: 0.82rem;
+    font-size: 0.83rem;
     color: var(--muted);
     line-height: 1.6;
     flex: 1;
@@ -2284,7 +2294,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 0.85rem;
+    padding-top: 0.9rem;
     border-top: 1px solid var(--border);
     gap: 10px;
   }
@@ -2293,13 +2303,13 @@
     color: var(--muted);
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .coc-town svg { flex-shrink: 0; opacity: 0.7; }
+  .coc-town svg { flex-shrink: 0; opacity: 0.7; color: var(--gold); }
   .coc-link {
     font-size: 0.78rem;
     color: var(--navy);
@@ -2310,23 +2320,19 @@
     gap: 5px;
     padding: 0;
     flex-shrink: 0;
-    transition: color 0.2s ease, gap 0.2s ease;
+    transition: color 0.2s ease;
   }
   .coc-link .coc-arrow {
     transition: transform 0.2s ease;
     display: inline-block;
   }
-  .coc-link:hover {
-    color: var(--gold-hover);
-  }
-  .coc-link:hover .coc-arrow {
-    transform: translateX(3px);
-  }
+  .coc-link:hover { color: var(--gold-hover); }
+  .coc-link:hover .coc-arrow { transform: translateX(3px); }
 
   /* Submit card */
   .coc-submit-card {
     background:
-      radial-gradient(circle at 50% 30%, rgba(240,180,41,0.05) 0%, transparent 60%),
+      radial-gradient(circle at 50% 30%, rgba(240,180,41,0.06) 0%, transparent 60%),
       #fff;
     border: 2px dashed #c8d0e8;
     border-radius: 18px;
@@ -2334,42 +2340,42 @@
     align-items: center; justify-content: center;
     padding: 2.5rem 1.5rem;
     text-align: center;
-    min-height: 260px;
+    min-height: 280px;
     cursor: pointer;
     transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
   .coc-submit-card:hover {
     border-color: var(--gold);
     background:
-      radial-gradient(circle at 50% 30%, rgba(240,180,41,0.12) 0%, transparent 60%),
+      radial-gradient(circle at 50% 30%, rgba(240,180,41,0.14) 0%, transparent 60%),
       #fffdf5;
     transform: translateY(-4px);
   }
   .coc-submit-icon {
-    width: 52px; height: 52px;
+    width: 54px; height: 54px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-    box-shadow: 0 8px 20px rgba(26,37,80,0.18);
+    box-shadow: 0 8px 20px rgba(26,37,80,0.2);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 1.1rem;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     color: var(--gold);
     font-weight: 300;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .coc-submit-card:hover .coc-submit-icon {
     transform: scale(1.08) rotate(90deg);
-    box-shadow: 0 10px 24px rgba(240,180,41,0.35);
+    box-shadow: 0 10px 24px rgba(240,180,41,0.4);
   }
   .coc-submit-title {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--navy);
     margin-bottom: 0.45rem;
     font-family: 'Playfair Display', serif;
   }
   .coc-submit-desc {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--muted);
     margin-bottom: 1.25rem;
     line-height: 1.55;
@@ -2395,7 +2401,7 @@
   @media (max-width: 600px) {
     .community-grid { grid-template-columns: 1fr; gap: 1rem; }
     .coc-submit-card { min-height: 200px; padding: 2rem 1.25rem; }
-    .coc-offer-headline { font-size: 1.25rem; }
+    .coc-offer-headline { font-size: 1.3rem; }
   }
 
 /* ── OFFER SUBMISSION MODAL ──────────────────────────────── */
@@ -4234,13 +4240,13 @@
     var url=f['Website URL']||'#';
     var headline=f['Offer Headline']||'';
     return '<div class="community-offer-card">'
+      +'<span class="coc-star" title="Community offer" aria-label="Community offer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.2 21 12 16.5 5.8 21l2.39-7.14L2 9.36h7.61z"/></svg></span>'
       +'<div class="coc-header">'
       +'<div class="coc-logo">'+logoHtml+'</div>'
       +'<div class="coc-header-text">'
       +'<p class="coc-name">'+biz+'</p>'
       +'<p class="coc-sector">'+(f['Sector']||'')+'</p>'
       +'</div>'
-      +'<span class="coc-badge">Community</span>'
       +'</div>'
       +'<div class="coc-body">'
       +(headline?'<p class="coc-offer-headline">'+headline+'</p>':'')
