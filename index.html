@@ -2098,8 +2098,8 @@
 
   .community-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+    gap: 1.6rem;
     margin-bottom: 2rem;
   }
 
@@ -2118,27 +2118,26 @@
     transform: translateY(-6px);
     box-shadow: 0 24px 56px rgba(26,37,80,0.16), 0 6px 16px rgba(26,37,80,0.06);
   }
-  .community-offer-card:hover .coc-star { transform: rotate(72deg) scale(1.15); }
-  .community-offer-card:hover .coc-header::after { opacity: 1; }
 
-  /* Card header — slim navy band with pattern */
+  /* Card header — text-only navy band */
   .coc-header {
     background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 100%);
-    padding: 0.95rem 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 11px;
+    padding: 1.15rem 1.35rem;
     position: relative;
     overflow: hidden;
+    min-height: 86px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   /* Soft radial highlight — top-right corner */
   .coc-header::before {
     content: '';
     position: absolute;
-    top: -70px; right: -60px;
-    width: 180px; height: 180px;
+    top: -80px; right: -70px;
+    width: 200px; height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(240,180,41,0.18) 0%, rgba(240,180,41,0) 65%);
+    background: radial-gradient(circle, rgba(240,180,41,0.2) 0%, rgba(240,180,41,0) 65%);
     pointer-events: none;
   }
   /* Fine diagonal line pattern for texture */
@@ -2148,49 +2147,43 @@
     inset: 0;
     background-image: repeating-linear-gradient(
       135deg,
-      rgba(255,255,255,0.02) 0px,
-      rgba(255,255,255,0.02) 1px,
+      rgba(255,255,255,0.022) 0px,
+      rgba(255,255,255,0.022) 1px,
       transparent 1px,
       transparent 10px
     );
     pointer-events: none;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
   }
   .coc-header > * { position: relative; z-index: 1; }
 
-  /* Logo */
-  .coc-logo {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(240,180,41,0.25) 0%, rgba(240,180,41,0.1) 100%);
-    border: 1px solid rgba(240,180,41,0.4);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 800;
-    color: var(--gold);
-    flex-shrink: 0; overflow: hidden;
-    letter-spacing: -0.3px;
+  /* Accent bar — left edge of header */
+  .coc-header::after,
+  .coc-accent-bar {
+    pointer-events: none;
   }
-  .coc-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
+  .coc-header > .coc-accent-bar {
+    position: absolute;
+    left: 0; top: 20%; bottom: 20%;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold) 0%, #d9980f 100%);
+    border-radius: 0 3px 3px 0;
+    box-shadow: 0 0 12px rgba(240,180,41,0.5);
+    z-index: 2;
+  }
 
-  .coc-header-text { flex: 1; min-width: 0; padding-right: 22px; }
   .coc-name {
     color: #fff;
-    font-size: 0.93rem;
+    font-size: 1.02rem;
     font-weight: 700;
-    margin: 0 0 2px;
+    margin: 0 0 3px;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-family: 'Playfair Display', serif;
     word-break: break-word;
   }
   .coc-sector {
     color: rgba(255,255,255,0.55);
-    font-size: 0.72rem;
+    font-size: 0.76rem;
     margin: 0;
     font-weight: 500;
     white-space: nowrap;
@@ -2198,22 +2191,9 @@
     text-overflow: ellipsis;
   }
 
-  /* Corner star — replaces the truncating "COMMUNITY" badge */
-  .coc-star {
-    position: absolute;
-    top: 11px; right: 11px;
-    width: 22px; height: 22px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold);
-    z-index: 2;
-    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1);
-    filter: drop-shadow(0 1px 3px rgba(240,180,41,0.4));
-  }
-  .coc-star svg { width: 100%; height: 100%; }
-
   /* Card body */
   .coc-body {
-    padding: 1.4rem 1.3rem 1.2rem;
+    padding: 1.5rem 1.35rem 1.25rem;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -2225,7 +2205,7 @@
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 90px;
+    height: 100px;
     background: linear-gradient(180deg, #fdf9ee 0%, #ffffff 100%);
     pointer-events: none;
     z-index: 0;
@@ -2235,25 +2215,25 @@
   /* Offer headline — the hero */
   .coc-offer-headline {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.55rem;
     font-weight: 800;
     color: var(--navy);
     line-height: 1.15;
-    margin: 0 0 0.4rem;
+    margin: 0 0 0.45rem;
     letter-spacing: -0.015em;
-    padding-left: 12px;
+    padding-left: 13px;
     border-left: 3px solid var(--gold);
   }
 
   .coc-offer-detail {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     color: #2d6a0f;
     font-weight: 600;
-    margin: 0 0 0.85rem;
+    margin: 0 0 0.9rem;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding-left: 15px;
+    padding-left: 16px;
   }
   .coc-offer-detail::before {
     content: '';
@@ -2264,25 +2244,25 @@
   }
 
   .coc-offer-code {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     color: var(--navy);
     background: #fff8e3;
     border: 1px dashed rgba(240,180,41,0.7);
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 4px 10px;
     border-radius: 5px;
-    margin: 0 0 0.9rem 15px;
+    margin: 0 0 0.95rem 16px;
     letter-spacing: 0.08em;
     font-family: ui-monospace, 'SF Mono', Menlo, monospace;
     align-self: flex-start;
   }
 
   .coc-desc {
-    font-size: 0.83rem;
+    font-size: 0.87rem;
     color: var(--muted);
     line-height: 1.6;
     flex: 1;
-    margin: 0 0 1rem;
+    margin: 0 0 1.1rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -2294,12 +2274,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 0.9rem;
+    padding-top: 0.95rem;
     border-top: 1px solid var(--border);
     gap: 10px;
   }
   .coc-town {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--muted);
     display: inline-flex;
     align-items: center;
@@ -2309,16 +2289,15 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .coc-town svg { flex-shrink: 0; opacity: 0.7; color: var(--gold); }
+  .coc-town svg { flex-shrink: 0; opacity: 0.8; color: var(--gold); }
   .coc-link {
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: var(--navy);
     font-weight: 700;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 0;
     flex-shrink: 0;
     transition: color 0.2s ease;
   }
@@ -2338,9 +2317,9 @@
     border-radius: 18px;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 2.5rem 1.5rem;
+    padding: 2.75rem 1.5rem;
     text-align: center;
-    min-height: 280px;
+    min-height: 300px;
     cursor: pointer;
     transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
@@ -2352,13 +2331,13 @@
     transform: translateY(-4px);
   }
   .coc-submit-icon {
-    width: 54px; height: 54px;
+    width: 56px; height: 56px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
     box-shadow: 0 8px 20px rgba(26,37,80,0.2);
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1.1rem;
-    font-size: 1.7rem;
+    margin-bottom: 1.15rem;
+    font-size: 1.75rem;
     color: var(--gold);
     font-weight: 300;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -2368,18 +2347,18 @@
     box-shadow: 0 10px 24px rgba(240,180,41,0.4);
   }
   .coc-submit-title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--navy);
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.5rem;
     font-family: 'Playfair Display', serif;
   }
   .coc-submit-desc {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.3rem;
     line-height: 1.55;
-    max-width: 240px;
+    max-width: 250px;
   }
 
   /* Loading & empty */
@@ -2400,8 +2379,8 @@
 
   @media (max-width: 600px) {
     .community-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .coc-submit-card { min-height: 200px; padding: 2rem 1.25rem; }
-    .coc-offer-headline { font-size: 1.3rem; }
+    .coc-submit-card { min-height: 220px; padding: 2rem 1.25rem; }
+    .coc-offer-headline { font-size: 1.35rem; }
   }
 
 /* ── OFFER SUBMISSION MODAL ──────────────────────────────── */
@@ -4231,22 +4210,16 @@
   function buildOfferCard(rec){
     var f=rec.fields;
     var biz=f['Business Name']||'';
-    var initials=biz.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2).toUpperCase();
-    var logo=f['Logo URL']||'';
-    var logoHtml=logo?'<img src="'+logo+'" alt="'+biz+'" style="width:100%;height:100%;object-fit:cover;border-radius:9px;">':initials;
     var code=f['Discount Code']||'';
     var detail=f['Offer Detail']||'';
     var town=f['Town / City']||'';
     var url=f['Website URL']||'#';
     var headline=f['Offer Headline']||'';
     return '<div class="community-offer-card">'
-      +'<span class="coc-star" title="Community offer" aria-label="Community offer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.2 21 12 16.5 5.8 21l2.39-7.14L2 9.36h7.61z"/></svg></span>'
       +'<div class="coc-header">'
-      +'<div class="coc-logo">'+logoHtml+'</div>'
-      +'<div class="coc-header-text">'
+      +'<span class="coc-accent-bar"></span>'
       +'<p class="coc-name">'+biz+'</p>'
       +'<p class="coc-sector">'+(f['Sector']||'')+'</p>'
-      +'</div>'
       +'</div>'
       +'<div class="coc-body">'
       +(headline?'<p class="coc-offer-headline">'+headline+'</p>':'')
@@ -4355,27 +4328,28 @@
     filtered.forEach(function(rec){
       var f=rec.fields;
       var biz=f['Business Name']||'';
-      var initials=biz.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2).toUpperCase();
-      var logo=f['Logo URL']||'';
-      var logoHtml=logo?'<img src="'+logo+'" alt="'+biz+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">':initials;
       var code=f['Discount Code']||'';
       var detail=f['Offer Detail']||'';
       var town=f['Town / City']||'';
+      var headline=f['Offer Headline']||'';
       grid.insertAdjacentHTML('beforeend',
         '<div class="community-offer-card">'
-        +'<div class="coc-header"><div class="coc-logo">'+logoHtml+'</div>'
-        +'<div><p class="coc-name">'+biz+'</p>'
-        +'<p class="coc-sector">'+(f['Sector']||'')+(town?' &middot; '+town:'')+'</p></div>'
-        +'<span class="coc-badge">Community</span></div>'
+        +'<div class="coc-header">'
+        +'<span class="coc-accent-bar"></span>'
+        +'<p class="coc-name">'+biz+'</p>'
+        +'<p class="coc-sector">'+(f['Sector']||'')+(town?' &middot; '+town:'')+'</p>'
+        +'</div>'
         +'<div class="coc-body">'
-        +'<div class="coc-offer-badge"><div>'
-        +'<p class="coc-offer-value">'+(f['Offer Headline']||'')+'</p>'
+        +(headline?'<p class="coc-offer-headline">'+headline+'</p>':'')
         +(detail?'<p class="coc-offer-detail">'+detail+'</p>':'')
-        +(code?'<p class="coc-offer-code">Code: '+code+'</p>':'')
-        +'</div></div>'
+        +(code?'<span class="coc-offer-code">'+code+'</span>':'')
         +'<p class="coc-desc">'+(f['Description']||'')+'</p>'
-        +'<a href="'+(f['Website URL']||'#')+'" target="_blank" rel="noopener" class="coc-link">Visit website &rarr;</a>'
-        +'</div></div>');
+        +'<div class="coc-footer">'
+        +(town?'<span class="coc-town"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'+town+'</span>':'<span></span>')
+        +'<a href="'+(f['Website URL']||'#')+'" target="_blank" rel="noopener" class="coc-link">Visit site <span class="coc-arrow">&rarr;</span></a>'
+        +'</div>'
+        +'</div>'
+        +'</div>');
     });
     if(!filtered.length){
       grid.innerHTML='<div class="coc-empty">'+(search||activeCategory!=='All'?'No offers match your search.':'No community offers yet — be the first to submit one!')+'</div>';
