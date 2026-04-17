@@ -165,7 +165,6 @@
   /* White text utility — used on headings inside .navy / .dark sections */
   .white, h1.white, h2.white, h3.white, h4.white { color: #fff; }
   p.white { color: rgba(255,255,255,0.85); }
-  .
 
   .section-label {
     display: inline-flex;
@@ -966,7 +965,6 @@
   .event-card:hover { border-color: var(--navy); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
   .event-card-icon { font-size: 1.6rem; }
   .event-card-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
-  .event-card-
 
   /* Footer brand */
   .footer-brand .nav-logo { display: inline-block; margin-bottom: 0.8rem; }
@@ -1046,7 +1044,6 @@
   .about-strategy-img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(26,37,80,0.12); object-fit: cover; height: 260px; display: block; }
 
   /* ── PROJECTS INLINE REPLACEMENTS ─────────────────────────── */
-  .proj-card-
   .proj-note { margin-top: 1rem; background: var(--light); border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.85rem; color: var(--muted); }
   .proj-register-link { color: var(--navy); font-weight: 700; text-decoration: underline; }
   .proj-cta-italic { color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 2rem; line-height: 1.75; font-style: italic; }
@@ -1625,10 +1622,10 @@
     line-height: 1.7;
   }
 
-  /* 5-card grid */
+  /* 3-col grid — 6 cards in 2 balanced rows */
   .sponsors-cards {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
     margin-bottom: 3rem;
   }
@@ -1665,7 +1662,6 @@
   /* Logo */
 
   /* Body text */
-  .scf-
   .scf-body h3 {
     font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
@@ -1749,13 +1745,10 @@
   }
 
   /* Responsive */
-  @media (max-width: 1100px) {
-    .sponsors-cards { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     .sponsors-cards { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 480px) {
+  @media (max-width: 520px) {
     .sponsors-cards { grid-template-columns: 1fr; }
     .sponsors-cta { flex-direction: column; gap: 1rem; }
   }
@@ -2705,6 +2698,14 @@
           <span class="scf-offer-label">Exclusive Offer</span>
           <span class="scf-offer-value">10% Off</span>
           <span class="scf-offer-code">Code: NCL10</span>
+        </div>
+      </a>
+
+      <a class="sponsor-card-full" href="https://www.lumo.co.uk" target="_blank" rel="noopener">
+        <div class="scf-body">
+          <h3>Lumo</h3>
+          <p>Affordable, all-electric train travel between London, Newcastle, Edinburgh &amp; Glasgow.</p>
+          <span class="scf-link">Visit Website <span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
         </div>
       </a>
 
@@ -3701,6 +3702,11 @@
         <p>Professional ironing and laundry with collection and delivery across Newcastle.</p>
         <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
       </a>
+      <a class="sponsor-card" href="https://www.lumo.co.uk" target="_blank">
+        <h4>Lumo</h4>
+        <p>Affordable, all-electric train travel between London, Newcastle, Edinburgh &amp; Glasgow.</p>
+        <span class="sponsor-card-link">Visit Website <span class="ct-quick-arrow"><span class="icon icon-sm"><i data-lucide="arrow-right"></i></span></span>
+      </a>
       <a class="sponsor-card" href="https://www.ne-bic.co.uk" target="_blank">
         <h4>NE BIC</h4>
         <p>The space to build a better business — co-working, offices and support in Newcastle.</p>
@@ -3720,26 +3726,6 @@
   </div>
 </section>
 
-<!-- COMMUNITY OFFERS SECTION -->
-<section class="community-offers-section">
-  <div class="wrap-wide">
-    <div class="section-header">
-      <span class="section-label">Community Offers</span>
-      <h2>Deals from the <em>Newcastle First Community</em></h2>
-      <p style="color:var(--muted);max-width:560px;margin:0.8rem auto 0;font-size:0.92rem;">
-        Exclusive offers submitted by local businesses for the Newcastle First community.
-        All offers are reviewed before going live.
-      </p>
-    </div>
-
-    <div class="community-grid" id="community-offers-grid">
-      <div class="coc-loading">
-        <div class="coc-spinner"></div>
-        Loading community offers...
-      </div>
-    </div>
-  </div>
-</section>
 </div>
 
 <div id="page-offers" class="spa-page">
@@ -4089,7 +4075,6 @@
     var url=name==='home'?window.location.pathname:window.location.pathname+'#'+name;
     try{history.pushState({page:name},'',url);}catch(e){}
     if(name==='offers') loadOffersPage();
-    if(name==='resources') loadCommunityOffers();
     if(typeof lucide!=='undefined') lucide.createIcons();
   }
 
@@ -4211,70 +4196,6 @@
       if(txt) txt.textContent='Subscribe';
       alert('Connection error. Please try again.');
     });
-  }
-
-  function buildOfferCard(rec){
-    var f=rec.fields;
-    var biz=f['Business Name']||'';
-    var code=f['Discount Code']||'';
-    var detail=f['Offer Detail']||'';
-    var town=f['Town / City']||'';
-    var url=f['Website URL']||'#';
-    var headline=f['Offer Headline']||'';
-    return '<div class="community-offer-card">'
-      +'<div class="coc-header">'
-      +'<span class="coc-accent-bar"></span>'
-      +'<p class="coc-name">'+biz+'</p>'
-      +'<p class="coc-sector">'+(f['Sector']||'')+'</p>'
-      +'</div>'
-      +'<div class="coc-body">'
-      +(headline?'<p class="coc-offer-headline">'+headline+'</p>':'')
-      +(detail?'<p class="coc-offer-detail">'+detail+'</p>':'')
-      +(code?'<span class="coc-offer-code">'+code+'</span>':'')
-      +'<p class="coc-desc">'+(f['Description']||'')+'</p>'
-      +'<div class="coc-footer">'
-      +(town?'<span class="coc-town"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'+town+'</span>':'<span></span>')
-      +'<a href="'+url+'" target="_blank" rel="noopener" class="coc-link">Visit site <span class="coc-arrow">→</span></a>'
-      +'</div>'
-      +'</div>'
-      +'</div>';
-  }
-
-  /* ── AIRTABLE — LOAD COMMUNITY OFFERS (Resources page) ──── */
-  var offersLoaded=false;
-  function loadCommunityOffers(){
-    if(offersLoaded) return;
-    var grid=document.getElementById('community-offers-grid');
-    if(!grid) return;
-    fetch(FN_AIRTABLE+'?site='+encodeURIComponent(AT_SITE))
-    .then(function(r){return r.json();})
-    .then(function(data){
-      offersLoaded=true;
-      renderOfferCards(data.records||[],grid);
-    })
-    .catch(function(){
-      grid.innerHTML='<div class="coc-empty">Could not load offers. Please try again later.</div>';
-      appendSubmitCard(grid);
-    });
-  }
-
-  function renderOfferCards(records,grid){
-    grid.innerHTML='';
-    records.forEach(function(rec){
-      grid.insertAdjacentHTML('beforeend', buildOfferCard(rec));
-    });
-    if(!records.length) grid.insertAdjacentHTML('beforeend','<div class="coc-empty">No community offers yet — be the first to submit one!</div>');
-    appendSubmitCard(grid);
-  }
-
-  function appendSubmitCard(grid){
-    grid.insertAdjacentHTML('beforeend',
-      '<div class="coc-submit-card" onclick="openOfferModal()">'
-      +'<div class="coc-submit-icon">+</div>'
-      +'<p class="coc-submit-title">Submit your offer</p>'
-      +'<p class="coc-submit-desc">Share a deal with the Newcastle First community</p>'
-      +'<button class="btn-gold" style="font-size:0.82rem;padding:0.5rem 1.2rem;" onclick="openOfferModal();event.stopPropagation()">Get listed</button>'
-      +'</div>');
   }
 
   /* ── NF OFFERS PAGE — LOAD & FILTER ─────────────────────── */
