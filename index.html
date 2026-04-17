@@ -100,9 +100,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://raw.githubusercontent.com" />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
   <link rel="dns-prefetch" content="https://api.brevo.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 
+  <!-- Lucide icons library (loads async, initialized after DOM ready in main script) -->
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
   <style>
 
   /* ════════════════════════════════════════════════════════════
@@ -159,6 +162,9 @@
   em { font-style: italic; }
   strong { font-weight: 700; color: var(--navy); }
   .lead { font-size: 1.1rem; color: var(--muted); line-height: 1.8; }
+  /* White text utility — used on headings inside .navy / .dark sections */
+  .white, h1.white, h2.white, h3.white, h4.white { color: #fff; }
+  p.white { color: rgba(255,255,255,0.85); }
   .
 
   .section-label {
@@ -785,7 +791,7 @@
   .ct-quick-card { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1rem 1.2rem; transition: background 0.2s, border-color 0.2s, transform 0.18s; }
   .ct-quick-card:hover { background: rgba(255,255,255,0.13); border-color: rgba(240,180,41,0.4); transform: translateX(4px); }
   .ct-quick-card-icon { font-size: 1.4rem; flex-shrink: 0; }
-  .ct-quick-card-
+  .ct-quick-card-body { flex: 1; min-width: 0; }
   .ct-quick-title { font-size: 0.9rem; font-weight: 700; color: #fff; }
   .ct-quick-desc { font-size: 0.76rem; color: rgba(255,255,255,0.5); margin-top: 0.1rem; }
   .ct-quick-arrow { color: var(--gold); font-size: 1rem; font-weight: 700; flex-shrink: 0; transition: transform 0.18s; }
@@ -819,7 +825,7 @@
   .ct-involve-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0.8rem; border-radius: 10px; border: 1px solid transparent; transition: background 0.18s, border-color 0.18s, transform 0.18s; }
   .ct-involve-item:hover { background: var(--light); border-color: var(--border); transform: translateX(3px); }
   .ct-involve-icon { width: 40px; height: 40px; background: var(--light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--border); flex-shrink: 0; }
-  .ct-involve-
+  .ct-involve-body { flex: 1; min-width: 0; }
   .ct-involve-title { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
   .ct-involve-desc { font-size: 0.76rem; color: var(--muted); margin-top: 0.1rem; }
   .ct-involve-arrow { color: var(--muted); font-size: 0.9rem; flex-shrink: 0; transition: color 0.18s, transform 0.18s; }
@@ -2583,7 +2589,7 @@
         <span class="social-card-num">03</span>
         <span class="social-card-icon"><span class="icon icon-xl"><i data-lucide="trophy"></i></span></span>
         <h3>Celebrating Community Heroes</h3>
-        <p>Through our High Street Heroes Awards, we'll be shining a spotlight on the unsung heroes making a real difference on our high streets and in our communities.</p>
+        <p>Through our High Street Heroes Awards, we shine a spotlight on the unsung heroes making a real difference on our high streets and in our communities.</p>
       </div>
       <div class="social-card">
         <span class="social-card-num">04</span>
@@ -3214,7 +3220,7 @@
         <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="trophy"></i></span></span>
         <h3>Awards</h3>
         <p class="body">The North East High Street Heroes Awards — recognising and celebrating the businesses that make our high streets thrive.</p>
-        <span class="pillar-status status-soon"><span class="status-dot"></span> Coming Soon</span>
+        <span class="pillar-status status-live"><span class="status-dot"></span> Nominations Now Open</span>
       </div>
       <div class="pillar">
         <span class="pillar-icon"><span class="icon icon-xl"><i data-lucide="mic"></i></span></span>
@@ -3259,12 +3265,12 @@
     <div class="two-col">
       <div>
         <div class="proj-img-frame" style="height:320px;"><img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/hsh-darlo-photo.jpg" alt="NE High Street Heroes Awards" /></div>
-        <span class="section-label">Project 2 — Coming Soon</span>
+        <span class="section-label">Project 2 — Nominations Now Open</span>
         <h2><span class="icon icon-md"><i data-lucide="trophy"></i></span> North East High Street <em>Heroes Awards</em></h2>
         <p class="lead">Shining a spotlight on the unsung heroes — the people and businesses making a real difference on our high streets and in our communities.</p>
-        <p class="body">The High Street Heroes Awards will celebrate the independent businesses, community champions, and local legends who make Newcastle's streets vibrant, welcoming, and economically vital.</p>
-        <p class="body">Nominations, categories, and dates to be announced. Register your interest below to be first to hear when entries open.</p>
-        <a href="#" onclick="showPage('contact');return false;" class="btn-gold">Register Interest</a>
+        <p class="body">The High Street Heroes Awards celebrate the independent businesses, community champions, and local legends who make Newcastle's streets vibrant, welcoming, and economically vital.</p>
+        <p class="body">Nominations are now open. Know a business or person who deserves recognition? Get in touch to nominate them.</p>
+        <a href="#" onclick="showPage('contact');return false;" class="btn-gold">Submit a Nomination</a>
       </div>
       <div>
         <div class="info-box" style="margin-top:0;">
