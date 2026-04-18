@@ -23,38 +23,26 @@ exports.handler = async function(event) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'API key not configured' }) };
   }
  
+  // Contact list — defaults to list #6, override with BREVO_LIST_ID env var if needed
+  const listId = Number(process.env.BREVO_LIST_ID) || 6;
+ 
   let body;
   try { body = JSON.parse(event.body); }
   catch { return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid JSON' }) }; }
  
-  const { email, firstName, lastName, company = '', jobTitle = '', listName = 'Newcastle_First' } = body;
+  const { email, firstName, lastName, company = '', jobTitle = '' } = body;
   if (!email || !firstName || !lastName) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing required fields' }) };
   }
  
   const BAPI = 'https://api.brevo.com/v3';
  
-  // Step 1: find list ID
-  let listId = null;
-  try {
-    const lr = await fetch(`${BAPI}/contacts/lists?limit=50`, {
-      headers: { 'api-key': apiKey, 'accept': 'application/json' }
-    });
-    if (lr.ok) {
-      const ld = await lr.json();
-      const match = (ld.lists || []).find(l =>
-        l.name === listName || l.name.toLowerCase().includes('newcast')
-      );
-      if (match) listId = match.id;
-    }
-  } catch {}
- 
-  // Step 2: create/update contact
+  // Create/update contact — add directly to the configured list
   const payload = {
     email,
     updateEnabled: true,
     attributes: { FIRSTNAME: firstName, LASTNAME: lastName, COMPANY: company, JOB_TITLE: jobTitle },
-    listIds: listId ? [listId] : []
+    listIds: [listId]
   };
  
   const res = await fetch(`${BAPI}/contacts`, {
@@ -64,12 +52,12 @@ exports.handler = async function(event) {
   });
  
   if (res.status === 201 || res.status === 204) {
-    return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
+    return { statusCode: 200, headers, body: JSON.stringify({ success: true, listId }) };
   }
  
   const err = await res.json().catch(() => ({}));
  
-  // Duplicate — update via PUT
+  // Duplicate — update via PUT (ensures existing contacts also get added to list #6)
   if (res.status === 400 && (err.code === 'duplicate_parameter' || (err.message || '').includes('already exist'))) {
     const put = await fetch(`${BAPI}/contacts/${encodeURIComponent(email)}`, {
       method: 'PUT',
@@ -77,7 +65,7 @@ exports.handler = async function(event) {
       body: JSON.stringify({ attributes: payload.attributes, listIds: payload.listIds })
     });
     if (put.ok || put.status === 204) {
-      return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
+      return { statusCode: 200, headers, body: JSON.stringify({ success: true, listId }) };
     }
   }
  
