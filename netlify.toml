@@ -7,10 +7,3 @@
  
 [functions]
   node_bundler = "esbuild"
- 
-# Redirect all function calls cleanly
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
- 
