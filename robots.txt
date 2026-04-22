@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block Netlify functions from being crawled
+Disallow: /.netlify/
+
+Sitemap: https://www.newcastlefirst.network/sitemap.xml
