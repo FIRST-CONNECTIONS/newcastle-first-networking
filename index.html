@@ -12,14 +12,14 @@
   <meta name="keywords" content="Newcastle business networking, free networking Newcastle, North East networking, Newcastle First, business community Newcastle, networking events Newcastle, entrepreneur Newcastle, North East business" />
   <meta name="author" content="Newcastle First — First Connections Network" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <link rel="canonical" href="https://www.newcastlefirst.network/" />
+  <link rel="canonical" href="https://newcastlefirst.network/" />
 
   <!-- ── Open Graph (Facebook, LinkedIn, WhatsApp) ─────── -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Newcastle First" />
   <meta property="og:title" content="Newcastle First — Free Business Networking in Newcastle" />
   <meta property="og:description" content="Join Newcastle's fastest-growing free business networking community. Monthly coffee mornings, social events, awards and a podcast — all completely free to attend." />
-  <meta property="og:url" content="https://www.newcastlefirst.network/" />
+  <meta property="og:url" content="https://newcastlefirst.network/" />
   <meta property="og:image" content="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Tyne-bridge.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -46,7 +46,7 @@
     "@type": "Organization",
     "name": "Newcastle First",
     "alternateName": "Newcastle First Business Networking",
-    "url": "https://www.newcastlefirst.network",
+    "url": "https://newcastlefirst.network",
     "logo": "https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/NC-Logos/NewcastleFirst_FavIcon.png",
     "description": "Newcastle First is a free, community-first business networking organisation in Newcastle upon Tyne, running monthly events, the North East High Street Heroes Awards, and a regional business podcast.",
     "address": {
@@ -2307,6 +2307,44 @@
   .coc-link:hover { color: var(--gold-hover); }
   .coc-link:hover .coc-arrow { transform: translateX(3px); }
 
+  /* Share icons row — appears above the footer */
+  .coc-share {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.7rem 0 0.2rem;
+    margin-top: auto;
+  }
+  .coc-share-btn {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    text-decoration: none;
+    padding: 0;
+  }
+  .coc-share-btn:hover {
+    color: var(--navy);
+    border-color: var(--navy);
+    background: #fff;
+    transform: translateY(-1px);
+  }
+  .coc-share-btn svg {
+    width: 14px; height: 14px;
+    display: block;
+  }
+  .coc-share-btn.copied {
+    color: #2d6a0f;
+    border-color: #2d6a0f;
+    background: #f0f9e8;
+  }
+
   /* Submit card */
   .coc-submit-card {
     background:
@@ -4203,6 +4241,60 @@
   var activeCategory='All';
   var chr=String.fromCharCode;
 
+  /* ── OFFER SHARE HELPERS ─────────────────────────────────── */
+  function buildOfferShareRow(biz, headline, url){
+    var shareUrl='https://newcastlefirst.network/#offers';
+    var text=(headline?headline+' from '+biz:biz+' offer')+' via Newcastle First';
+    var encUrl=encodeURIComponent(shareUrl);
+    var encText=encodeURIComponent(text);
+    var encSubj=encodeURIComponent('Check out this Newcastle First offer: '+biz);
+    var encBody=encodeURIComponent(text+chr(10)+chr(10)+shareUrl);
+    return '<div class="coc-share">'
+      // Copy link
+      +'<button type="button" class="coc-share-btn" title="Copy link" aria-label="Copy link" onclick="copyOfferLink(event,'+chr(39)+shareUrl+chr(39)+')">'
+      +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>'
+      +'</button>'
+      // Email
+      +'<a class="coc-share-btn" title="Share via email" aria-label="Share via email" href="mailto:?subject='+encSubj+'&body='+encBody+'">'
+      +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>'
+      +'</a>'
+      // Facebook
+      +'<a class="coc-share-btn" title="Share on Facebook" aria-label="Share on Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u='+encUrl+'">'
+      +'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>'
+      +'</a>'
+      // LinkedIn
+      +'<a class="coc-share-btn" title="Share on LinkedIn" aria-label="Share on LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url='+encUrl+'">'
+      +'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'
+      +'</a>'
+      // X (Twitter)
+      +'<a class="coc-share-btn" title="Share on X" aria-label="Share on X" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text='+encText+'&url='+encUrl+'">'
+      +'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
+      +'</a>'
+      +'</div>';
+  }
+
+  function copyOfferLink(ev, url){
+    ev.preventDefault();
+    ev.stopPropagation();
+    var btn=ev.currentTarget;
+    var restore=btn.innerHTML;
+    function ok(){
+      btn.classList.add('copied');
+      btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      setTimeout(function(){
+        btn.classList.remove('copied');
+        btn.innerHTML=restore;
+      },1500);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(ok).catch(function(){
+        window.prompt('Copy this link:', url);
+      });
+    } else {
+      window.prompt('Copy this link:', url);
+    }
+  }
+
   function loadOffersPage(){
     var grid=document.getElementById('nf-offers-grid');
     if(!grid) return;
@@ -4259,6 +4351,7 @@
       var detail=f['Offer Detail']||'';
       var town=f['Town / City']||'';
       var headline=f['Offer Headline']||'';
+      var website=f['Website URL']||'#';
       grid.insertAdjacentHTML('beforeend',
         '<div class="community-offer-card">'
         +'<div class="coc-header">'
@@ -4271,9 +4364,10 @@
         +(detail?'<p class="coc-offer-detail">'+detail+'</p>':'')
         +(code?'<span class="coc-offer-code">'+code+'</span>':'')
         +'<p class="coc-desc">'+(f['Description']||'')+'</p>'
+        +buildOfferShareRow(biz, headline, website)
         +'<div class="coc-footer">'
         +(town?'<span class="coc-town"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'+town+'</span>':'<span></span>')
-        +'<a href="'+(f['Website URL']||'#')+'" target="_blank" rel="noopener" class="coc-link">Visit site <span class="coc-arrow">&rarr;</span></a>'
+        +'<a href="'+website+'" target="_blank" rel="noopener" class="coc-link">Visit site <span class="coc-arrow">&rarr;</span></a>'
         +'</div>'
         +'</div>'
         +'</div>');
