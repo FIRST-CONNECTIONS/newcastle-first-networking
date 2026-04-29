@@ -780,6 +780,12 @@
     background: radial-gradient(circle, rgba(240,180,41,0.07) 0%, transparent 65%);
     pointer-events: none;
   }
+  @media (max-width: 900px) {
+    .ct-hero::before { width: 420px; height: 420px; top: -30%; right: -25%; }
+  }
+  @media (max-width: 600px) {
+    .ct-hero::before { display: none; }
+  }
   .ct-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .ct-hero-text h1 { color: #fff; }
   .ct-hero-text h1 em { color: var(--gold); }
@@ -2489,6 +2495,49 @@
     .offer-form-row { grid-template-columns: 1fr; }
     .offer-modal { padding: 1.5rem 1.2rem; border-radius: 12px; }
     .community-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── RESPONSIVE POLISH ──────────────────────────────────
+     Tablet + small-screen fixes layered on top of the
+     mobile-first base. Targets iPad portrait/landscape,
+     and the offers/resources filter bar. */
+
+  /* Offers sticky filter bar — was inline-styled, no media query.
+     Stack on phones and let the count badge wrap naturally. */
+  @media (max-width: 700px) {
+    #offers-grid-section > .wrap-wide {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+    #offers-grid-section #offers-filter-pills {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.25rem;
+    }
+    #offers-grid-section #offers-filter-pills > * { flex-shrink: 0; }
+    #offers-grid-section #offers-count { margin-left: 0; }
+  }
+
+  /* iPad portrait & landscape (768–1024px) — site otherwise
+     falls into the ≤900px mobile bucket which is too dense. */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .sponsor-cards { grid-template-columns: repeat(3, 1fr) !important; }
+    .three-col,
+    .four-col,
+    .social-grid,
+    .barriers-grid { grid-template-columns: 1fr 1fr; }
+    .about-strategy-img { height: 260px; }
+    .proj-img-frame img { height: 280px; }
+    .wrap, .wrap-wide, .container { padding: 0 2rem; }
+    section { padding: 4.5rem 0; }
+  }
+
+  /* Small-mobile h3 hierarchy — keep h3 visually distinct
+     from body copy when it collapses to 1rem at 600px. */
+  @media (max-width: 600px) {
+    h3 { font-weight: 700; line-height: 1.35; }
   }
 
 </style>
