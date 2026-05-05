@@ -31,7 +31,7 @@ exports.handler = async function(event) {
   // ── GET — fetch approved offers for a site ──────────────────────────────
   if (event.httpMethod === 'GET') {
     const site = event.queryStringParameters?.site || 'Newcastle First';
-    const filter = `AND({Approved}=1,OR({Site}="${site}",{Site}="All Sites"))`;
+    const filter = `AND({Approved}=1,OR(FIND("${site}",ARRAYJOIN({Site}))>0,FIND("All Sites",ARRAYJOIN({Site}))>0))`;
     const fields = [
       'Business Name','Sector','Description','Offer Headline',
       'Offer Detail','Discount Code','Website URL','Logo URL','Town / City'
