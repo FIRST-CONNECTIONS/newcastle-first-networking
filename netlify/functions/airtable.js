@@ -69,7 +69,8 @@ exports.handler = async function(event) {
       'Sector': sector,
       'Description': description,
       'Offer Headline': offerHeadline,
-      'Site': site || 'Newcastle First',
+      // Site is a multi-select field in Airtable — must be sent as an array
+      'Site': [site || 'Newcastle First'],
       'Town / City': town,
       'Contact Name': contactName,
       'Contact Email': contactEmail
