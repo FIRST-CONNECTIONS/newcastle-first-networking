@@ -1,9 +1,20 @@
 # Netlify configuration — First Connections Network
 # Place this file in the ROOT of your GitHub repository
- 
+
 [build]
   publish = "."
   functions = "netlify/functions"
- 
+
 [functions]
   node_bundler = "esbuild"
+
+# Serve the SPA at /funding-support without changing the URL bar
+[[redirects]]
+  from = "/funding-support"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/funding-support/"
+  to = "/index.html"
+  status = 200
