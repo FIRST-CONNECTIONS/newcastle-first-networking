@@ -2857,6 +2857,39 @@
   .mobile-menu .icon svg,
   .footer-links .icon svg { stroke: var(--gold); }
 
+  /* Form success / error states — swapped in by
+     submitFormToBackend() when the Netlify function replies. */
+  .ct-form-success {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 2.5rem 1.5rem;
+    background: linear-gradient(180deg, rgba(240,180,41,0.06), rgba(240,180,41,0));
+    border: 1px solid rgba(240,180,41,0.28);
+    border-radius: 16px;
+  }
+  .ct-form-success-icon {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--gold); color: var(--navy-dark);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+    box-shadow: 0 6px 20px rgba(240,180,41,0.35);
+  }
+  .ct-form-success-icon svg { width: 28px; height: 28px; }
+  .ct-form-success h3 { color: var(--navy); margin: 0 0 0.5rem; }
+  .ct-form-success p { color: var(--muted); max-width: 34ch; margin: 0; }
+
+  .ct-form-error {
+    padding: 0.85rem 1rem;
+    background: rgba(176,54,54,0.08);
+    border: 1px solid rgba(176,54,54,0.35);
+    color: var(--danger);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .ct-form-error a { color: var(--danger); text-decoration: underline; font-weight: 600; }
+  .ct-form-error a:hover { color: #7a2828; }
+
   /* Modal close × sits on white — bump contrast */
   .nl-modal-close, .offer-modal-close { color: var(--text); }
   .nl-modal-close:hover, .offer-modal-close:hover { color: var(--navy); background: var(--light); }
@@ -2891,36 +2924,42 @@
 </head>
 <body>
 
-<div id="page-home" class="spa-page active">
-<!-- NAV -->
+<!-- ── SHARED NAV & MOBILE MENU ─────────────────────────────
+     Rendered once, above all SPA pages. Every internal link
+     has a real href (so screen readers, copy-link and
+     middle-click all work) plus a data-page attribute that a
+     delegated click handler in the JS block below uses to
+     swap SPA pages without a full navigation. -->
 <nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+  <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
   <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
+    <li><a href="/" data-page="home">Home</a></li>
+    <li><a href="/#about" data-page="about">About</a></li>
+    <li><a href="/#events" data-page="events">Events</a></li>
+    <li><a href="/#projects" data-page="projects">Projects</a></li>
+    <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+    <li><a href="/#resources" data-page="resources">Resources</a></li>
+    <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+    <li><a href="/#contact" data-page="contact">Contact</a></li>
+    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" rel="noopener" class="nav-cta">Book Free Ticket</a></li>
   </ul>
   <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
+  <a href="/" data-page="home" class="mobile-link">Home</a>
+  <a href="/#about" data-page="about" class="mobile-link">About</a>
+  <a href="/#events" data-page="events" class="mobile-link">Events</a>
+  <a href="/#projects" data-page="projects" class="mobile-link">Projects</a>
+  <a href="/#offers" data-page="offers" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
+  <a href="/#resources" data-page="resources" class="mobile-link">Resources</a>
+  <a href="/funding-support" data-page="funding-support" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
+  <a href="/#contact" data-page="contact" class="mobile-link">Contact</a>
+  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" rel="noopener" class="mob-cta">Book Free Ticket</a>
 </div>
+
+<div id="page-home" class="spa-page active">
 <!-- HERO -->
 <section class="hero">
   
@@ -3048,7 +3087,7 @@
         <h2>Why <em>Newcastle?</em></h2>
         <p class="lead">Newcastle is the beating heart of the North East — home to world-class universities, a thriving tech and creative sector, and a business community full of ambition.</p>
         <p>The opportunity is enormous. Newcastle is ready to become the powerhouse of business networking across the entire North East region.</p>
-        <a href="#" onclick="showPage('about');return false;" class="btn-outline" style="margin-top:1.2rem;display:inline-flex;">Learn More →</a>
+        <a href="/#about" data-page="about" class="btn-outline" style="margin-top:1.2rem;display:inline-flex;">Learn More →</a>
       </div>
       <div>
         <span class="section-label">Our Mission</span>
@@ -3093,7 +3132,7 @@
       </div>
     </div>
     <div class="explore-cta">
-      <a class="btn-gold" href="#" onclick="showPage('resources');return false;">Explore Our Projects</a>
+      <a class="btn-gold" href="/#resources" data-page="resources">Explore Our Projects</a>
     </div>
   </div>
 </section>
@@ -3215,20 +3254,20 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+      <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
       <p>A free, community-first business networking event for Newcastle and the wider North East. Building connections, generating real opportunity.</p>
     </div>
     <div>
       <p class="footer-col-title">Navigate</p>
       <ul class="footer-links">
-        <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-        <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/#about" data-page="about">About</a></li>
+        <li><a href="/#events" data-page="events">Events</a></li>
+        <li><a href="/#projects" data-page="projects">Projects</a></li>
+        <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+      <li><a href="/#resources" data-page="resources">Resources</a></li>
+      <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+        <li><a href="/#contact" data-page="contact">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -3236,8 +3275,8 @@
       <ul class="footer-links">
         <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank">Book a Ticket</a></li>
         <li><a href="#" onclick="event.preventDefault();openSubscribeModal(this);">Newsletter</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">High Street Heroes</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Podcast</a></li>
+        <li><a href="/#projects" data-page="projects">High Street Heroes</a></li>
+        <li><a href="/#projects" data-page="projects">Podcast</a></li>
         <li><a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a></li>
       </ul>
     </div>
@@ -3252,35 +3291,6 @@
 </div>
 
 <div id="page-about" class="spa-page">
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
-</div>
 <section class="page-hero" style="background:linear-gradient(to bottom,rgba(17,26,58,0.72) 0%,rgba(17,26,58,0.82) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Tyne-bridge.png') center 40%/cover no-repeat;">
   <div class="wrap">
     <h1>About <em>Newcastle First</em></h1>
@@ -3372,7 +3382,7 @@
         <h2>Building a community that <em>generates</em> real opportunity</h2>
         <p class="lead">We're building a business community that is first and foremost supportive — and in turn becomes progressive and generative.</p>
         <p class="body">Generating sales, generating income, and generating real opportunities for businesses across the region. We want to connect emerging young entrepreneurs with established, experienced business leaders — bridging the gap and creating a network where everyone grows together.</p>
-        <a href="#" onclick="showPage('projects');return false;" class="btn-gold" style="margin-top:1rem;">See Our Projects</a>
+        <a href="/#projects" data-page="projects" class="btn-gold" style="margin-top:1rem;">See Our Projects</a>
       </div>
       <div>
         <span class="section-label">The Team Behind Newcastle First</span>
@@ -3393,26 +3403,26 @@
     <h2 class="white">Ready to be part of it?</h2>
     <p class="proj-cta-italic">Join us at the next Newcastle First event — free, relaxed, and full of genuine connections.</p>
     <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="btn-gold" style="margin-right:1rem;">Book Your Free Ticket</a>
-    <a href="#" onclick="showPage('contact');return false;" class="btn-outline-white">Get in Touch</a>
+    <a href="/#contact" data-page="contact" class="btn-outline-white">Get in Touch</a>
   </div>
 </section>
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+      <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
       <p>A free, community-first business networking event for Newcastle and the wider North East. Building connections, generating real opportunity.</p>
     </div>
     <div>
       <p class="footer-col-title">Navigate</p>
       <ul class="footer-links">
-        <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-        <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/#about" data-page="about">About</a></li>
+        <li><a href="/#events" data-page="events">Events</a></li>
+        <li><a href="/#projects" data-page="projects">Projects</a></li>
+        <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+      <li><a href="/#resources" data-page="resources">Resources</a></li>
+      <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+        <li><a href="/#contact" data-page="contact">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -3420,8 +3430,8 @@
       <ul class="footer-links">
         <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank">Book a Ticket</a></li>
         <li><a href="#" onclick="event.preventDefault();openSubscribeModal(this);">Newsletter</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">High Street Heroes</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Podcast</a></li>
+        <li><a href="/#projects" data-page="projects">High Street Heroes</a></li>
+        <li><a href="/#projects" data-page="projects">Podcast</a></li>
         <li><a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a></li>
       </ul>
     </div>
@@ -3436,35 +3446,6 @@
 </div>
 
 <div id="page-events" class="spa-page">
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
-</div>
   <!-- HERO -->
   <section class="ev-hero" style="background:linear-gradient(to bottom,rgba(17,26,58,0.75) 0%,rgba(17,26,58,0.85) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/newcastle-monument.png') center center/cover no-repeat;">
     <div class="ev-hero-inner">
@@ -3588,20 +3569,20 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+      <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
       <p>A free, community-first business networking event for Newcastle and the wider North East. Building connections, generating real opportunity.</p>
     </div>
     <div>
       <p class="footer-col-title">Navigate</p>
       <ul class="footer-links">
-        <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-        <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/#about" data-page="about">About</a></li>
+        <li><a href="/#events" data-page="events">Events</a></li>
+        <li><a href="/#projects" data-page="projects">Projects</a></li>
+        <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+      <li><a href="/#resources" data-page="resources">Resources</a></li>
+      <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+        <li><a href="/#contact" data-page="contact">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -3609,8 +3590,8 @@
       <ul class="footer-links">
         <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank">Book a Ticket</a></li>
         <li><a href="#" onclick="event.preventDefault();openSubscribeModal(this);">Newsletter</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">High Street Heroes</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Podcast</a></li>
+        <li><a href="/#projects" data-page="projects">High Street Heroes</a></li>
+        <li><a href="/#projects" data-page="projects">Podcast</a></li>
         <li><a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a></li>
       </ul>
     </div>
@@ -3625,35 +3606,6 @@
 </div>
 
 <div id="page-projects" class="spa-page">
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
-</div>
 <section class="page-hero" style="background:linear-gradient(to bottom,rgba(17,26,58,0.8) 0%,rgba(17,26,58,0.9) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Strategy-table.png') center center/cover no-repeat;">
   <div class="wrap">
     <h1>Our <em>Projects</em></h1>
@@ -3700,7 +3652,7 @@
         <p class="lead">Our core offering — free, relaxed, and genuinely useful business networking for everyone in the Newcastle area.</p>
         <p class="body">We host monthly coffee mornings at rotating venues across Newcastle, supporting local independent businesses as we go. We also run social events — football, bowling, padel, and more — because the best connections happen naturally.</p>
         <p class="body">Every business sector is welcome. Whether you're a sole trader or running a team of 50, there's a seat at the table for you.</p>
-        <a href="#" onclick="showPage('events');return false;" class="btn-gold">View Events</a>
+        <a href="/#events" data-page="events" class="btn-gold">View Events</a>
       </div>
       <div>
         <div class="proj-img-frame" style="height:240px;"><img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/Strategy-table.png" alt="Business owners networking at a Newcastle First coffee morning" loading="lazy" /></div>
@@ -3729,7 +3681,7 @@
         <p class="lead">Shining a spotlight on the unsung heroes — the people and businesses making a real difference on our high streets and in our communities.</p>
         <p class="body">The High Street Heroes Awards celebrate the independent businesses, community champions, and local legends who make Newcastle's streets vibrant, welcoming, and economically vital.</p>
         <p class="body">Nominations are now open. Know a business or person who deserves recognition? Get in touch to nominate them.</p>
-        <a href="#" onclick="showPage('contact');return false;" class="btn-gold">Submit a Nomination</a>
+        <a href="/#contact" data-page="contact" class="btn-gold">Submit a Nomination</a>
       </div>
       <div>
         <div class="info-box" style="margin-top:0;">
@@ -3759,7 +3711,7 @@
         <p class="lead">A regional podcast spotlighting the stories, insights, and voices driving business forward across the North East.</p>
         <p class="body">We're producing a podcast that goes beyond the boardroom — real conversations with real business owners about the highs, the lows, and the lessons that shaped them.</p>
         <p class="body">Each episode will feature a guest from Newcastle's business community, exploring what it means to build something meaningful in the North East.</p>
-        <a href="#" onclick="showPage('contact');return false;" class="btn-gold">Want to be a Guest?</a>
+        <a href="/#contact" data-page="contact" class="btn-gold">Want to be a Guest?</a>
       </div>
       <div>
         <div class="proj-img-frame" style="height:260px;"><img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/podcast_studio.png" alt="Newcastle First Podcast recording studio setup" loading="lazy" /></div>
@@ -3785,26 +3737,26 @@
     <h2 class="white">Together, these three pillars will empower Newcastle</h2>
     <p style="color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 2rem;line-height:1.75;font-style:italic;">…to fulfil its potential as the <em style="color:var(--gold);">first place you come to do business</em> in the North East.</p>
     <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="btn-gold" style="margin-right:1rem;">Book a Free Event</a>
-    <a href="#" onclick="showPage('contact');return false;" class="btn-outline-white">Get Involved</a>
+    <a href="/#contact" data-page="contact" class="btn-outline-white">Get Involved</a>
   </div>
 </section>
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+      <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
       <p>A free, community-first business networking event for Newcastle and the wider North East. Building connections, generating real opportunity.</p>
     </div>
     <div>
       <p class="footer-col-title">Navigate</p>
       <ul class="footer-links">
-        <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-        <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/#about" data-page="about">About</a></li>
+        <li><a href="/#events" data-page="events">Events</a></li>
+        <li><a href="/#projects" data-page="projects">Projects</a></li>
+        <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+      <li><a href="/#resources" data-page="resources">Resources</a></li>
+      <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+        <li><a href="/#contact" data-page="contact">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -3812,8 +3764,8 @@
       <ul class="footer-links">
         <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank">Book a Ticket</a></li>
         <li><a href="#" onclick="event.preventDefault();openSubscribeModal(this);">Newsletter</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">High Street Heroes</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Podcast</a></li>
+        <li><a href="/#projects" data-page="projects">High Street Heroes</a></li>
+        <li><a href="/#projects" data-page="projects">Podcast</a></li>
         <li><a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a></li>
       </ul>
     </div>
@@ -3828,35 +3780,6 @@
 </div>
 
 <div id="page-resources" class="spa-page">
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
-</div>
 <!-- PAGE HERO -->
 <section class="page-hero" style="background:linear-gradient(to bottom,rgba(17,26,58,0.78) 0%,rgba(17,26,58,0.88) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/newcastle-monument.png') center 30%/cover no-repeat;">
   <div class="wrap">
@@ -4224,35 +4147,6 @@
 
 <div id="page-offers" class="spa-page">
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
-</div>
 
 <!-- OFFERS HERO -->
 <section style="background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 100%); padding: 6rem 0 4rem; position: relative; overflow: hidden;">
@@ -4331,20 +4225,20 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+      <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
       <p>A free, community-first business networking event for Newcastle and the wider North East. Building connections, generating real opportunity.</p>
     </div>
     <div>
       <p class="footer-col-title">Navigate</p>
       <ul class="footer-links">
-        <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-        <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/#about" data-page="about">About</a></li>
+        <li><a href="/#events" data-page="events">Events</a></li>
+        <li><a href="/#projects" data-page="projects">Projects</a></li>
+        <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+      <li><a href="/#resources" data-page="resources">Resources</a></li>
+      <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+        <li><a href="/#contact" data-page="contact">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -4352,8 +4246,8 @@
       <ul class="footer-links">
         <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank">Book a Ticket</a></li>
         <li><a href="#" onclick="event.preventDefault();openSubscribeModal(this);">Newsletter</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">High Street Heroes</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Podcast</a></li>
+        <li><a href="/#projects" data-page="projects">High Street Heroes</a></li>
+        <li><a href="/#projects" data-page="projects">Podcast</a></li>
         <li><a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a></li>
       </ul>
     </div>
@@ -4375,35 +4269,6 @@
      ═══════════════════════════════════════════════════════════ -->
 <div id="page-funding-support" class="spa-page">
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
-</div>
 
 <!-- HERO -->
 <section class="ct-hero mtk-hero" style="background:linear-gradient(135deg,rgba(17,26,58,0.94) 0%,rgba(30,46,98,0.88) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/newcastle-building.png') center center/cover no-repeat;">
@@ -4591,7 +4456,7 @@
           </select>
         </div>
         <div class="ct-field"><label class="ct-label" for="mtk-message">Tell us about your project</label><textarea id="mtk-message" class="ct-textarea" placeholder="A few sentences about what you're building, the sector you're in, and what funding or support you're hoping to unlock…" rows="5"></textarea></div>
-        <button type="button" class="ct-submit-btn" onclick="sendMetrickForm()"><span>Register interest</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <button type="button" class="ct-submit-btn" onclick="sendMetrickForm(this)"><span>Register interest</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         <p class="ct-form-note">Your details go to the Newcastle First team, who'll pass them to Metrick to arrange a free discovery call. Typically responded to within 1–2 business days.</p>
       </div>
     </div>
@@ -4633,20 +4498,20 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+      <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
       <p>Free, community-first business networking in Newcastle upon Tyne &amp; the North East.</p>
     </div>
     <div>
       <p class="footer-col-title">Navigate</p>
       <ul class="footer-links">
-        <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-        <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/#about" data-page="about">About</a></li>
+        <li><a href="/#events" data-page="events">Events</a></li>
+        <li><a href="/#projects" data-page="projects">Projects</a></li>
+        <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+      <li><a href="/#resources" data-page="resources">Resources</a></li>
+      <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+        <li><a href="/#contact" data-page="contact">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -4654,7 +4519,7 @@
       <ul class="footer-links">
         <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank">Book a Ticket</a></li>
         <li><a href="#" onclick="event.preventDefault();openSubscribeModal(this);">Newsletter</a></li>
-        <li><a href="#" onclick="showPage('funding-support');return false;">Grants &amp; Funding</a></li>
+        <li><a href="/funding-support" data-page="funding-support">Grants &amp; Funding</a></li>
         <li><a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a></li>
       </ul>
     </div>
@@ -4672,35 +4537,6 @@
 
 <div id="page-contact" class="spa-page">
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-    <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-    <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-    <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-    <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
-    <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="nav-cta">Book Free Ticket</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="#" onclick="showPage('home');return false;" class="mobile-link">Home</a>
-  <a href="#" onclick="showPage('about');return false;" class="mobile-link">About</a>
-  <a href="#" onclick="showPage('events');return false;" class="mobile-link">Events</a>
-  <a href="#" onclick="showPage('projects');return false;" class="mobile-link">Projects</a>
-  <a href="#" onclick="showPage('offers');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="tag"></i></span>NF Offers</a>
-      <a href="#" onclick="showPage('resources');return false;" class="mobile-link">Resources</a>
-  <a href="#" onclick="showPage('funding-support');return false;" class="mobile-link"><span class="icon icon-sm" style="color:var(--gold);margin-right:6px;vertical-align:-3px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a>
-  <a href="#" onclick="showPage('contact');return false;" class="mobile-link">Contact</a>
-  <a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank" class="mob-cta">Book Free Ticket</a>
-</div>
 
 <!-- CONTACT HERO -->
 <section class="ct-hero" style="background:linear-gradient(135deg,rgba(17,26,58,0.88) 0%,rgba(30,46,98,0.82) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/newcastle-building.png') center center/cover no-repeat;">
@@ -4763,7 +4599,7 @@
           <input type="hidden" id="contact-subject" value="General Enquiry" />
         </div>
         <div class="ct-field"><label class="ct-label" for="contact-message">Your Message</label><textarea id="contact-message" class="ct-textarea" placeholder="Tell us what's on your mind..." rows="5"></textarea></div>
-        <button type="button" class="ct-submit-btn" onclick="sendContactForm()"><span>Send Message</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <button type="button" class="ct-submit-btn" onclick="sendContactForm(this)"><span>Send Message</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         <p class="ct-form-note">We typically respond within 1–2 business days.</p>
       </div>
     </div>
@@ -4812,20 +4648,20 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="nav-logo" href="#" onclick="showPage('home');return false;">Newcastle <span>First</span></a>
+      <a class="nav-logo" href="/" data-page="home">Newcastle <span>First</span></a>
       <p>A free, community-first business networking event for Newcastle and the wider North East. Building connections, generating real opportunity.</p>
     </div>
     <div>
       <p class="footer-col-title">Navigate</p>
       <ul class="footer-links">
-        <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#" onclick="showPage('about');return false;">About</a></li>
-        <li><a href="#" onclick="showPage('events');return false;">Events</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Projects</a></li>
-        <li><a href="#" onclick="showPage('offers');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
-      <li><a href="#" onclick="showPage('resources');return false;">Resources</a></li>
-      <li><a href="#" onclick="showPage('funding-support');return false;"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
-        <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/" data-page="home">Home</a></li>
+        <li><a href="/#about" data-page="about">About</a></li>
+        <li><a href="/#events" data-page="events">Events</a></li>
+        <li><a href="/#projects" data-page="projects">Projects</a></li>
+        <li><a href="/#offers" data-page="offers"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="tag"></i></span>NF Offers</a></li>
+      <li><a href="/#resources" data-page="resources">Resources</a></li>
+      <li><a href="/funding-support" data-page="funding-support"><span class="icon icon-sm" style="color:var(--gold);margin-right:4px;vertical-align:-2px;"><i data-lucide="badge-pound-sterling"></i></span>Grants &amp; Funding</a></li>
+        <li><a href="/#contact" data-page="contact">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -4833,8 +4669,8 @@
       <ul class="footer-links">
         <li><a href="https://www.eventbrite.com/cc/newcastle-first-business-networking-4829807" target="_blank">Book a Ticket</a></li>
         <li><a href="#" onclick="event.preventDefault();openSubscribeModal(this);">Newsletter</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">High Street Heroes</a></li>
-        <li><a href="#" onclick="showPage('projects');return false;">Podcast</a></li>
+        <li><a href="/#projects" data-page="projects">High Street Heroes</a></li>
+        <li><a href="/#projects" data-page="projects">Podcast</a></li>
         <li><a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a></li>
       </ul>
     </div>
@@ -4856,10 +4692,13 @@
   var PAGES=['home','about','events','projects','offers','resources','funding-support','contact'];
   var FN_BREVO    = '/.netlify/functions/brevo';
   var FN_AIRTABLE = '/.netlify/functions/airtable';
+  var FN_CONTACT  = '/.netlify/functions/contact';
   var AT_SITE     = 'Newcastle First';
 
   /* ── SPA NAVIGATION ──────────────────────────────────────── */
-  function showPage(name){
+  function showPage(name, opts){
+    opts = opts || {};
+    if(PAGES.indexOf(name) === -1) name = 'home';
     closeMenu();
     PAGES.forEach(function(p){
       var el=document.getElementById('page-'+p);
@@ -4867,51 +4706,82 @@
     });
     var t=document.getElementById('page-'+name);
     if(t) t.classList.add('active');
-    document.querySelectorAll('.nav-links li a').forEach(function(a){
-      a.classList.remove('nav-active');
-      var oc=a.getAttribute('onclick')||'';
-      if(oc.indexOf("showPage('"+name+"')")!==-1) a.classList.add('nav-active');
+    // Active-state highlighting now uses the data-page attribute
+    // (works for both the shared nav and the shared mobile menu)
+    document.querySelectorAll('a[data-page]').forEach(function(a){
+      a.classList.toggle('nav-active', a.getAttribute('data-page') === name);
     });
-    window.scrollTo({top:0,behavior:'smooth'});
-    var url;
-    if(name==='home')                    url='/';
-    else if(name==='funding-support')    url='/funding-support';
-    else                                 url='/#'+name;
-    try{history.pushState({page:name},'',url);}catch(e){}
+    if(!opts.skipScroll) window.scrollTo({top:0,behavior:'smooth'});
+    if(!opts.skipHistory){
+      var url;
+      if(name==='home')                    url='/';
+      else if(name==='funding-support')    url='/funding-support';
+      else                                 url='/#'+name;
+      try{history.pushState({page:name},'',url);}catch(e){}
+    }
     if(name==='offers') loadOffersPage();
     if(typeof lucide!=='undefined') lucide.createIcons();
   }
 
-  window.addEventListener('popstate',function(e){
-    if(e.state&&e.state.page){ showPage(e.state.page); return; }
-    // Fallback for popstate without state (e.g. direct hash edit)
-    var p=window.location.pathname;
-    if(p==='/funding-support'||p==='/funding-support/') showPage('funding-support');
+  // Delegated click handler — any <a data-page="X"> anywhere on
+  // the page (nav, mobile menu, footers, in-copy) will swap the
+  // SPA page instead of doing a full navigation.
+  document.addEventListener('click', function(e){
+    // Ignore modified clicks so users can still cmd/ctrl-click
+    // to open in a new tab, right-click for context menu, etc.
+    if(e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest('a[data-page]');
+    if(!a) return;
+    var name = a.getAttribute('data-page');
+    if(PAGES.indexOf(name) === -1) return;
+    e.preventDefault();
+    showPage(name);
   });
 
+  window.addEventListener('popstate', function(e){
+    var name = (e.state && e.state.page) || pageFromLocation();
+    showPage(name, {skipHistory: true, skipScroll: true});
+  });
+
+  // Resolve the correct SPA page from window.location — used
+  // on initial page load and popstate.
+  function pageFromLocation(){
+    var p = window.location.pathname.replace(/\/$/, '');
+    if(p === '/funding-support') return 'funding-support';
+    var h = window.location.hash.replace(/^#/, '');
+    if(h && PAGES.indexOf(h) !== -1) return h;
+    return 'home';
+  }
+
   /* ── INITIAL ROUTE ───────────────────────────────────────
-     Handle direct hits to /funding-support so the correct
-     SPA page is shown on first load. */
-  document.addEventListener('DOMContentLoaded',function(){
-    var p=window.location.pathname;
-    if(p==='/funding-support'||p==='/funding-support/'){
-      showPage('funding-support');
+     Handle direct hits to /funding-support and /#name so the
+     correct SPA page is shown on first load. */
+  document.addEventListener('DOMContentLoaded', function(){
+    var name = pageFromLocation();
+    if(name !== 'home'){
+      showPage(name, {skipHistory: true, skipScroll: true});
+    } else {
+      // Home is already .active in markup — just set nav highlight.
+      document.querySelectorAll('a[data-page="home"]').forEach(function(a){
+        a.classList.add('nav-active');
+      });
     }
   });
 
   /* ── MOBILE MENU ─────────────────────────────────────────── */
   function closeMenu(){
-    document.querySelectorAll('.mobile-menu').forEach(function(m){m.style.display='none';});
-    document.querySelectorAll('.hamburger').forEach(function(h){h.classList.remove('open');});
+    var m = document.querySelector('.mobile-menu');
+    var h = document.querySelector('.hamburger');
+    if(m) m.style.display = 'none';
+    if(h) h.classList.remove('open');
   }
   function toggleMenu(){
-    var activePage=document.querySelector('.spa-page.active');
-    var m=activePage?activePage.querySelector('.mobile-menu'):document.querySelector('.mobile-menu');
-    var h=activePage?activePage.querySelector('.hamburger'):document.querySelector('.hamburger');
+    var m = document.querySelector('.mobile-menu');
+    var h = document.querySelector('.hamburger');
     if(!m) return;
-    var isOpen=m.style.display==='flex';
-    m.style.display=isOpen?'none':'flex';
-    if(h) h.classList.toggle('open',!isOpen);
+    var isOpen = m.style.display === 'flex';
+    m.style.display = isOpen ? 'none' : 'flex';
+    if(h) h.classList.toggle('open', !isOpen);
   }
 
   /* ── CONTACT FORM SUBJECT PILLS ──────────────────────────── */
@@ -4927,23 +4797,85 @@
     if(inp) inp.value=val;
   }
 
+  /* ── FORM SUBMISSION HELPER ──────────────────────────────
+     Shared POST → /.netlify/functions/contact + inline success
+     / error state. Used by both the Contact and Funding-Support
+     forms. Falls back to a mailto link on failure so the user
+     is never left with an untouchable form. */
+  function submitFormToBackend(opts){
+    var btn  = opts.btn;
+    var box  = opts.formBox;       // wrapper div to swap for success state
+    var body = opts.body;          // JSON payload for the function
+    var successTitle = opts.successTitle || 'Thanks — message sent!';
+    var successMsg   = opts.successMsg   || 'We’ll be in touch within 1–2 business days.';
+    var mailtoHref   = opts.mailtoHref;  // fallback mailto link on error
+
+    if(!btn || !box) return;
+    var originalHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span>Sending…</span>';
+
+    fetch(FN_CONTACT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, json: j }; }); })
+    .then(function(res){
+      if(res.ok && res.json && res.json.success){
+        box.innerHTML =
+          '<div class="ct-form-success" role="status" aria-live="polite">' +
+            '<div class="ct-form-success-icon" aria-hidden="true">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+            '</div>' +
+            '<h3>' + successTitle + '</h3>' +
+            '<p>' + successMsg + '</p>' +
+          '</div>';
+      } else {
+        showFormError(btn, box, originalHtml, mailtoHref, (res.json && res.json.error) || 'send-failed');
+      }
+    })
+    .catch(function(err){
+      showFormError(btn, box, originalHtml, mailtoHref, String(err && err.message || err));
+    });
+  }
+  function showFormError(btn, box, originalHtml, mailtoHref, detail){
+    btn.disabled = false;
+    btn.innerHTML = originalHtml;
+    // Prepend a soft error banner; keep the form editable
+    var existing = box.querySelector('.ct-form-error');
+    if(existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'ct-form-error';
+    banner.setAttribute('role', 'alert');
+    banner.innerHTML =
+      '<strong>Sorry—we couldn’t send your message right now.</strong> ' +
+      'Please try again in a moment, or ' +
+      '<a href="' + (mailtoHref || 'mailto:hello@first-connections.co.uk') + '">email us directly</a>.';
+    box.insertBefore(banner, box.firstChild);
+  }
+
   /* ── CONTACT FORM ────────────────────────────────────────── */
-  function sendContactForm(){
-    var name=(document.getElementById('contact-name')||{}).value||'';
-    var email=(document.getElementById('contact-email')||{}).value||'';
-    var subject=(document.getElementById('contact-subject')||{}).value||'General Enquiry';
-    var msg=(document.getElementById('contact-message')||{}).value||'';
-    if(!name||!email){alert('Please fill in your name and email.');return;}
-    var parts=name.trim().split(' ');
-    // Save to Brevo via function
-    fetch(FN_BREVO,{
-      method:'POST',
-      headers:{'content-type':'application/json'},
-      body:JSON.stringify({email:email,firstName:parts[0]||name,lastName:parts.slice(1).join(' ')||'-'})
-    }).catch(function(){});
-    // Open mailto
-    var body='Name: '+name+'\n\nMessage:\n'+msg;
-    window.location.href='mailto:hello@first-connections.co.uk?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  function sendContactForm(btn){
+    var name    = (document.getElementById('contact-name')    || {}).value || '';
+    var email   = (document.getElementById('contact-email')   || {}).value || '';
+    var subject = (document.getElementById('contact-subject') || {}).value || 'General Enquiry';
+    var msg     = (document.getElementById('contact-message') || {}).value || '';
+    if(!name.trim() || !email.trim()){
+      alert('Please fill in your name and email.');
+      return;
+    }
+    var box = (btn && btn.closest) ? btn.closest('.ct-form') : document.querySelector('#page-contact .ct-form');
+    var mailtoHref = 'mailto:hello@first-connections.co.uk?subject=' + encodeURIComponent(subject) +
+                     '&body=' + encodeURIComponent('Name: ' + name + '\n\nMessage:\n' + msg);
+    submitFormToBackend({
+      btn: btn, formBox: box, mailtoHref: mailtoHref,
+      body: {
+        formType: 'contact',
+        name: name, email: email,
+        subject: subject, message: msg
+      }
+    });
   }
 
   /* ── METRICK INTEREST FORM ───────────────────────────────── */
@@ -4958,45 +4890,46 @@
     var inp=document.getElementById('mtk-interest');
     if(inp) inp.value=val;
   }
-  function sendMetrickForm(){
-    var name=(document.getElementById('mtk-name')||{}).value.trim();
-    var email=(document.getElementById('mtk-email')||{}).value.trim();
-    var business=(document.getElementById('mtk-business')||{}).value.trim();
-    var phone=(document.getElementById('mtk-phone')||{}).value.trim();
-    var interest=(document.getElementById('mtk-interest')||{}).value||'Not specified';
-    var stage=(document.getElementById('mtk-stage')||{}).value||'Not specified';
-    var msg=(document.getElementById('mtk-message')||{}).value.trim();
-    if(!name||!email||!business){
+  function sendMetrickForm(btn){
+    var name     = (document.getElementById('mtk-name')     || {}).value || '';
+    var email    = (document.getElementById('mtk-email')    || {}).value || '';
+    var business = (document.getElementById('mtk-business') || {}).value || '';
+    var phone    = (document.getElementById('mtk-phone')    || {}).value || '';
+    var interest = (document.getElementById('mtk-interest') || {}).value || 'Not specified';
+    var stage    = (document.getElementById('mtk-stage')    || {}).value || 'Not specified';
+    var msg      = (document.getElementById('mtk-message')  || {}).value || '';
+    if(!name.trim() || !email.trim() || !business.trim()){
       alert('Please fill in your name, email and business name so we can get in touch.');
       return;
     }
-    var parts=name.split(' ');
-    // Save to Brevo (so they get NF updates too)
-    fetch(FN_BREVO,{
-      method:'POST',
-      headers:{'content-type':'application/json'},
-      body:JSON.stringify({
-        email:email,
-        firstName:parts[0]||name,
-        lastName:parts.slice(1).join(' ')||'-',
-        company:business,
-        jobTitle:'Metrick enquiry'
-      })
-    }).catch(function(){});
-    // Build the mailto to hello@first-connections.co.uk
-    var subject='Grants & Funding enquiry — '+business;
-    var body=''+
-      'New Metrick partnership interest\n'+
-      '=================================\n\n'+
-      'Name: '+name+'\n'+
-      'Email: '+email+'\n'+
-      'Business: '+business+'\n'+
-      'Phone: '+(phone||'—')+'\n'+
-      'Interested in: '+interest+'\n'+
-      'Business stage: '+stage+'\n\n'+
-      'Project details:\n'+
-      (msg||'(none provided)')+'\n';
-    window.location.href='mailto:hello@first-connections.co.uk?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    var box = (btn && btn.closest) ? btn.closest('.ct-form') : document.querySelector('#page-funding-support .ct-form');
+    var subject = 'Grants & Funding enquiry — ' + business;
+    var mailtoBody =
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Business: ' + business + '\n' +
+      'Phone: ' + (phone || '—') + '\n' +
+      'Interested in: ' + interest + '\n' +
+      'Business stage: ' + stage + '\n\n' +
+      'Project details:\n' + (msg || '(none provided)') + '\n';
+    var mailtoHref = 'mailto:hello@first-connections.co.uk?subject=' +
+                     encodeURIComponent(subject) + '&body=' + encodeURIComponent(mailtoBody);
+    submitFormToBackend({
+      btn: btn, formBox: box, mailtoHref: mailtoHref,
+      successTitle: 'Thanks — we’ll be in touch shortly',
+      successMsg:   'A member of the Newcastle First team will reach out to arrange your free discovery call with Metrick.',
+      body: {
+        formType:     'funding-support',
+        name:         name,
+        email:        email,
+        businessName: business,
+        phone:        phone,
+        interest:     interest,
+        stage:        stage,
+        subject:      subject,
+        message:      msg
+      }
+    });
   }
 
   /* ── NEWSLETTER MODAL — OPEN ─────────────────────────────── */
