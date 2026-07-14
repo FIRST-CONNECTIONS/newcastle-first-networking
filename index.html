@@ -2541,144 +2541,238 @@
   }
 
   /* ── METRICK PARTNERSHIP PAGE ─────────────────────────── */
+
+  /* Hero: larger, higher-contrast partnership lockup */
+  .mtk-hero .ct-hero-inner { gap: 5rem; padding-top: 1rem; padding-bottom: 1rem; }
+  .mtk-hero .ct-hero-text h1 { font-size: clamp(2.4rem, 4.6vw, 3.6rem); line-height: 1.08; }
+  .mtk-hero .ct-hero-text > p { color: rgba(255,255,255,0.92); font-size: 1.05rem; line-height: 1.6; max-width: 32rem; }
+  .mtk-hero .ct-hero-text > p + p { color: rgba(255,255,255,0.72); font-size: 0.95rem; }
+  .mtk-hero .section-label { color: var(--gold); letter-spacing: 0.14em; margin-bottom: 0.9rem; display: inline-block; }
+
   .mtk-partnership-badge {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(240,180,41,0.35);
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(240,180,41,0.5);
     border-radius: 999px;
-    padding: 0.45rem 1rem;
-    font-size: 0.8rem; font-weight: 700;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: #fff; margin-bottom: 1.25rem;
+    padding: 0.55rem 1.1rem 0.55rem 0.55rem;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #fff; margin-bottom: 1.35rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .mtk-partnership-badge .mtk-badge-dot {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--gold); color: var(--navy-dark);
+    font-family: 'Playfair Display', serif; font-weight: 900; font-size: 0.85rem;
+    letter-spacing: 0; line-height: 1;
   }
   .mtk-partnership-badge .mtk-badge-nf { color: #fff; }
-  .mtk-partnership-badge .mtk-badge-x  { color: var(--gold); font-weight: 900; }
+  .mtk-partnership-badge .mtk-badge-sep { color: var(--gold); opacity: 0.7; font-weight: 900; }
   .mtk-partnership-badge .mtk-badge-mk { color: var(--gold); }
 
+  /* Hero stat cards — larger, cleaner, higher contrast */
   .mtk-hero-stats {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     align-self: center;
   }
   .mtk-stat-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: var(--radius);
-    padding: 1.25rem 1.1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 14px;
+    padding: 1.4rem 1.2rem;
     color: #fff;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .mtk-stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(240,180,41,0.4);
+    background: rgba(255,255,255,0.09);
   }
   .mtk-stat-num {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
     color: var(--gold);
-    font-size: clamp(1.6rem, 3.2vw, 2rem);
-    line-height: 1.05; margin-bottom: 0.4rem;
+    font-size: clamp(1.9rem, 3.8vw, 2.4rem);
+    line-height: 1; margin-bottom: 0.55rem;
+    letter-spacing: -0.01em;
   }
   .mtk-stat-label {
-    font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.4;
+    font-size: 0.86rem; color: rgba(255,255,255,0.95); line-height: 1.45; font-weight: 600;
   }
-  .mtk-stat-label small { color: rgba(255,255,255,0.55); font-size: 0.72rem; }
+  .mtk-stat-label small { color: rgba(255,255,255,0.65); font-size: 0.75rem; font-weight: 400; display: block; margin-top: 0.2rem; }
 
+  /* Section-heading gold accent bar */
+  .mtk-section-head { text-align: center; max-width: 720px; margin: 0 auto 3.5rem; }
+  .mtk-section-head .section-label {
+    color: var(--gold); letter-spacing: 0.14em; position: relative;
+    display: inline-block; padding-bottom: 0.6rem; margin-bottom: 0.8rem;
+  }
+  .mtk-section-head .section-label::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 3px; background: var(--gold); border-radius: 2px;
+  }
+  .mtk-section-head h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); line-height: 1.15; }
+  .mtk-section-head p.lead { margin-top: 1rem; font-size: 1.05rem; }
+
+  /* Service cards — proper icons, better shadow & hover */
   .mtk-service-card {
     background: var(--white);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem 1.5rem;
-    box-shadow: 0 4px 18px rgba(26,37,80,0.05);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    border-radius: 16px;
+    padding: 2rem 1.75rem;
+    box-shadow: 0 4px 20px rgba(26,37,80,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     height: 100%;
+    display: flex; flex-direction: column;
   }
   .mtk-service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(26,37,80,0.12);
-    border-color: rgba(240,180,41,0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(26,37,80,0.14);
+    border-color: rgba(240,180,41,0.55);
   }
-  .mtk-service-card h3 { margin: 0.75rem 0 0.5rem; color: var(--navy); }
-  .mtk-service-card p { color: var(--muted); font-size: 0.92rem; }
+  .mtk-service-card h3 { margin: 1.1rem 0 0.6rem; color: var(--navy); font-size: 1.15rem; }
+  .mtk-service-card p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
   .mtk-service-icon {
-    width: 52px; height: 52px; border-radius: 12px;
-    background: linear-gradient(135deg, rgba(240,180,41,0.15), rgba(240,180,41,0.05));
+    width: 56px; height: 56px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(240,180,41,0.22), rgba(240,180,41,0.06));
     color: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.6rem; font-weight: 900;
-    font-family: 'Playfair Display', serif;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(240,180,41,0.25);
   }
+  .mtk-service-icon svg { width: 26px; height: 26px; stroke-width: 2; }
 
+  /* How-it-works — connector between cards */
+  .mtk-steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    position: relative;
+  }
+  .mtk-steps-grid::before {
+    content: ''; position: absolute;
+    top: 3.2rem; left: 12%; right: 12%; height: 2px;
+    background-image: linear-gradient(to right, rgba(240,180,41,0.5) 50%, transparent 50%);
+    background-size: 12px 2px;
+    background-repeat: repeat-x;
+    z-index: 0;
+  }
   .mtk-step-card {
     background: var(--white);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: 16px;
     padding: 1.75rem 1.5rem;
     position: relative;
     height: 100%;
+    z-index: 1;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .mtk-step-card h3 { margin: 0.5rem 0 0.4rem; color: var(--navy); }
-  .mtk-step-card p { color: var(--muted); font-size: 0.9rem; }
+  .mtk-step-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(26,37,80,0.09); }
+  .mtk-step-card h3 { margin: 0.6rem 0 0.5rem; color: var(--navy); font-size: 1.05rem; }
+  .mtk-step-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
   .mtk-step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--navy); color: var(--gold);
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    color: var(--gold);
-    font-size: 2.2rem;
+    font-size: 1.15rem;
     line-height: 1;
-    margin-bottom: 0.3rem;
-    opacity: 0.85;
+    box-shadow: 0 6px 16px rgba(26,37,80,0.18);
+    margin-bottom: 0.6rem;
   }
 
+  /* Who-we-help ticks — brighter & bigger */
   .mtk-tick-list {
-    list-style: none; padding: 0; margin: 1.25rem 0 0;
+    list-style: none; padding: 0; margin: 1.4rem 0 0;
   }
   .mtk-tick-list li {
-    display: flex; align-items: flex-start; gap: 0.6rem;
-    padding: 0.4rem 0;
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.55rem 0;
     color: var(--text);
-    font-size: 0.95rem;
+    font-size: 0.98rem;
+    line-height: 1.4;
   }
   .mtk-tick {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 22px; height: 22px; border-radius: 50%;
-    background: rgba(240,180,41,0.15);
-    color: var(--gold); font-weight: 900; font-size: 0.75rem;
-    flex-shrink: 0; margin-top: 2px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--gold);
+    color: var(--navy-dark); font-weight: 900; font-size: 0.85rem;
+    flex-shrink: 0; margin-top: 1px;
+    box-shadow: 0 3px 8px rgba(240,180,41,0.35);
   }
+  .mtk-tick svg { width: 14px; height: 14px; stroke-width: 3.5; }
 
+  /* Highlight card — fix contrast: force light text everywhere */
   .mtk-highlight-card {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(240,180,41,0.14) 0%, transparent 55%),
+      linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
     color: #fff;
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    box-shadow: 0 12px 40px rgba(26,37,80,0.2);
+    border-radius: 18px;
+    padding: 2.25rem;
+    box-shadow: 0 18px 50px rgba(26,37,80,0.28);
+    position: relative;
+    overflow: hidden;
   }
-  .mtk-highlight-card h3 { color: #fff; }
-  .mtk-highlight-card p { color: rgba(255,255,255,0.85); }
+  .mtk-highlight-card .section-label { color: var(--gold) !important; }
+  .mtk-highlight-card h3 { color: #fff; font-size: 1.5rem; margin: 0.4rem 0 0.9rem; line-height: 1.2; }
+  .mtk-highlight-card p { color: rgba(255,255,255,0.88) !important; font-size: 0.95rem; line-height: 1.6; }
+  .mtk-highlight-card p.mtk-highlight-meta { color: rgba(255,255,255,0.6) !important; font-size: 0.82rem; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.12); }
+  .mtk-highlight-card .mtk-highlight-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 42px; height: 42px; border-radius: 10px;
+    background: rgba(240,180,41,0.18);
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .mtk-highlight-card .mtk-highlight-icon svg { width: 22px; height: 22px; stroke-width: 2; }
 
-  .mtk-why-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+  /* Why-us list */
+  .mtk-why-list { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 0.5rem; }
   .mtk-why-item {
     display: flex; align-items: flex-start; gap: 0.9rem;
-    padding: 0.9rem 1rem;
-    background: rgba(240,180,41,0.06);
-    border: 1px solid rgba(240,180,41,0.18);
+    padding: 1rem 1.1rem;
+    background: rgba(240,180,41,0.05);
+    border: 1px solid rgba(240,180,41,0.2);
     border-radius: 12px;
+    transition: background 0.2s, border-color 0.2s;
   }
+  .mtk-why-item:hover { background: rgba(240,180,41,0.09); border-color: rgba(240,180,41,0.35); }
+  .mtk-why-item strong { color: var(--navy); font-size: 0.98rem; }
   .mtk-why-icon {
-    font-size: 1.3rem; flex-shrink: 0;
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(240,180,41,0.15);
-    border-radius: 8px;
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(240,180,41,0.25), rgba(240,180,41,0.08));
+    color: var(--gold);
+    border-radius: 10px;
   }
+  .mtk-why-icon svg { width: 20px; height: 20px; stroke-width: 2; }
 
   /* ── Metrick page — tablet & mobile ──────────────────── */
+  @media (max-width: 1024px) {
+    .mtk-steps-grid { grid-template-columns: 1fr 1fr; }
+    .mtk-steps-grid::before { display: none; }
+  }
   @media (max-width: 900px) {
-    .mtk-hero-stats { grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 2rem; }
-    .mtk-stat-card { padding: 1rem 0.9rem; }
-    .mtk-highlight-card { padding: 1.5rem; }
+    .mtk-hero .ct-hero-inner { gap: 2.5rem; }
+    .mtk-hero-stats { grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.5rem; }
+    .mtk-stat-card { padding: 1.1rem 1rem; }
+    .mtk-highlight-card { padding: 1.75rem; }
+    .mtk-section-head { margin-bottom: 2.5rem; }
   }
   @media (max-width: 600px) {
-    .mtk-hero-stats { grid-template-columns: 1fr 1fr; }
-    .mtk-stat-num { font-size: 1.4rem; }
-    .mtk-stat-label { font-size: 0.75rem; }
-    .mtk-partnership-badge { font-size: 0.7rem; padding: 0.35rem 0.8rem; }
-    .mtk-service-card, .mtk-step-card { padding: 1.4rem 1.2rem; }
+    .mtk-steps-grid { grid-template-columns: 1fr; }
+    .mtk-hero-stats { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    .mtk-stat-num { font-size: 1.5rem; margin-bottom: 0.35rem; }
+    .mtk-stat-label { font-size: 0.78rem; }
+    .mtk-stat-label small { font-size: 0.7rem; }
+    .mtk-partnership-badge { font-size: 0.68rem; padding: 0.4rem 0.9rem 0.4rem 0.4rem; gap: 0.5rem; }
+    .mtk-partnership-badge .mtk-badge-dot { width: 20px; height: 20px; font-size: 0.75rem; }
+    .mtk-service-card { padding: 1.5rem 1.3rem; }
+    .mtk-step-card { padding: 1.4rem 1.2rem; }
+    .mtk-highlight-card { padding: 1.5rem; }
+    .mtk-highlight-card h3 { font-size: 1.25rem; }
   }
 
 </style>
@@ -4154,19 +4248,20 @@
 </div>
 
 <!-- HERO -->
-<section class="ct-hero mtk-hero" style="background:linear-gradient(135deg,rgba(17,26,58,0.92) 0%,rgba(30,46,98,0.86) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/newcastle-building.png') center center/cover no-repeat;">
+<section class="ct-hero mtk-hero" style="background:linear-gradient(135deg,rgba(17,26,58,0.94) 0%,rgba(30,46,98,0.88) 100%),url('https://raw.githubusercontent.com/FIRST-CONNECTIONS/newcastle-first-networking/main/FC-website-images/newcastle-building.png') center center/cover no-repeat;">
   <div class="ct-hero-inner wrap-wide">
     <div class="ct-hero-text">
-      <div class="mtk-partnership-badge">
+      <div class="mtk-partnership-badge" aria-label="Newcastle First in partnership with Metrick">
+        <span class="mtk-badge-dot">&pound;</span>
         <span class="mtk-badge-nf">Newcastle First</span>
-        <span class="mtk-badge-x">&times;</span>
-        <span class="mtk-badge-mk">Metrick</span>
+        <span class="mtk-badge-sep">&#8226;</span>
+        <span class="mtk-badge-mk">Powered by Metrick</span>
       </div>
       <span class="section-label">Grants, Funding &amp; Tender Support</span>
       <h1>Unlock the funding your <em>business deserves</em></h1>
-      <p>Newcastle First has partnered with <strong>Metrick</strong> — one of the North East's leading grant &amp; funding consultancies — to help businesses across the region secure the grants, tenders and accreditations that fuel growth.</p>
-      <p style="margin-top:0.6rem;color:rgba(255,255,255,0.75);font-size:0.95rem;">From decarbonisation grants to Innovate UK support, R&amp;D funding and public-sector tenders — we handle the paperwork so you can focus on your business.</p>
-      <div class="hero-actions" style="margin-top:1.8rem;">
+      <p>We've teamed up with <strong>Metrick</strong>, the North East's specialist grants &amp; funding consultancy, to help our community secure the money and contracts that fuel real growth.</p>
+      <p>From Innovate UK and R&amp;D tax relief to decarbonisation grants and public-sector tenders — we do the paperwork, you run your business.</p>
+      <div class="hero-actions" style="margin-top:2rem;">
         <a href="#funding-support-form" class="btn-gold">Register your interest <span aria-hidden="true">&rarr;</span></a>
         <a href="#funding-support-services" class="btn-outline-white">See what we offer</a>
       </div>
@@ -4174,114 +4269,125 @@
     <div class="mtk-hero-stats">
       <div class="mtk-stat-card">
         <div class="mtk-stat-num">&pound;2.7m</div>
-        <div class="mtk-stat-label">Recent scheme delivered<br/><small>200-home retrofit, Hull</small></div>
+        <div class="mtk-stat-label">Recent scheme delivered<small>200-home retrofit &middot; Hull</small></div>
       </div>
       <div class="mtk-stat-card">
-        <div class="mtk-stat-num">100%</div>
-        <div class="mtk-stat-label">Bespoke, tailored applications<br/><small>End-to-end managed service</small></div>
+        <div class="mtk-stat-num">End&#8209;to&#8209;end</div>
+        <div class="mtk-stat-label">Fully managed service<small>Research, paperwork &amp; submission</small></div>
       </div>
       <div class="mtk-stat-card">
-        <div class="mtk-stat-num">NE</div>
-        <div class="mtk-stat-label">North East based &amp; trusted<br/><small>Founded 2021, Newton Aycliffe</small></div>
+        <div class="mtk-stat-num">North East</div>
+        <div class="mtk-stat-label">Local &amp; trusted<small>Founded 2021 &middot; Newton Aycliffe</small></div>
       </div>
       <div class="mtk-stat-card">
-        <div class="mtk-stat-num">FREE</div>
-        <div class="mtk-stat-label">Discovery call for members<br/><small>No obligation, no jargon</small></div>
+        <div class="mtk-stat-num">Free</div>
+        <div class="mtk-stat-label">Discovery call for members<small>No obligation, no upfront cost</small></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- WHAT WE OFFER -->
-<section id="funding-support-services" style="padding:5rem 0;background:var(--white);">
+<section id="funding-support-services" style="padding:6rem 0;background:var(--white);">
   <div class="wrap-wide">
-    <div style="text-align:center;max-width:720px;margin:0 auto 3rem;">
+    <div class="mtk-section-head">
       <span class="section-label">What we can help with</span>
       <h2>Four ways we help you <em>grow</em></h2>
-      <p class="lead" style="color:var(--muted);margin-top:0.75rem;">Whether you're chasing a specific grant, bidding for a public-sector contract, or trying to unlock private funding — our partner Metrick brings the expertise, and Newcastle First members get priority access.</p>
+      <p class="lead" style="color:var(--muted);">Chasing a specific grant, bidding for a public-sector contract, or unlocking private investment — Metrick brings the expertise, Newcastle First members get priority access.</p>
     </div>
 
     <div class="four-col" style="gap:1.75rem;">
       <div class="mtk-service-card">
-        <div class="mtk-service-icon">&pound;</div>
+        <div class="mtk-service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7c0-5.333-8-5.333-8 0"/><path d="M10 7v14"/><path d="M6 21h12"/><path d="M6 13h10"/></svg>
+        </div>
         <h3>Grant Funding</h3>
-        <p>Full grant identification, application &amp; submission service. From Innovate UK, R&amp;D tax credits and Made Smarter, to regional growth grants and decarbonisation schemes — we find the funding you're eligible for and handle every step of the paperwork.</p>
+        <p>Full grant identification, application &amp; submission. Innovate UK, R&amp;D tax credits, Made Smarter, regional growth &amp; decarbonisation schemes — we find what you're eligible for and handle the paperwork.</p>
       </div>
       <div class="mtk-service-card">
-        <div class="mtk-service-icon">&#128200;</div>
+        <div class="mtk-service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
         <h3>Business Funding</h3>
-        <p>Access to private funding, investment introductions, and support with lender-ready business plans, forecasts and pitch decks. Ideal for start-ups, scale-ups and growth-stage SMEs looking beyond the grants ecosystem.</p>
+        <p>Investment introductions and support with lender-ready business plans, forecasts and pitch decks. Ideal for start-ups, scale-ups and growth-stage SMEs looking beyond the grants ecosystem.</p>
       </div>
       <div class="mtk-service-card">
-        <div class="mtk-service-icon">&#128196;</div>
+        <div class="mtk-service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
         <h3>Tender Support</h3>
-        <p>Public and private-sector tender writing, bid management and PQQ support. We help you win contracts on Find A Tender, Contracts Finder and framework agreements — from strategy through to submission.</p>
+        <p>Public &amp; private-sector tender writing, bid management and PQQ support. Win contracts on Find A Tender, Contracts Finder and framework agreements — from strategy through to submission.</p>
       </div>
       <div class="mtk-service-card">
-        <div class="mtk-service-icon">&#10003;</div>
+        <div class="mtk-service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
         <h3>Accreditations</h3>
-        <p>ISO 9001, ISO 14001, ISO 27001, Cyber Essentials, SafeContractor and more. The credentials you need to unlock tenders, win larger contracts and demonstrate operational maturity — often eligible for grant support themselves.</p>
+        <p>ISO 9001, ISO 14001, ISO 27001, Cyber Essentials, SafeContractor and more. The credentials that unlock tenders, win larger contracts &amp; prove operational maturity — often grant-eligible themselves.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section style="padding:5rem 0;background:var(--light);">
+<section style="padding:6rem 0;background:var(--light);">
   <div class="wrap-wide">
-    <div style="text-align:center;max-width:720px;margin:0 auto 3rem;">
+    <div class="mtk-section-head">
       <span class="section-label">The process</span>
       <h2>How it <em>works</em></h2>
-      <p class="lead" style="color:var(--muted);margin-top:0.75rem;">A simple four-step journey from first conversation to funded project. No obligation, no jargon, no upfront cost to explore.</p>
+      <p class="lead" style="color:var(--muted);">From first conversation to funded project in four simple steps. No obligation, no jargon, no upfront cost to explore.</p>
     </div>
 
-    <div class="four-col" style="gap:1.5rem;">
+    <div class="mtk-steps-grid">
       <div class="mtk-step-card">
         <div class="mtk-step-num">01</div>
         <h3>Register interest</h3>
-        <p>Fill in the short form below with a few details about your business and what you're looking for.</p>
+        <p>A short form below — a few details about your business and what you're hoping to fund.</p>
       </div>
       <div class="mtk-step-card">
         <div class="mtk-step-num">02</div>
         <h3>Free discovery call</h3>
-        <p>We'll book you in for a friendly, no-obligation conversation to understand your goals and eligibility.</p>
+        <p>A friendly, no-obligation conversation to understand your goals and eligibility.</p>
       </div>
       <div class="mtk-step-card">
         <div class="mtk-step-num">03</div>
         <h3>Opportunity match</h3>
-        <p>Metrick's team identifies the grants, tenders or accreditations best suited to your business.</p>
+        <p>Metrick pinpoints the grants, tenders or accreditations best suited to your business.</p>
       </div>
       <div class="mtk-step-card">
         <div class="mtk-step-num">04</div>
         <h3>We handle it</h3>
-        <p>Applications, submissions and paperwork are managed end-to-end — you focus on running your business.</p>
+        <p>Applications and submissions managed end-to-end — you focus on running your business.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- WHO WE HELP -->
-<section style="padding:5rem 0;background:var(--white);">
+<section style="padding:6rem 0;background:var(--white);">
   <div class="wrap-wide">
-    <div class="two-col" style="gap:4rem;align-items:center;">
+    <div class="two-col" style="gap:4.5rem;align-items:center;">
       <div>
         <span class="section-label">Who we help</span>
-        <h2>Built for <em>North East businesses</em> at every stage</h2>
-        <p style="margin-top:1rem;color:var(--muted);">Metrick works with businesses, charities and organisations across the North East — from pre-revenue start-ups exploring their first grant, to established SMEs pursuing seven-figure tenders. If you're based in the region, chances are there's funding you don't yet know about.</p>
+        <h2 style="margin-top:0.6rem;">Built for <em>North East businesses</em> at every stage</h2>
+        <p style="margin-top:1.1rem;color:var(--muted);font-size:1.02rem;line-height:1.65;">From pre-revenue founders exploring their first grant to established SMEs pursuing seven-figure tenders — if you're based in the region, there's probably funding you don't yet know about.</p>
         <ul class="mtk-tick-list">
-          <li><span class="mtk-tick">&#10003;</span> Start-ups &amp; early-stage founders</li>
-          <li><span class="mtk-tick">&#10003;</span> SMEs &amp; growth-stage businesses</li>
-          <li><span class="mtk-tick">&#10003;</span> Charities, CICs &amp; social enterprises</li>
-          <li><span class="mtk-tick">&#10003;</span> Manufacturers &amp; industrial businesses</li>
-          <li><span class="mtk-tick">&#10003;</span> Businesses pursuing net-zero &amp; decarbonisation projects</li>
-          <li><span class="mtk-tick">&#10003;</span> Any business tendering for public-sector work</li>
+          <li><span class="mtk-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Start-ups &amp; early-stage founders</li>
+          <li><span class="mtk-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> SMEs &amp; growth-stage businesses</li>
+          <li><span class="mtk-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Charities, CICs &amp; social enterprises</li>
+          <li><span class="mtk-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Manufacturers &amp; industrial businesses</li>
+          <li><span class="mtk-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Net-zero &amp; decarbonisation projects</li>
+          <li><span class="mtk-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Any business tendering for public-sector work</li>
         </ul>
       </div>
       <div class="mtk-highlight-card">
-        <span class="section-label" style="color:var(--gold);">Recent success</span>
-        <h3 style="margin:0.4rem 0 0.8rem;">&pound;2.7m Hull retrofit scheme</h3>
-        <p style="color:var(--muted);">Metrick recently helped deliver a &pound;2.7 million home improvement scheme that retrofitted around 200 properties in Hull with solar panels, modern heating systems and improved insulation — a live example of the scale of funding available when the right partner is in your corner.</p>
-        <p style="margin-top:1rem;font-size:0.85rem;color:var(--muted);"><em>Founded 2021 in Newton Aycliffe &middot; Awarded five-figure investment by Durham Business Growth &middot; Digital grants platform launching 2026.</em></p>
+        <div class="mtk-highlight-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.88L2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="section-label">Recent success</span>
+        <h3>&pound;2.7m Hull retrofit scheme</h3>
+        <p>Metrick helped deliver a &pound;2.7 million home improvement scheme that retrofitted around 200 properties in Hull with solar panels, modern heating systems and improved insulation — a live example of what's possible with the right partner in your corner.</p>
+        <p class="mtk-highlight-meta"><em>Founded 2021 in Newton Aycliffe &middot; Five-figure investment from Durham Business Growth &middot; Grants platform launching 2026.</em></p>
       </div>
     </div>
   </div>
@@ -4336,19 +4442,31 @@
       <div class="ct-involve-block">
         <span class="section-label">Why this partnership?</span>
         <h2>Newcastle First, <em>powered by Metrick</em></h2>
-        <p style="color:var(--muted);margin-bottom:1.4rem;">Newcastle First exists to help North East businesses grow. Metrick brings deep specialist expertise in grants, tenders and accreditations — a natural fit. Together, we're giving our community priority access to funding support that's often out of reach.</p>
+        <p style="color:var(--muted);margin-bottom:1.4rem;line-height:1.65;">Newcastle First exists to help North East businesses grow. Metrick brings the specialist expertise in grants, tenders and accreditations. Together, we're giving our community priority access to funding support that's usually out of reach.</p>
         <div class="mtk-why-list">
-          <div class="mtk-why-item"><div class="mtk-why-icon">&#127775;</div><div><strong>Free for our members to explore</strong><br/><span style="color:var(--muted);font-size:0.9rem;">No cost for the discovery call &amp; eligibility check.</span></div></div>
-          <div class="mtk-why-item"><div class="mtk-why-icon">&#128736;</div><div><strong>Managed end-to-end</strong><br/><span style="color:var(--muted);font-size:0.9rem;">Research, paperwork &amp; submission handled by Metrick's team.</span></div></div>
-          <div class="mtk-why-item"><div class="mtk-why-icon">&#127968;</div><div><strong>Built for the North East</strong><br/><span style="color:var(--muted);font-size:0.9rem;">Local knowledge of regional funders &amp; growth programmes.</span></div></div>
-          <div class="mtk-why-item"><div class="mtk-why-icon">&#128274;</div><div><strong>Confidential &amp; no obligation</strong><br/><span style="color:var(--muted);font-size:0.9rem;">Your project details stay between you, Newcastle First and Metrick.</span></div></div>
+          <div class="mtk-why-item">
+            <div class="mtk-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div><strong>Free for members to explore</strong><br/><span style="color:var(--muted);font-size:0.9rem;">Discovery call &amp; eligibility check at no cost.</span></div>
+          </div>
+          <div class="mtk-why-item">
+            <div class="mtk-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div><strong>Managed end-to-end</strong><br/><span style="color:var(--muted);font-size:0.9rem;">Research, paperwork &amp; submission all handled.</span></div>
+          </div>
+          <div class="mtk-why-item">
+            <div class="mtk-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div><strong>Built for the North East</strong><br/><span style="color:var(--muted);font-size:0.9rem;">Local knowledge of regional funders &amp; programmes.</span></div>
+          </div>
+          <div class="mtk-why-item">
+            <div class="mtk-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div><strong>Confidential &amp; no obligation</strong><br/><span style="color:var(--muted);font-size:0.9rem;">Your project stays between you, us and Metrick.</span></div>
+          </div>
         </div>
       </div>
       <div class="ct-newsletter-block">
-        <span class="section-label" style="color:rgba(255,255,255,0.5);">Prefer email?</span>
+        <span class="section-label" style="color:rgba(255,255,255,0.55);">Prefer email?</span>
         <h3>Or drop us a <em>line</em></h3>
-        <p>Rather write us directly? Send an email and we'll route it to the Metrick partnership team.</p>
-        <a href="mailto:hello@first-connections.co.uk?subject=Metrick%20Partnership%20Enquiry" class="btn-gold" style="display:inline-flex;margin-top:0.75rem;">hello@first-connections.co.uk</a>
+        <p>Rather write directly? Send us an email and we'll route it to the partnership team.</p>
+        <a href="mailto:hello@first-connections.co.uk?subject=Grants%20%26%20Funding%20Enquiry" class="btn-gold" style="display:inline-flex;margin-top:0.75rem;">hello@first-connections.co.uk</a>
       </div>
     </div>
   </div>
