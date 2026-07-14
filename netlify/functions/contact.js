@@ -47,6 +47,12 @@ exports.handler = async function(event) {
   if (!String(name).trim() || !String(email).trim()) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Name and email are required' }) };
   }
+  // Loose email format check — matches the client-side isValidEmail
+  // in index.html. Rejects the obvious-typo class of addresses so we
+  // don't waste a Brevo call and then surface a generic error.
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim())) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: 'Please provide a valid email address' }) };
+  }
 
   const toEmail   = process.env.CONTACT_TO_EMAIL   || 'hello@first-connections.co.uk';
   const fromEmail = process.env.CONTACT_FROM_EMAIL || toEmail;
@@ -135,7 +141,12 @@ exports.handler = async function(event) {
   if (emailOk) {
     return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
   }
-  return { statusCode: 502, headers, body: JSON.stringify({ error: 'Email send failed', detail: emailErr }) };
+  // Log the full Brevo error server-side (visible in Netlify function
+  // logs) but don't return it to the browser — the payload can include
+  // internal identifiers (sender identity, api error codes) that we
+  // don't need to expose to visitors.
+  console.error('[contact.js] Brevo send failed:', emailErr);
+  return { statusCode: 502, headers, body: JSON.stringify({ error: 'Email send failed' }) };
 };
 
 function escapeHtml(s) {
